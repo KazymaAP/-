@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; connect-src 'self' https:; font-src 'self' https://fonts.gstatic.com; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'">
+
+  <meta name="description" content="Персональный дашборд для отслеживания доходов, продаж и ключевых метрик вашего бизнеса в Telegram Mini App.">
+  <meta name="keywords" content="дашборд, статистика, финансы, продажи, аналитика, бизнес, Telegram Mini App">
+  <meta name="author" content="Nodeforge">
+  <meta name="theme-color" content="#6366f1">
+  <meta name="robots" content="index, follow">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <meta property="og:title" content="Личный дашборд статистики — Финансы, продажи, аналитика в Telegram">
+  <meta property="og:description" content="Визуализация бизнес-метрик: финансы, продажи, воронка, подписчики. Экспорт отчётов, импорт данных. Бесплатно.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nodeforge.dev/miniapps/dashboard/">
+  <meta property="og:image" content="https://nodeforge.dev/miniapps/dashboard/img/og-image.png">
+  <meta property="og:locale" content="ru_RU">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@nodeforge_dev">
+  <meta name="twitter:title" content="Личный дашборд статистики — Финансы, продажи, аналитика в Telegram">
+  <meta name="twitter:description" content="Визуализация бизнес-метрик: финансы, продажи, воронка, подписчики. Экспорт отчётов, импорт данных.">
+  <meta name="twitter:image" content="https://nodeforge.dev/miniapps/dashboard/img/og-image.png">
+  
+  <link rel="canonical" href="https://nodeforge.dev/miniapps/dashboard/">
+  <link rel="icon" type="image/svg+xml" href="./img/favicon.svg">
+  <link rel="apple-touch-icon" href="./img/apple-touch-icon.png">
+  <link rel="manifest" href="./manifest.json">
+  
+  <title>Личный дашборд статистики — Управление бизнес-метриками</title>
+
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Личный дашборд статистики",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Telegram",
+      "description": "Персональный дашборд для отслеживания бизнес-метрик: финансы, продажи, воронка, подписчики. Экспорт отчётов, импорт данных.",
+      "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "RUB",
+          "availability": "https://schema.org/InStock"
+      },
+      "author": {
+          "@type": "Person",
+          "name": "Nodeforge",
+          "url": "https://nodeforge.dev/"
+      },
+      "featureList": [
+          "Финансовый обзор (доходы/расходы)",
+          "Воронка продаж",
+          "Топ товаров и услуг",
+          "Рост подписчиков и источники",
+          "Экспорт в CSV/PDF",
+          "Импорт из CSV/XLSX",
+          "Настройка уведомлений",
+          "Тёмная/светлая тема"
+      ],
+      "url": "https://nodeforge.dev/miniapps/dashboard/",
+      "sameAs": "https://t.me/nodeforge_dev"
+  }
+  </script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Перейти к основному контенту</a>
+
+  <div class="dashboard-app" id="dashboardApp">
+    <aside class="sidebar" id="sidebar" role="complementary" aria-label="Боковая панель">
+      <div class="sidebar__header">
+        <svg class="sidebar__logo" width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+          <rect width="36" height="36" rx="10" fill="url(#logo-gradient)"/>
+          <path d="M10 18L14 14L18 18L22 12L26 16" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="10" cy="18" r="2" fill="white"/>
+          <circle cx="18" cy="18" r="2" fill="white"/>
+          <circle cx="26" cy="16" r="2" fill="white"/>
+          <defs>
+            <linearGradient id="logo-gradient" x1="0" y1="0" x2="36" y2="36">
+              <stop stop-color="#6366f1"/>
+              <stop offset="1" stop-color="#8b5cf6"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="sidebar__title">Мой бизнес</span>
+      </div>
+
+      <nav class="sidebar__nav" aria-label="Основная навигация">
+        <ul role="menubar" class="sidebar__menu">
+          <li role="none">
+            <a href="#overview" class="sidebar__link sidebar__link--active" role="menuitem" data-section="overview" aria-current="page">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+              <span>Обзор</span>
+            </a>
+          </li>
+          <li role="none">
+            <a href="#finance" class="sidebar__link" role="menuitem" data-section="finance">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              <span>Финансы</span>
+            </a>
+          </li>
+          <li role="none">
+            <a href="#sales" class="sidebar__link" role="menuitem" data-section="sales">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+              <span>Продажи</span>
+            </a>
+          </li>
+          <li role="none">
+            <a href="#subscribers" class="sidebar__link" role="menuitem" data-section="subscribers">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span>Подписчики</span>
+            </a>
+          </li>
+          <li role="none">
+            <a href="#settings" class="sidebar__link" role="menuitem" data-section="settings">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              <span>Настройки</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar__footer">
+        <button class="btn btn--outline btn--sm btn--full" id="exportBtn" aria-label="Экспорт отчёта">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Экспорт</span>
+        </button>
+      </div>
+    </aside>
+
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Открыть меню" aria-expanded="false" aria-controls="sidebar">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+
+    <main class="main-content" id="main-content" role="main">
+      <header class="main-header">
+        <div class="main-header__left">
+          <h1 class="main-header__title" id="pageTitle">Обзор бизнеса</h1>
+          <span class="main-header__date" id="currentDate"></span>
+        </div>
+        <div class="main-header__actions">
+          <label for="periodSelect" class="sr-only">Выберите период</label>
+          <select class="period-select" id="periodSelect" aria-label="Период">
+            <option value="day">Сегодня</option>
+            <option value="week">Эта неделя</option>
+            <option value="month" selected>Этот месяц</option>
+            <option value="quarter">Этот квартал</option>
+            <option value="year">Этот год</option>
+          </select>
+          <button class="btn btn--accent btn--sm" id="refreshBtn" aria-label="Обновить данные">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            <span>Обновить</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="dashboard-grid" id="dashboardGrid" aria-live="polite" aria-label="Содержимое дашборда">
+        <div class="loading-state" id="loadingState" role="status" aria-label="Загрузка данных">
+          <div class="spinner" aria-hidden="true"></div>
+          <span>Загрузка данных...</span>
+        </div>
+
+        <section class="section section--overview active" id="section-overview" aria-labelledby="overview-title">
+          <h2 id="overview-title" class="sr-only">Обзор бизнеса</h2>
+          <div class="kpi-row" id="kpiRow" role="list" aria-label="KPI метрики"></div>
+          <div class="chart-row">
+            <div class="chart-container" id="mainChart" role="img" aria-label="График доходов за период">
+              <div class="chart-container__header">
+                <h3 class="chart-title">Доходы за период</h3>
+              </div>
+              <div class="chart-container__body">
+                <canvas id="mainChartCanvas" aria-hidden="true"></canvas>
+                <div class="sr-only" id="mainChartAltText"></div>
+              </div>
+            </div>
+            <div class="chart-container" id="secondaryChart" role="img" aria-label="Расходы по категориям">
+              <div class="chart-container__header">
+                <h3 class="chart-title">Расходы по категориям</h3>
+              </div>
+              <div class="chart-container__body" id="expenseChartBody"></div>
+            </div>
+          </div>
+          <div class="table-container" id="recentTransactions">
+            <div class="table-header">
+              <h3 class="table-title">Последние операции</h3>
+              <a href="#finance" class="table-link" data-navigate="finance">Все операции</a>
+            </div>
+            <div class="table-scroll">
+              <table class="data-table" aria-label="Последние финансовые операции">
+                <thead>
+                  <tr>
+                    <th scope="col">Дата</th>
+                    <th scope="col">Описание</th>
+                    <th scope="col">Категория</th>
+                    <th scope="col">Сумма</th>
+                  </tr>
+                </thead>
+                <tbody id="recentTransactionsBody"></tbody>
+              </table>
+            </div>
+            <div class="empty-state" id="recentTransactionsEmpty" hidden>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              <p>Нет операций за выбранный период</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section--finance" id="section-finance" aria-labelledby="finance-title" hidden>
+          <h2 id="finance-title" class="sr-only">Финансы</h2>
+          <div class="section__toolbar">
+            <div class="section__toolbar-left">
+              <div class="search-box">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="search" class="search-input" id="financeSearch" placeholder="Поиск операций..." aria-label="Поиск операций">
+              </div>
+              <label for="financeTypeFilter" class="sr-only">Фильтр по типу</label>
+              <select class="filter-select" id="financeTypeFilter" aria-label="Фильтр по типу">
+                <option value="all">Все типы</option>
+                <option value="income">Доходы</option>
+                <option value="expense">Расходы</option>
+              </select>
+            </div>
+            <div class="section__toolbar-right">
+              <button class="btn btn--accent btn--sm" id="addOperationBtn" aria-label="Добавить операцию">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                <span>Добавить</span>
+              </button>
+              <button class="btn btn--ghost btn--sm" id="exportFinanceCSV" aria-label="Экспорт в CSV">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>CSV</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="finance-summary" id="financeSummary"></div>
+
+          <div class="table-container">
+            <div class="table-scroll">
+              <table class="data-table" id="financeTable" aria-label="Финансовые операции">
+                <thead>
+                  <tr>
+                    <th scope="col" class="sortable" data-sort="date" aria-sort="descending">
+                      <button class="sort-btn">Дата <span class="sort-icon" aria-hidden="true">↓</span></button>
+                    </th>
+                    <th scope="col" class="sortable" data-sort="description">
+                      <button class="sort-btn">Описание <span class="sort-icon" aria-hidden="true"></span></button>
+                    </th>
+                    <th scope="col" class="sortable" data-sort="category">
+                      <button class="sort-btn">Категория <span class="sort-icon" aria-hidden="true"></span></button>
+                    </th>
+                    <th scope="col" class="sortable" data-sort="amount">
+                      <button class="sort-btn">Сумма <span class="sort-icon" aria-hidden="true"></span></button>
+                    </th>
+                    <th scope="col">Действия</th>
+                  </tr>
+                </thead>
+                <tbody id="financeTableBody"></tbody>
+              </table>
+            </div>
+            <div class="empty-state" id="financeTableEmpty" hidden>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <p>Нет финансовых операций</p>
+              <button class="btn btn--accent btn--sm" id="addFirstOperation">Добавить первую операцию</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section--sales" id="section-sales" aria-labelledby="sales-title" hidden>
+          <h2 id="sales-title" class="sr-only">Продажи</h2>
+          <div class="sales-stats" id="salesStats" role="list" aria-label="Статистика продаж"></div>
+          <div class="funnel-container">
+            <h3 class="chart-title">Воронка продаж</h3>
+            <div class="funnel" id="salesFunnel" role="img" aria-label="Воронка продаж по этапам"></div>
+          </div>
+          <div class="table-container">
+            <div class="table-header">
+              <h3 class="chart-title">Топ товаров</h3>
+            </div>
+            <div class="table-scroll">
+              <table class="data-table" id="salesTable" aria-label="Продажи по товарам">
+                <thead>
+                  <tr>
+                    <th scope="col">Позиция</th>
+                    <th scope="col">Товар/Услуга</th>
+                    <th scope="col">Продаж</th>
+                    <th scope="col">Сумма</th>
+                  </tr>
+                </thead>
+                <tbody id="salesTableBody"></tbody>
+              </table>
+            </div>
+            <div class="empty-state" id="salesTableEmpty" hidden>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+              <p>Нет данных о продажах</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section--subscribers" id="section-subscribers" aria-labelledby="subscribers-title" hidden>
+          <h2 id="subscribers-title" class="sr-only">Подписчики</h2>
+          <div class="kpi-row" id="subscribersKpi" role="list" aria-label="Метрики подписчиков"></div>
+          <div class="chart-row">
+            <div class="chart-container" id="subscribersChart">
+              <div class="chart-container__header">
+                <h3 class="chart-title">Рост подписчиков</h3>
+              </div>
+              <div class="chart-container__body">
+                <canvas id="subscribersChartCanvas" aria-hidden="true"></canvas>
+                <div class="sr-only" id="subscribersChartAltText"></div>
+              </div>
+            </div>
+            <div class="chart-container" id="subscribersSourcesChart">
+              <div class="chart-container__header">
+                <h3 class="chart-title">Источники подписчиков</h3>
+              </div>
+              <div class="chart-container__body" id="subscribersSourcesBody"></div>
+            </div>
+          </div>
+          <div class="table-container">
+            <div class="table-header">
+              <h3 class="chart-title">Последние подписчики</h3>
+            </div>
+            <div class="table-scroll">
+              <table class="data-table" id="subscribersTable" aria-label="Список подписчиков">
+                <thead>
+                  <tr>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Источник</th>
+                    <th scope="col">Дата</th>
+                  </tr>
+                </thead>
+                <tbody id="subscribersTableBody"></tbody>
+              </table>
+            </div>
+            <div class="empty-state" id="subscribersTableEmpty" hidden>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <p>Нет данных о подписчиках</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section--settings" id="section-settings" aria-labelledby="settings-title" hidden>
+          <h2 id="settings-title" class="sr-only">Настройки</h2>
+          <div class="settings-grid">
+            <div class="settings-card">
+              <h3 class="settings-card__title">Источники данных</h3>
+              <p class="settings-card__desc">Подключите внешние сервисы для автоматического импорта данных.</p>
+              <div class="settings-card__list" id="dataSourcesList"></div>
+            </div>
+            <div class="settings-card">
+              <h3 class="settings-card__title">Уведомления</h3>
+              <p class="settings-card__desc">Настройте оповещения о важных изменениях метрик.</p>
+              <div class="settings-card__options">
+                <label class="toggle-label">
+                  <span>Еженедельный отчёт</span>
+                  <input type="checkbox" class="toggle-input" id="notifyWeekly" checked>
+                  <span class="toggle-switch" aria-hidden="true"></span>
+                </label>
+                <label class="toggle-label">
+                  <span>Аномалии в продажах</span>
+                  <input type="checkbox" class="toggle-input" id="notifyAnomalies" checked>
+                  <span class="toggle-switch" aria-hidden="true"></span>
+                </label>
+                <label class="toggle-label">
+                  <span>Новые подписчики</span>
+                  <input type="checkbox" class="toggle-input" id="notifySubscribers">
+                  <span class="toggle-switch" aria-hidden="true"></span>
+                </label>
+              </div>
+            </div>
+            <div class="settings-card">
+              <h3 class="settings-card__title">Импорт данных</h3>
+              <p class="settings-card__desc">Загрузите данные вручную из файлов.</p>
+              <div class="import-area" id="importArea" role="button" tabindex="0" aria-label="Перетащите файл или нажмите для выбора">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                <p>Перетащите CSV/XLSX файл сюда</p>
+                <span>или нажмите для выбора файла</span>
+                <input type="file" id="importFileInput" accept=".csv,.xlsx,.xls" hidden aria-label="Выберите файл для импорта">
+              </div>
+              <div class="import-status" id="importStatus" hidden aria-live="polite"></div>
+            </div>
+            <div class="settings-card">
+              <h3 class="settings-card__title">Экспорт отчётов</h3>
+              <p class="settings-card__desc">Скачайте отчёт за период в удобном формате.</p>
+              <div class="export-options">
+                <button class="btn btn--outline btn--sm" data-export-format="csv" aria-label="Экспорт в формате CSV">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  CSV
+                </button>
+                <button class="btn btn--outline btn--sm" data-export-format="pdf" aria-label="Экспорт в формате PDF">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                  PDF
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-overlay" id="operationModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title" id="modalTitle">Новая операция</h2>
+        <button class="modal__close" id="modalClose" aria-label="Закрыть">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <form class="modal__form" id="operationForm" novalidate>
+        <div class="form-group">
+          <label for="opType" class="form-label">Тип операции *</label>
+          <div class="radio-group" role="radiogroup" aria-label="Тип операции">
+            <label class="radio-label">
+              <input type="radio" name="opType" value="income" class="radio-input" required>
+              <span class="radio-custom" aria-hidden="true"></span>
+              <span>Доход</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="opType" value="expense" class="radio-input" required>
+              <span class="radio-custom" aria-hidden="true"></span>
+              <span>Расход</span>
+            </label>
+          </div>
+          <div class="form-error" id="opTypeError" role="alert"></div>
+        </div>
+        <div class="form-group">
+          <label for="opAmount" class="form-label">Сумма *</label>
+          <div class="input-group">
+            <input type="number" id="opAmount" class="form-input" min="0.01" step="0.01" required aria-describedby="opAmountError" placeholder="0.00">
+            <span class="input-suffix" aria-hidden="true">₽</span>
+          </div>
+          <div class="form-error" id="opAmountError" role="alert"></div>
+        </div>
+        <div class="form-group">
+          <label for="opDescription" class="form-label">Описание *</label>
+          <input type="text" id="opDescription" class="form-input" required aria-describedby="opDescriptionError" maxlength="255" placeholder="Например: Оплата за проект">
+          <div class="form-error" id="opDescriptionError" role="alert"></div>
+        </div>
+        <div class="form-group">
+          <label for="opCategory" class="form-label">Категория</label>
+          <select id="opCategory" class="form-input">
+            <option value="">Без категории</option>
+            <option value="Проекты">Проекты</option>
+            <option value="Консультации">Консультации</option>
+            <option value="Аренда">Аренда</option>
+            <option value="Маркетинг">Маркетинг</option>
+            <option value="Софт">Софт</option>
+            <option value="Зарплата">Зарплата</option>
+            <option value="Прочее">Прочее</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="opDate" class="form-label">Дата *</label>
+          <input type="date" id="opDate" class="form-input" required aria-describedby="opDateError">
+          <div class="form-error" id="opDateError" role="alert"></div>
+        </div>
+        <div class="modal__actions">
+          <button type="button" class="btn btn--ghost" id="modalCancel">Отмена</button>
+          <button type="submit" class="btn btn--accent">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Добавить
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js" integrity="sha384-5Qb8d3l2Rg+R3s2Q+L0l3L3L3L3L3L3L3L3L3L3L3L3L3L3L3L3L3L3L3L3L3L3" crossorigin="anonymous"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>

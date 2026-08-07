@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Детальная информация о вакансии">
+  <title>Вакансия — Работа Мало</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/responsive.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Перейти к контенту</a>
+
+  <header class="header" role="banner">
+    <div class="container header-inner">
+      <a href="./" class="logo" aria-label="Работа Мало — На главную">
+        <div class="logo-icon" aria-hidden="true">Р</div>
+        <span>Работа Мало</span>
+      </a>
+      <nav class="nav" id="mainNav" role="navigation">
+        <a href="./vacancies" class="nav-link">Вакансии</a>
+        <a href="./pricing" class="nav-link">Тарифы</a>
+        <div class="nav-auth" id="navAuth">
+          <a href="./login" class="btn btn-secondary btn-sm">Войти</a>
+          <a href="./login?mode=register" class="btn btn-primary btn-sm">Регистрация</a>
+        </div>
+        <div class="nav-auth" id="navUser" style="display:none;">
+          <a href="./dashboard" class="nav-link">Кабинет</a>
+          <button class="btn btn-secondary btn-sm" id="logoutBtn">Выйти</button>
+        </div>
+      </nav>
+      <button class="mobile-menu-btn" aria-label="Открыть меню" id="mobileMenuBtn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="page-content">
+    <div class="loading" id="jobLoading"><div class="spinner"></div></div>
+
+    <section class="job-detail" id="jobDetail" style="display:none;" aria-label="Детали вакансии">
+      <div class="container">
+        <div class="job-detail-layout">
+          <div class="job-detail-main">
+            <a href="./vacancies" class="btn btn-secondary btn-sm" style="margin-bottom: 24px;">← Назад к вакансиям</a>
+            <h1 class="job-detail-title" id="jobTitle"></h1>
+            <div class="job-detail-company" id="jobCompany"></div>
+            <div class="job-detail-meta" id="jobMeta"></div>
+            <div class="job-detail-section" id="jobDescription"></div>
+            <div class="job-detail-section" id="jobRequirements"></div>
+            <div class="job-detail-section" id="jobConditions"></div>
+          </div>
+
+          <div class="job-detail-sidebar">
+            <div class="sidebar-card">
+              <h3>Откликнуться</h3>
+              <form class="apply-form" id="applyForm" novalidate>
+                <div class="form-group">
+                  <label class="form-label" for="applyName">Имя *</label>
+                  <input type="text" class="form-input" id="applyName" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="applyEmail">Email *</label>
+                  <input type="email" class="form-input" id="applyEmail" required autocomplete="email">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="applyPhone">Телефон</label>
+                  <input type="tel" class="form-input" id="applyPhone" autocomplete="tel">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="applyMessage">Сопроводительное письмо</label>
+                  <textarea class="form-textarea" id="applyMessage" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%;" id="applyBtn">Отправить отклик</button>
+              </form>
+            </div>
+
+            <div class="sidebar-card">
+              <h3>Похожие вакансии</h3>
+              <div id="similarJobs"><div class="loading"><div class="spinner"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 Работа Мало. Все права защищены.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/js/app.js"></script>
+  <script src="./assets/js/vacancy.js"></script>
+</body>
+</html>

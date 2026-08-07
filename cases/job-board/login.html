@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Вход и регистрация на площадке Работа Мало">
+  <title>Вход — Работа Мало</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/responsive.css">
+</head>
+<body>
+  <header class="header" role="banner">
+    <div class="container header-inner">
+      <a href="./" class="logo" aria-label="Работа Мало — На главную">
+        <div class="logo-icon" aria-hidden="true">Р</div>
+        <span>Работа Мало</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="auth-page" id="main">
+    <div class="auth-card">
+      <div id="loginForm">
+        <h1 class="auth-title">Вход</h1>
+        <p class="auth-subtitle">Войдите в свой аккаунт</p>
+        <form id="loginFormEl" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="loginEmail">Email</label>
+            <input type="email" class="form-input" id="loginEmail" required autocomplete="email" placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="loginPassword">Пароль</label>
+            <input type="password" class="form-input" id="loginPassword" required autocomplete="current-password" placeholder="••••••••">
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;" id="loginSubmitBtn">Войти</button>
+        </form>
+        <div class="auth-footer">
+          Нет аккаунта? <a href="#" id="showRegister">Зарегистрироваться</a>
+        </div>
+      </div>
+
+      <div id="registerForm" style="display:none;">
+        <h1 class="auth-title">Регистрация</h1>
+        <p class="auth-subtitle">Создайте аккаунт соискателя или работодателя</p>
+        <form id="registerFormEl" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="regName">Имя *</label>
+            <input type="text" class="form-input" id="regName" required autocomplete="name" placeholder="Ваше имя">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="regEmail">Email *</label>
+            <input type="email" class="form-input" id="regEmail" required autocomplete="email" placeholder="your@email.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="regPassword">Пароль *</label>
+            <input type="password" class="form-input" id="regPassword" required autocomplete="new-password" placeholder="Минимум 6 символов">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="regRole">Я...</label>
+            <select class="form-select" id="regRole">
+              <option value="candidate">Ищу работу (соискатель)</option>
+              <option value="employer">Ищу сотрудника (работодатель)</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;" id="regSubmitBtn">Зарегистрироваться</button>
+        </form>
+        <div class="auth-footer">
+          Уже есть аккаунт? <a href="#" id="showLogin">Войти</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="./assets/js/app.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('mode') === 'register') {
+      document.getElementById('loginForm').style.display = 'none';
+      document.getElementById('registerForm').style.display = 'block';
+    }
+
+    document.getElementById('showRegister').addEventListener('click', e => {
+      e.preventDefault();
+      document.getElementById('loginForm').style.display = 'none';
+      document.getElementById('registerForm').style.display = 'block';
+    });
+
+    document.getElementById('showLogin').addEventListener('click', e => {
+      e.preventDefault();
+      document.getElementById('registerForm').style.display = 'none';
+      document.getElementById('loginForm').style.display = 'block';
+    });
+
+    document.getElementById('loginFormEl').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('loginSubmitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Вход...';
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: document.getElementById('loginEmail').value,
+            password: document.getElementById('loginPassword').value
+          })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user));
+          App.toast('Добро пожаловать!', 'success');
+          setTimeout(() => window.location.href = '/dashboard', 500);
+        } else {
+          App.toast(data.error || 'Ошибка входа', 'error');
+        }
+      } catch {
+        App.toast('Ошибка сети', 'error');
+      }
+      btn.disabled = false;
+      btn.textContent = 'Войти';
+    });
+
+    document.getElementById('registerFormEl').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('regSubmitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Регистрация...';
+
+      try {
+        const res = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: document.getElementById('regName').value,
+            email: document.getElementById('regEmail').value,
+            password: document.getElementById('regPassword').value,
+            role: document.getElementById('regRole').value
+          })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('user', JSON.stringify(data.user));
+          App.toast('Аккаунт создан!', 'success');
+          setTimeout(() => window.location.href = '/dashboard', 500);
+        } else {
+          App.toast(data.error || 'Ошибка регистрации', 'error');
+        }
+      } catch {
+        App.toast('Ошибка сети', 'error');
+      }
+      btn.disabled = false;
+      btn.textContent = 'Зарегистрироваться';
+    });
+  </script>
+</body>
+</html>

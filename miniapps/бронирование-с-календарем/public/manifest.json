@@ -1,0 +1,20 @@
+{
+  "name": "Бронирование — Онлайн запись с календарём",
+  "short_name": "Бронирование",
+  "description": "Telegram Mini App для онлайн-бронирования: календарь, выбор времени, мгновенное подтверждение",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6C5CE7",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/assets/images/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "lang": "ru"
+}

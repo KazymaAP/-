@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Доска вакансий для малого бизнеса. Бесплатная публикация, целевые отклики. Найдите сотрудника или работу быстро и просто。">
+  <meta name="keywords" content="вакансии, работа, малый бизнес, найти сотрудника, удалённая работа">
+  <meta name="theme-color" content="#10B981">
+  <title>Работа Мало — Вакансии для малого бизнеса</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/responsive.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "JobBoard",
+    "name": "Работа Мало",
+    "description": "Доска вакансий для малого бизнеса. Бесплатная публикация, целевые отклики.",
+    "url": "https://rabota-malo.ru",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://rabota-malo.ru/vacancies?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Перейти к контенту</a>
+
+  <header class="header" role="banner">
+    <div class="container header-inner">
+      <a href="./" class="logo" aria-label="Работа Мало — На главную">
+        <div class="logo-icon" aria-hidden="true">Р</div>
+        <span>Работа Мало</span>
+      </a>
+
+      <button class="mobile-menu-btn" aria-label="Открыть меню" aria-expanded="false" id="mobileMenuBtn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12h18M3 6h18M3 18h18"/>
+        </svg>
+      </button>
+
+      <nav class="nav" id="mainNav" role="navigation" aria-label="Основная навигация">
+        <a href="./vacancies" class="nav-link">Вакансии</a>
+        <a href="./pricing" class="nav-link">Тарифы</a>
+        <div class="nav-auth" id="navAuth">
+          <a href="./login" class="btn btn-secondary btn-sm">Войти</a>
+          <a href="./login?mode=register" class="btn btn-primary btn-sm">Регистрация</a>
+        </div>
+        <div class="nav-auth" id="navUser" style="display:none;">
+          <a href="./dashboard" class="nav-link">Кабинет</a>
+          <button class="btn btn-secondary btn-sm" id="logoutBtn">Выйти</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="page-content">
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero-title">
+          Вакансии для <span>малого бизнеса</span>
+        </h1>
+        <p class="hero-subtitle">
+          Бесплатная публикация вакансий. Найдите нужного специалиста быстро и без лишних откликов.
+        </p>
+
+        <div class="search-box">
+          <div class="search-input-wrapper">
+            <span class="search-icon" aria-hidden="true">🔍</span>
+            <input
+              type="search"
+              class="search-input"
+              id="heroSearch"
+              placeholder="Кого ищете? Например: Frontend-разработчик"
+              aria-label="Поиск вакансий"
+              autocomplete="off"
+            >
+          </div>
+          <button class="btn btn-primary btn-lg" id="heroSearchBtn" aria-label="Найти вакансии">
+            Найти
+          </button>
+        </div>
+
+        <div class="hero-stats" aria-label="Статистика площадки">
+          <div class="stat-item">
+            <div class="stat-number" id="statVacancies">0</div>
+            <div class="stat-label">Активных вакансий</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="statCompanies">0</div>
+            <div class="stat-label">Компаний</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" id="statCandidates">0</div>
+            <div class="stat-label">Соискателей</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" aria-labelledby="top-vacancies-title">
+      <h2 id="top-vacancies-title" style="margin-bottom: 24px;">Топ вакансии</h2>
+      <div class="jobs-grid" id="topVacancies">
+        <div class="loading"><div class="spinner"></div></div>
+      </div>
+      <div class="load-more">
+        <a href="./vacancies" class="btn btn-secondary">Смотреть все вакансии</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="./" class="logo">
+            <div class="logo-icon" aria-hidden="true">Р</div>
+            <span>Работа Мало</span>
+          </a>
+          <p>Доска вакансий для малого бизнеса. Публикуйте вакансии бесплатно, находите лучших специалистов.</p>
+        </div>
+        <div>
+          <div class="footer-title">Для соискателей</div>
+          <ul class="footer-links">
+            <li><a href="./vacancies">Все вакансии</a></li>
+            <li><a href="./resume">Создать резюме</a></li>
+            <li><a href="./dashboard">Мои отклики</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Для работодателей</div>
+          <ul class="footer-links">
+            <li><a href="./post">Разместить вакансию</a></li>
+            <li><a href="./pricing">Тарифы</a></li>
+            <li><a href="./dashboard">Личный кабинет</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-title">Информация</div>
+          <ul class="footer-links">
+            <li><a href="./about">О нас</a></li>
+            <li><a href="./contacts">Контакты</a></li>
+            <li><a href="./privacy">Политика конфиденциальности</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Работа Мало. Все права защищены.</span>
+        <span>Сделано с заботой о малом бизнесе</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/js/app.js"></script>
+  <script src="./assets/js/home.js"></script>
+</body>
+</html>
+

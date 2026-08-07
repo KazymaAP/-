@@ -1,0 +1,179 @@
+@media (max-width: 1024px) {
+  .job-detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+
+  .pricing-card.popular {
+    transform: none;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+
+  .hero { padding: 40px 0; }
+  .hero-title { font-size: 2rem; }
+  .hero-subtitle { font-size: 1rem; }
+  .hero-stats { gap: 24px; }
+
+  .nav { display: none; }
+  .nav-auth { display: none; }
+  .mobile-menu-btn { display: block; }
+
+  .nav.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .nav-auth.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 16px;
+  }
+
+  .search-box {
+    flex-direction: column;
+  }
+
+  .filters-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-group {
+    flex-wrap: wrap;
+  }
+
+  .salary-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .job-detail-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .job-detail-main {
+    padding: 20px;
+  }
+
+  .auth-card {
+    padding: 24px;
+  }
+
+  .post-card {
+    padding: 24px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title { font-size: 1.75rem; }
+  .hero-stats { flex-direction: column; gap: 16px; }
+  .stat-number { font-size: 1.5rem; }
+
+  .job-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .job-salary {
+    font-size: 16px;
+  }
+
+  .job-meta {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .job-footer {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  .job-actions {
+    justify-content: stretch;
+  }
+
+  .job-actions .btn {
+    flex: 1;
+  }
+
+  .save-btn {
+    width: 100%;
+    border-radius: var(--radius);
+  }
+
+  .pricing-card {
+    padding: 24px;
+  }
+
+  .pricing-price {
+    font-size: 28px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .header, .footer, .nav, .mobile-menu-btn, .job-actions, .save-btn, .btn {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  .job-card, .card, .job-detail-main, .sidebar-card {
+    border: 1px solid #ddd;
+    box-shadow: none;
+    break-inside: avoid;
+  }
+}

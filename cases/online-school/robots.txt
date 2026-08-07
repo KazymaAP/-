@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+Disallow: /dashboard
+Disallow: /api/
+Disallow: /learn/
+Disallow: /enroll/
+Disallow: /certificates/
+Disallow: /auth/
+
+Sitemap: https://online-school.ru/sitemap.xml
+Host: https://online-school.ru

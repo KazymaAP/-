@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" role="img" aria-labelledby="fav-title fav-desc">
+  <title id="fav-title">Nodeforge Favicon</title>
+  <desc id="fav-desc">A favicon for Nodeforge featuring two overlapping geometric rectangles with connecting lines on a dark background.</desc>
+  <rect width="32" height="32" rx="6" fill="#06070A"/>
+  <rect x="6" y="6" width="10" height="10" rx="2" fill="none" stroke="#CBD3DD" stroke-width="1.5"/>
+  <rect x="16" y="16" width="10" height="10" rx="2" fill="none" stroke="#7C8EFF" stroke-width="1.5"/>
+  <path d="M14 19H10.5A2.5 2.5 0 0 1 8 16.5v-3M18 12h2.5A2.5 2.5 0 0 1 23 14.5v3" stroke="#556070" stroke-width="1.5" stroke-linecap="round"/>
+</svg>

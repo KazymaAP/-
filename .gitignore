@@ -1,0 +1,87 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build outputs
+dist
+dist-ssr
+
+# Environment files
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.production.local
+.env.test.local
+
+# Keep example
+!.env.example
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/
+
+# Vite
+.vite/
+
+# TypeScript
+*.tsbuildinfo
+
+# Rollup/Vite cache
+.rollup.cache
+
+# Lighthouse reports
+lighthouse-report.html
+.lighthouseci/
+
+# Package manager - keep lock files for reproducible builds
+pnpm-lock.yaml
+yarn.lock
+package-lock.json
+
+# Misc
+*.tgz
+*.orig
+*.bak
+*.bak.*
+.cache/
+
+# Deployment
+.vercel
+.netlify
+
+# Turbo
+.turbo
+
+# ESLint
+.eslintcache
+
+# SSL certificates
+*.pem
+
+# Archived/unused code (kept locally for reference, not for git)
+_unused/
+
+# Accessibility test output (regenerate via npm run a11y / accessibility-test.js)
+accessibility-report.html
+accessibility-results.json

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Профиль компании на Работа Мало">
+  <title>Компания — Работа Мало</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/responsive.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Перейти к контенту</a>
+
+  <header class="header" role="banner">
+    <div class="container header-inner">
+      <a href="./" class="logo" aria-label="Работа Мало — На главную">
+        <div class="logo-icon" aria-hidden="true">Р</div>
+        <span>Работа Мало</span>
+      </a>
+      <nav class="nav" id="mainNav" role="navigation">
+        <a href="./vacancies" class="nav-link">Вакансии</a>
+        <a href="./pricing" class="nav-link">Тарифы</a>
+        <div class="nav-auth" id="navAuth">
+          <a href="./login" class="btn btn-secondary btn-sm">Войти</a>
+          <a href="./login?mode=register" class="btn btn-primary btn-sm">Регистрация</a>
+        </div>
+        <div class="nav-auth" id="navUser" style="display:none;">
+          <a href="./dashboard" class="nav-link">Кабинет</a>
+          <button class="btn btn-secondary btn-sm" id="logoutBtn">Выйти</button>
+        </div>
+      </nav>
+      <button class="mobile-menu-btn" aria-label="Открыть меню" id="mobileMenuBtn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="page-content">
+    <div class="loading" id="companyLoading"><div class="spinner"></div></div>
+
+    <section class="company-detail" id="companyDetail" style="display:none;" aria-label="Профиль компании">
+      <div class="container">
+        <div class="job-detail-layout">
+          <div class="job-detail-main">
+            <a href="./vacancies" class="btn btn-secondary btn-sm" style="margin-bottom: 24px;">← К вакансиям</a>
+            <div style="display:flex;align-items:center;gap:24px;margin-bottom:24px;">
+              <img src="" alt="" id="companyLogo" style="width:80px;height:80px;border-radius:var(--radius-md);object-fit:cover;background:var(--bg);">
+              <div>
+                <h1 id="companyName" style="font-size:2rem;"></h1>
+                <p id="companyIndustry" style="color:var(--text-secondary);"></p>
+                <p id="companyLocation" style="color:var(--text-secondary);font-size:14px;"></p>
+              </div>
+            </div>
+            <div id="companyDescription" style="white-space:pre-wrap;color:var(--text-secondary);margin-bottom:32px;"></div>
+            <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:32px;">
+              <span class="job-tag"><strong>Размер:</strong> <span id="companySize"></span></span>
+              <span class="job-tag"><strong>Основана:</strong> <span id="companyFounded"></span></span>
+              <a id="companyWebsite" class="job-tag" href="#" target="_blank" rel="noopener">Сайт</a>
+            </div>
+            <h2 style="margin-bottom:16px;">Вакансии компании</h2>
+            <div class="jobs-grid" id="companyVacancies">
+              <div class="loading"><div class="spinner"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 Работа Мало. Все права защищены.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const path = window.location.pathname;
+      const slug = path.split('/').pop();
+      const loading = document.getElementById('companyLoading');
+      const detail = document.getElementById('companyDetail');
+
+      try {
+        const company = await App.api('/api/companies/' + slug);
+        if (!company) { loading.textContent = 'Компания не найдена'; return; }
+
+        document.title = App.escapeHtml(company.name) + ' — Работа Мало';
+
+        document.getElementById('companyLogo').src = company.logo || '';
+        document.getElementById('companyName').textContent = company.name;
+        document.getElementById('companyIndustry').textContent = company.industry || 'Не указана';
+        document.getElementById('companyLocation').textContent = company.city || 'Город не указан';
+        document.getElementById('companyDescription').textContent = company.description || 'Описание отсутствует';
+        document.getElementById('companySize').textContent = company.size || '—';
+        document.getElementById('companyFounded').textContent = company.founded_year || '—';
+
+        const website = document.getElementById('companyWebsite');
+        if (company.website) {
+          website.href = company.website;
+          website.textContent = new URL(company.website).hostname;
+        } else {
+          website.style.display = 'none';
+        }
+
+        const vacanciesData = await App.api('/api/vacancies?company=' + company.id + '&limit=20');
+        if (vacanciesData && vacanciesData.vacancies) {
+          document.getElementById('companyVacancies').innerHTML = vacanciesData.vacancies.map(v => App.createJobCard(v)).join('');
+          bindSaveButtons();
+        }
+        detail.style.display = 'grid';
+        loading.style.display = 'none';
+      } catch {
+        loading.textContent = 'Ошибка загрузки';
+      }
+
+      function bindSaveButtons() {
+        document.querySelectorAll('.save-btn').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            if (!App.token) { window.location.href = '/login'; return; }
+            const id = btn.dataset.id;
+            try {
+              const res = await App.api('/api/vacancies/' + id + '/save', { method: 'POST' });
+              if (res && res.saved !== undefined) {
+                btn.classList.toggle('saved', res.saved);
+                btn.innerHTML = res.saved ? '♥' : '♡';
+                App.toast(res.saved ? 'Сохранено' : 'Удалено', 'success');
+              }
+            } catch {}
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>

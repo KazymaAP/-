@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Онлайн-школа программирования, дизайна и маркетинга. Курсы с практикой, менторством и трудоустройством.">
+  <meta name="keywords" content="онлайн курсы, программирование, дизайн, маркетинг, обучение">
+  <meta name="author" content="Online School">
+  <meta name="theme-color" content="#0F172A">
+
+  <title>Online School — Курсы программирования, дизайна и маркетинга</title>
+
+  <link rel="canonical" href="https://online-school.ru/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Online School — Курсы программирования, дизайна и маркетинга">
+  <meta property="og:description" content="Освой новую профессию за 3 месяца. Практика, менторы, трудоустройство.">
+  <meta property="og:url" content="https://online-school.ru/">
+  <meta property="og:image" content="https://online-school.ru/img/og-image.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "Online School",
+    "description": "Онлайн-школа программирования, дизайна и маркетинга",
+    "url": "https://online-school.ru",
+    "logo": "https://online-school.ru/img/logo.svg",
+    "sameAs": [],
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "RU"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Перейти к основному контенту</a>
+
+  <header class="header" role="banner">
+    <div class="container header__inner">
+      <a href="./" class="header__logo" aria-label="Online School — Главная">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#F59E0B"/>
+          <path d="M8 16L16 8L24 16L16 24L8 16Z" fill="white"/>
+        </svg>
+        <span>Online School</span>
+      </a>
+      <nav class="header__nav" aria-label="Основная навигация">
+        <a href="./courses" class="header__link">Курсы</a>
+        <a href="./#webinar" class="header__link">Вебинар</a>
+        <a href="./#pricing" class="header__link">Тарифы</a>
+        <a href="./#faq" class="header__link">FAQ</a>
+      </nav>
+      <div class="header__actions">
+        <a href="./dashboard" class="btn btn--outline btn--sm">Личный кабинет</a>
+        <button class="btn btn--accent btn--sm" id="loginBtn">Войти</button>
+      </div>
+      <button class="header__burger" id="burgerBtn" aria-label="Открыть меню" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero__content">
+          <div class="hero__text">
+            <span class="hero__badge">Набор открыт</span>
+            <h1 id="hero-title" class="hero__title">
+              Освой новую профессию за <span class="accent">3 месяца</span>
+            </h1>
+            <p class="hero__subtitle">
+              Программирование, дизайн и маркетинг. Практика на реальных проектах, менторство и помощь с трудоустройством.
+            </p>
+            <div class="hero__actions">
+              <a href="./courses" class="btn btn--accent btn--lg">Выбрать курс</a>
+              <a href="./#webinar" class="btn btn--outline btn--lg">Бесплатный вебинар</a>
+            </div>
+            <div class="hero__stats">
+              <div class="hero__stat">
+                <span class="hero__stat-value">2 400+</span>
+                <span class="hero__stat-label">выпускников</span>
+              </div>
+              <div class="hero__stat">
+                <span class="hero__stat-value">85%</span>
+                <span class="hero__stat-label">трудоустроились</span>
+              </div>
+              <div class="hero__stat">
+                <span class="hero__stat-value">+120%</span>
+                <span class="hero__stat-label">рост зарплаты</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero__visual">
+            <div class="hero__card">
+              <div class="hero__card-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2">
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+                </svg>
+              </div>
+              <h3>48 видеоуроков</h3>
+              <p>От основ до продвинутого уровня</p>
+            </div>
+            <div class="hero__card hero__card--accent">
+              <div class="hero__card-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <h3>Сертификат</h3>
+              <p>Подтверждение ваших навыков</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pain Points Section -->
+    <section class="section section--dark" aria-labelledby="problems-title">
+      <div class="container">
+        <h2 id="problems-title" class="section__title">Знакомые проблемы?</h2>
+        <div class="problems-grid">
+          <div class="problem-card">
+            <div class="problem-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="15" y1="9" x2="9" y2="15"/>
+                <line x1="9" y1="9" x2="15" y2="15"/>
+              </svg>
+            </div>
+            <h3>Сложно объяснить ценность</h3>
+            <p>"Научим всему" не работает. Нужна конкретика: проекты, навыки, оффер.</p>
+          </div>
+          <div class="problem-card">
+            <div class="problem-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              </svg>
+            </div>
+            <h3>Низкая конверсия</h3>
+            <p>2–3% из вебинара вместо 10%. Теряете деньги на каждом лид.</p>
+          </div>
+          <div class="problem-card">
+            <div class="problem-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <h3>Студенты бросают</h3>
+            <p>40% churn. Без геймификации и поддержки теряете половину аудитории.</p>
+          </div>
+          <div class="problem-card">
+            <div class="problem-card__icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3>Нет social proof</h3>
+            <p>Без отзывов и кейсов выпускников сложно вызвать доверие.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="section" aria-labelledby="solution-title">
+      <div class="container">
+        <h2 id="solution-title" class="section__title">Как мы решаем эти проблемы</h2>
+        <div class="solution-grid">
+          <div class="solution-card">
+            <span class="solution-card__number">01</span>
+            <h3>Конкретные результаты</h3>
+            <p>"Научим React за 3 месяца, создадим 5 проектов и поможем получить оффер junior от 95 000 ₽"</p>
+          </div>
+          <div class="solution-card">
+            <span class="solution-card__number">02</span>
+            <h3>Воронка с 10% конверсией</h3>
+            <p>Вебинар → курс → оплата. Скидка "раннего птицы", рассрочка, гарантия возврата.</p>
+          </div>
+          <div class="solution-card">
+            <span class="solution-card__number">03</span>
+            <h3>Геймификация</h3>
+            <p>Прогресс-бар, достижения, рейтинг студентов, еженедельные челленджи.</p>
+          </div>
+          <div class="solution-card">
+            <span class="solution-card__number">04</span>
+            <h3>Social proof</h3>
+            <p>Кейсы выпускников с фото, зарплатами, отзывами. Рейтинг курса 4.8/5.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="section section--dark" id="courses" aria-labelledby="courses-title">
+      <div class="container">
+        <h2 id="courses-title" class="section__title">Наши курсы</h2>
+        <div class="courses-filters" role="group" aria-label="Фильтры категорий">
+          <button class="filter-btn active" data-cat="all" aria-pressed="true">Все</button>
+          <button class="filter-btn" data-cat="dev" aria-pressed="false">Программирование</button>
+          <button class="filter-btn" data-cat="design" aria-pressed="false">Дизайн</button>
+          <button class="filter-btn" data-cat="marketing" aria-pressed="false">Маркетинг</button>
+        </div>
+        <div class="courses-grid" id="coursesGrid" role="list" aria-label="Список курсов">
+          <!-- Courses will be loaded dynamically -->
+        </div>
+        <div class="courses-loading" id="coursesLoading">
+          <div class="spinner"></div>
+          <span>Загрузка курсов...</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Webinar Section -->
+    <section class="section" id="webinar" aria-labelledby="webinar-title">
+      <div class="container">
+        <div class="webinar-card">
+          <div class="webinar-card__content">
+            <span class="webinar-card__badge">Бесплатно</span>
+            <h2 id="webinar-title" class="webinar-card__title">Бесплатный вебинар</h2>
+            <p class="webinar-card__topic">"Как стать востребованным специалистом за 3 месяца"</p>
+            <div class="webinar-card__meta">
+              <span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                15 августа, 19:00 МСК
+              </span>
+              <span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                90 минут
+              </span>
+              <span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                </svg>
+                <span id="webinarCount">847</span> записались
+              </span>
+            </div>
+            <form class="webinar-form" id="webinarForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="webinar-name" class="sr-only">Ваше имя</label>
+                  <input type="text" id="webinar-name" name="name" placeholder="Ваше имя" required autocomplete="name">
+                </div>
+                <div class="form-group">
+                  <label for="webinar-email" class="sr-only">Email</label>
+                  <input type="email" id="webinar-email" name="email" placeholder="Email" required autocomplete="email">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="webinar-phone" class="sr-only">Телефон</label>
+                <input type="tel" id="webinar-phone" name="phone" placeholder="Телефон (необязательно)" autocomplete="tel">
+              </div>
+              <button type="submit" class="btn btn--accent btn--full btn--lg">Записаться бесплатно</button>
+              <p class="webinar-form__note">Запишите вебинар и получите запись на почту</p>
+            </form>
+          </div>
+          <div class="webinar-card__visual">
+            <div class="webinar-card__countdown" id="webinarCountdown" aria-label="Обратный отсчёт до вебинара">
+              <div class="countdown-item">
+                <span id="countDays">14</span>
+                <small>дней</small>
+              </div>
+              <div class="countdown-item">
+                <span id="countHours">06</span>
+                <small>часов</small>
+              </div>
+              <div class="countdown-item">
+                <span id="countMins">32</span>
+                <small>мин</small>
+              </div>
+              <div class="countdown-item">
+                <span id="countSecs">15</span>
+                <small>сек</small>
+              </div>
+            </div>
+            <div class="webinar-card__hosts">
+              <img src="./img/instructors/alex.jpg" alt="" class="host-photo" width="48" height="48" loading="lazy">
+              <div class="host-info">
+                <strong>Алексей Смирнов</strong>
+                <span>Product Manager, 10+ лет опыта</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section section--dark" id="pricing" aria-labelledby="pricing-title">
+      <div class="container">
+        <h2 id="pricing-title" class="section__title">Выберите тариф</h2>
+        <p class="section__subtitle">Рассрочка 0% до 12 месяцев через Тинькофф и Сбер</p>
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <h3 class="pricing-card__name">Базовый</h3>
+            <div class="pricing-card__price">
+              <span class="price-value">29 900 ₽</span>
+              <span class="price-installment">4 990 ₽/мес</span>
+            </div>
+            <ul class="pricing-card__features">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                48 видеоуроков
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Домашние задания
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Чат студентов
+              </li>
+              <li class="pricing-card__feature--disabled">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                Ментор
+              </li>
+              <li class="pricing-card__feature--disabled">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                Сертификат
+              </li>
+            </ul>
+            <button class="btn btn--outline btn--full" data-tier="basic">Выбрать</button>
+          </div>
+
+          <div class="pricing-card pricing-card--popular">
+            <span class="pricing-card__badge">Популярный</span>
+            <h3 class="pricing-card__name">Продвинутый</h3>
+            <div class="pricing-card__price">
+              <span class="price-value">49 900 ₽</span>
+              <span class="price-installment">8 320 ₽/мес</span>
+            </div>
+            <ul class="pricing-card__features">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                48 видеоуроков
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Домашние задания
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Чат + ментор
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Сертификат
+              </li>
+              <li class="pricing-card__feature--disabled">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                1-на-1 с ментором
+              </li>
+            </ul>
+            <button class="btn btn--accent btn--full" data-tier="pro">Выбрать</button>
+          </div>
+
+          <div class="pricing-card">
+            <h3 class="pricing-card__name">VIP</h3>
+            <div class="pricing-card__price">
+              <span class="price-value">99 900 ₽</span>
+              <span class="price-installment">16 650 ₽/мес</span>
+            </div>
+            <ul class="pricing-card__features">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                48 видеоуроков
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Домашние задания
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                1-на-1 с ментором
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Сертификат
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Гарантия трудоустройства
+              </li>
+            </ul>
+            <button class="btn btn--outline btn--full" data-tier="vip">Выбрать</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section" aria-labelledby="testimonials-title">
+      <div class="container">
+        <h2 id="testimonials-title" class="section__title">Отзывы выпускников</h2>
+        <div class="testimonials-grid" id="testimonialsGrid">
+          <div class="testimonial-card">
+            <div class="testimonial-card__header">
+              <img class="testimonial-card__avatar" src="./img/testimonials/anna.jpg" alt="" width="48" height="48" loading="lazy">
+              <div>
+                <strong class="testimonial-card__name">Анна М.</strong>
+                <span class="testimonial-card__role">Была: Маркетолог, 60 000 ₽</span>
+              </div>
+            </div>
+            <p class="testimonial-card__text">"Курс полностью изменил мою карьеру. Через 2 месяца после окончания получила оффер на позицию продакта с зарплатой x3."</p>
+            <div class="testimonial-card__result">
+              <span class="result-before">60 000 ₽</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <span class="result-after">180 000 ₽</span>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-card__header">
+              <img class="testimonial-card__avatar" src="./img/testimonials/dmitry.jpg" alt="" width="48" height="48" loading="lazy">
+              <div>
+                <strong class="testimonial-card__name">Дмитрий К.</strong>
+                <span class="testimonial-card__role">Был: Студент</span>
+              </div>
+            </div>
+            <p class="testimonial-card__text">"Отличный курс! Практические задания помогли закрепить знания. Теперь работаю в IT-компании мечты."</p>
+            <div class="testimonial-card__result">
+              <span class="result-before">0 ₽</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <span class="result-after">95 000 ₽</span>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-card__header">
+              <img class="testimonial-card__avatar" src="./img/testimonials/elena.jpg" alt="" width="48" height="48" loading="lazy">
+              <div>
+                <strong class="testimonial-card__name">Елена В.</strong>
+                <span class="testimonial-card__role">Была: Офис-менеджер, 45 000 ₽</span>
+              </div>
+            </div>
+            <p class="testimonial-card__text">"После курса по дизайну я начала фрилансить и зарабатываю больше, чем на основной работе."</p>
+            <div class="testimonial-card__result">
+              <span class="result-before">45 000 ₽</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <span class="result-after">120 000 ₽</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section section--dark" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <h2 id="faq-title" class="section__title">Частые вопросы</h2>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary class="faq-item__question">Нужны ли знания программирования?</summary>
+            <p class="faq-item__answer">Базовые знания JavaScript приветствуются, но курс начинается с основ и подходит для начинающих.</p>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">Сколько времени занимает обучение?</summary>
+            <p class="faq-item__answer">В среднем 3 месяца при занятиях 5-7 часов в неделю. Вы можете учиться в своем темпе.</p>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">Выдаётся ли сертификат?</summary>
+            <p class="faq-item__answer">Да, после успешного завершения курса вы получите сертификат о прохождении обучения.</p>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">Можно ли учиться в рассрочку?</summary>
+            <p class="faq-item__answer">Да, мы предлагаем рассрочку 0% до 12 месяцев через Тинькофф и Сбер.</p>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">Есть ли поддержка после курса?</summary>
+            <p class="faq-item__answer">Да, вы получаете доступ к чату выпускников и материалам курса навсегда.</p>
+          </details>
+          <details class="faq-item">
+            <summary class="faq-item__question">Гарантируете ли вы трудоустройство?</summary>
+            <p class="faq-item__answer">На тарифе VIP мы гарантируем трудоустройство в течение 3 месяцев после окончания курса. В случае неудачи — полный возврат средств.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-card">
+          <h2 id="cta-title" class="cta-card__title">Готовы начать?</h2>
+          <p class="cta-card__text">Запишитесь на бесплатный вебинар и узнайте подробности о курсе</p>
+          <div class="cta-card__actions">
+            <a href="./#webinar" class="btn btn--accent btn--lg">Записаться на вебинар</a>
+            <a href="./courses" class="btn btn--outline btn--lg">Смотреть курсы</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="./" class="footer__logo" aria-label="Online School — Главная">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <rect width="32" height="32" rx="8" fill="#F59E0B"/>
+            <path d="M8 16L16 8L24 16L16 24L8 16Z" fill="white"/>
+          </svg>
+          <span>Online School</span>
+        </a>
+        <p class="footer__tagline">Освой новую профессию за 3 месяца</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__column">
+          <h3>Курсы</h3>
+          <ul>
+            <li><a href="./courses?cat=dev">Программирование</a></li>
+            <li><a href="./courses?cat=design">Дизайн</a></li>
+            <li><a href="./courses?cat=marketing">Маркетинг</a></li>
+          </ul>
+        </div>
+        <div class="footer__column">
+          <h3>Компания</h3>
+          <ul>
+            <li><a href="./about">О нас</a></li>
+            <li><a href="./blog">Блог</a></li>
+            <li><a href="./contacts">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="footer__column">
+          <h3>Поддержка</h3>
+          <ul>
+            <li><a href="./help">Помощь</a></li>
+            <li><a href="./terms">Условия</a></li>
+            <li><a href="./privacy">Конфиденциальность</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Online School. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Auth Modal -->
+  <div class="modal" id="authModal" role="dialog" aria-labelledby="authModalTitle" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1"></div>
+    <div class="modal__content">
+      <button class="modal__close" aria-label="Закрыть">&times;</button>
+      <h2 id="authModalTitle" class="modal__title">Вход</h2>
+      <form id="authForm" novalidate>
+        <div class="form-group">
+          <label for="auth-email">Email</label>
+          <input type="email" id="auth-email" name="email" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="auth-password">Пароль</label>
+          <input type="password" id="auth-password" name="password" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn--accent btn--full">Войти</button>
+        <p class="modal__switch">Нет аккаунта? <a href="#" id="switchToRegister">Зарегистрироваться</a></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="./js/utils.js" defer></script>
+  <script src="./js/app.js" defer></script>
+</body>
+</html>

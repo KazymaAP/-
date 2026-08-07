@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Резюме соискателя на Работа Мало">
+  <title>Резюме — Работа Мало</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/responsive.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Перейти к контенту</a>
+
+  <header class="header" role="banner">
+    <div class="container header-inner">
+      <a href="./" class="logo" aria-label="Работа Мало — На главную">
+        <div class="logo-icon" aria-hidden="true">Р</div>
+        <span>Работа Мало</span>
+      </a>
+      <nav class="nav" id="mainNav" role="navigation">
+        <a href="./vacancies" class="nav-link">Вакансии</a>
+        <a href="./pricing" class="nav-link">Тарифы</a>
+        <div class="nav-auth" id="navAuth">
+          <a href="./login" class="btn btn-secondary btn-sm">Войти</a>
+          <a href="./login?mode=register" class="btn btn-primary btn-sm">Регистрация</a>
+        </div>
+        <div class="nav-auth" id="navUser" style="display:none;">
+          <a href="./dashboard" class="nav-link">Кабинет</a>
+          <button class="btn btn-secondary btn-sm" id="logoutBtn">Выйти</button>
+        </div>
+      </nav>
+      <button class="mobile-menu-btn" aria-label="Открыть меню" id="mobileMenuBtn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="page-content">
+    <div class="loading" id="resumeLoading"><div class="spinner"></div></div>
+
+    <section class="resume-detail" id="resumeDetail" style="display:none;" aria-label="Резюме">
+      <div class="container">
+        <div class="job-detail-layout">
+          <div class="job-detail-main">
+            <a href="./vacancies" class="btn btn-secondary btn-sm" style="margin-bottom: 24px;">← К вакансиям</a>
+            <div style="display:flex;align-items:center;gap:24px;margin-bottom:24px;">
+              <img src="" alt="" id="resumeAvatar" style="width:80px;height:80px;border-radius:50%;object-fit:cover;background:var(--bg);">
+              <div>
+                <h1 id="resumeTitle" style="font-size:2rem;"></h1>
+                <p id="resumeName" style="color:var(--text-secondary);font-size:1.25rem;"></p>
+                <p id="resumeLocation" style="color:var(--text-secondary);font-size:14px;"></p>
+              </div>
+            </div>
+            <div class="job-detail-section">
+              <h3>О себе</h3>
+              <p id="resumeAbout" style="white-space:pre-wrap;color:var(--text-secondary);"></p>
+            </div>
+            <div class="job-detail-section">
+              <h3>Навыки</h3>
+              <div id="resumeSkills" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
+            </div>
+            <div class="job-detail-section">
+              <h3>Опыт работы</h3>
+              <div id="resumeExperience"></div>
+            </div>
+            <div class="job-detail-section">
+              <h3>Образование</h3>
+              <div id="resumeEducation"></div>
+            </div>
+            <div class="job-detail-section">
+              <h3>Контакты</h3>
+              <p id="resumeEmail" style="color:var(--text-secondary);"></p>
+              <p id="resumePhone" style="color:var(--text-secondary);"></p>
+            </div>
+          </div>
+          <div class="job-detail-sidebar">
+            <div class="sidebar-card">
+              <h3>Ожидания</h3>
+              <p id="resumeSalary" style="font-size:1.5rem;font-weight:700;color:var(--accent);"></p>
+              <p id="resumeFormat" style="color:var(--text-secondary);margin-top:8px;"></p>
+            </div>
+            <div class="sidebar-card">
+              <h3>Действия</h3>
+              <button class="btn btn-primary" style="width:100%;" id="contactBtn">Написать</button>
+              <button class="btn btn-secondary" style="width:100%;margin-top:8px;" id="downloadBtn">Скачать PDF</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 Работа Мало. Все права защищены.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const path = window.location.pathname;
+      const id = path.split('/').pop();
+      const loading = document.getElementById('resumeLoading');
+      const detail = document.getElementById('resumeDetail');
+
+      try {
+        const resume = await App.api('/api/resumes/' + id);
+        if (!resume) { loading.textContent = 'Резюме не найдено'; return; }
+
+        document.title = App.escapeHtml(resume.title || resume.name) + ' — Работа Мало';
+
+        document.getElementById('resumeAvatar').src = resume.avatar || '';
+        document.getElementById('resumeTitle').textContent = resume.title || 'Без заголовка';
+        document.getElementById('resumeName').textContent = resume.name;
+        document.getElementById('resumeLocation').textContent = resume.city || 'Город не указан';
+        document.getElementById('resumeAbout').textContent = resume.about || 'О себе не указано';
+        document.getElementById('resumeSalary').textContent = resume.salary_expectation ? App.formatSalary(resume.salary_expectation, resume.salary_expectation) : 'Не указана';
+        document.getElementById('resumeFormat').textContent = 'Формат: ' + (resume.work_format_preference ? App.formatFormat(resume.work_format_preference) : 'Не указан');
+        document.getElementById('resumeEmail').textContent = resume.email ? 'Email: ' + resume.email : 'Email не указан';
+        document.getElementById('resumePhone').textContent = resume.phone ? 'Телефон: ' + resume.phone : 'Телефон не указан';
+
+        const skills = resume.skills || [];
+        document.getElementById('resumeSkills').innerHTML = skills.map(s =>
+          '<span class="job-tag">' + App.escapeHtml(s) + '</span>'
+        ).join('');
+
+        const exp = resume.work_experience || [];
+        document.getElementById('resumeExperience').innerHTML = exp.map(e =>
+          '<div style="margin-bottom:16px;"><strong>' + App.escapeHtml(e.position) + '</strong> — ' + App.escapeHtml(e.company) +
+          '<br><small style="color:var(--text-secondary);">' + (e.start_date ? new Date(e.start_date).toLocaleDateString('ru-RU', {month:'short',year:'numeric'}) : '') +
+          ' — ' + (e.end_date ? new Date(e.end_date).toLocaleDateString('ru-RU', {month:'short',year:'numeric'}) : 'Настоящее время') + '</small>' +
+          (e.description ? '<br><p style="margin-top:8px;color:var(--text-secondary);">' + App.escapeHtml(e.description) + '</p>' : '') +
+          '</div>'
+        ).join('');
+
+        const edu = resume.education || [];
+        document.getElementById('resumeEducation').innerHTML = edu.map(e =>
+          '<div style="margin-bottom:12px;"><strong>' + App.escapeHtml(e.institution) + '</strong> — ' + App.escapeHtml(e.degree) +
+          (e.field ? '<br><small style="color:var(--text-secondary);">' + App.escapeHtml(e.field) + '</small>' : '') + '</div>'
+        ).join('');
+
+        detail.style.display = 'grid';
+        loading.style.display = 'none';
+      } catch {
+        loading.textContent = 'Ошибка загрузки';
+      }
+    });
+  </script>
+</body>
+</html>

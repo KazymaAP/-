@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <title>Ресторан Ла Чича — Итальянская кухня в сердце Москвы</title>
+  <meta name="description" content="Ресторан итальянской кухни Ла Чича. Бронирование онлайн, меню с ценами, доставка. Свежие ингредиенты, атмосфера, вкус.">
+  <meta name="keywords" content="ресторан итальянская кухня, бронирование стола, доставка еды, Москва, меню ресторана">
+  <meta name="author" content="La Cucina">
+  <meta name="robots" content="index, follow">
+  
+  <meta property="og:type" content="restaurant">
+  <meta property="og:title" content="Ресторан Ла Чича — Итальянская кухня">
+  <meta property="og:description" content="Итальянская кухня в сердце Москвы. Бронирование онлайн, доставка.">
+  <meta property="og:url" content="https://la-cucina.ru">
+  <meta property="og:image" content="https://la-cucina.ru/images/og-image.jpg">
+  <meta property="og:locale" content="ru_RU">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ресторан Ла Чича">
+  <meta name="twitter:description" content="Итальянская кухня в сердце Москвы.">
+  
+  <link rel="canonical" href="https://la-cucina.ru">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Ресторан Ла Чича",
+    "description": "Итальянская кухня. Бронирование онлайн, доставка.",
+    "url": "https://la-cucina.ru",
+    "telephone": "+7-495-123-45-67",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "ул. Примерная, 10",
+      "addressLocality": "Москва",
+      "postalCode": "101000",
+      "addressCountry": "RU"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 55.7558,
+      "longitude": 37.6173
+    },
+    "openingHours": "Mo-Fr 12:00-23:00, Sa-Su 11:00-00:00",
+    "priceRange": "$$",
+    "servesCuisine": "Итальянская",
+    "menu": "https://la-cucina.ru/#menu",
+    "acceptsReservations": "True",
+    "hasMenu": {
+      "@type": "Menu",
+      "url": "https://la-cucina.ru/#menu"
+    },
+    "image": "https://la-cucina.ru/images/hero-bg.jpg",
+    "sameAs": [
+      "https://www.instagram.com/la_cucina",
+      "https://t.me/la_cucina"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Skip to main content for accessibility -->
+  <a href="#main-content" class="skip-link">Перейти к основному содержимому</a>
+
+  <!-- Header / Navigation -->
+  <header class="header" id="header" role="banner">
+    <div class="container header-inner">
+      <a href="./" class="logo" aria-label="Ла Чича — На главную">
+        <span class="logo-icon">🍷</span>
+        <span class="logo-text">Ла Чича</span>
+      </a>
+      
+      <nav class="nav" role="navigation" aria-label="Основная навигация">
+        <button class="nav-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-menu">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+        
+        <ul class="nav-list" id="nav-menu" role="menubar">
+          <li role="none"><a href="#menu" class="nav-link" role="menuitem">Меню</a></li>
+          <li role="none"><a href="#booking" class="nav-link" role="menuitem">Бронирование</a></li>
+          <li role="none"><a href="#delivery" class="nav-link" role="menuitem">Доставка</a></li>
+          <li role="none"><a href="#about" class="nav-link" role="menuitem">О нас</a></li>
+          <li role="none"><a href="#contacts" class="nav-link" role="menuitem">Контакты</a></li>
+        </ul>
+      </nav>
+      
+      <div class="header-actions">
+        <a href="#booking" class="btn btn-primary btn-header">
+          Забронировать
+        </a>
+        <div class="order-cart" id="orderCart" aria-label="Корзина заказа">
+          <button class="cart-btn" id="cartBtn" aria-label="Корзина" aria-expanded="false" aria-controls="cartPanel">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="m1 1 4 0 2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            <span class="cart-counter" id="cartCounter" aria-live="polite">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Cart Panel -->
+  <aside class="cart-panel" id="cartPanel" role="complementary" aria-label="Корзина заказа" aria-hidden="true">
+    <div class="cart-panel-header">
+      <h2 class="cart-panel-title">Ваш заказ</h2>
+      <button class="cart-panel-close" id="cartClose" aria-label="Закрыть корзину">&times;</button>
+    </div>
+    <div class="cart-panel-body" id="cartBody">
+      <div class="cart-empty" id="cartEmpty">
+        <span class="cart-empty-icon">🍽️</span>
+        <p>Корзина пуста</p>
+        <p>Добавьте блюда из меню</p>
+      </div>
+      <div class="cart-items" id="cartItems"></div>
+    </div>
+    <div class="cart-panel-footer" id="cartFooter" style="display: none;">
+      <div class="cart-total">
+        <span>Итого:</span>
+        <span class="cart-total-price" id="cartTotalPrice">0 ₽</span>
+      </div>
+      <button class="btn btn-primary btn-lg" id="cartOrderBtn">
+        Оформить заказ доставки
+      </button>
+      <p class="cart-delivery-note">Бесплатная доставка от 2000 ₽</p>
+    </div>
+  </aside>
+  <div class="cart-overlay" id="cartOverlay" aria-hidden="true"></div>
+
+  <!-- Main Content -->
+  <main id="main-content">
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="hero-background">
+        <div class="hero-bg-image" role="img" aria-label="Интерьер ресторана"></div>
+        <div class="hero-overlay"></div>
+      </div>
+      
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-icon" aria-hidden="true">🍷</span>
+            <span>Итальянская кухня</span>
+          </div>
+          
+          <h1 class="hero-title" id="hero-title">
+            <span class="title-restaurant">Ресторан</span>
+            <span class="title-name">Ла Чича</span>
+          </h1>
+          
+          <p class="hero-subtitle">
+            Итальянская кухня в сердце города.<br>
+            Свежие ингредиенты. Атмосфера. Вкус.
+          </p>
+          
+          <div class="hero-hours">
+            <span class="hours-item">
+              <span class="hours-label">Пн–Пт</span>
+              <span class="hours-value">12:00–23:00</span>
+            </span>
+            <span class="hours-divider" aria-hidden="true">·</span>
+            <span class="hours-item">
+              <span class="hours-label">Сб–Вс</span>
+              <span class="hours-value">11:00–00:00</span>
+            </span>
+          </div>
+          
+          <div class="hero-cta">
+            <a href="#booking" class="btn btn-primary btn-lg">
+              Забронировать стол
+            </a>
+            <a href="#menu" class="btn btn-secondary btn-lg">
+              Посмотреть меню
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="hero-scroll" aria-hidden="true">
+        <span class="scroll-text">Листайте вниз</span>
+        <span class="scroll-arrow">↓</span>
+      </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu" aria-labelledby="menu-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Наше меню</span>
+          <h2 class="section-title" id="menu-title">Меню ресторана</h2>
+          <p class="section-subtitle">
+            Свежие ингредиенты, классические рецепты, современная подача.
+          </p>
+        </div>
+        
+        <div class="menu-tabs" role="tablist" aria-label="Категории меню">
+          <button class="menu-tab active" role="tab" aria-selected="true" aria-controls="menu-panel" data-category="starters" id="tab-starters">Закуски</button>
+          <button class="menu-tab" role="tab" aria-selected="false" aria-controls="menu-panel" data-category="mains" id="tab-mains">Основные</button>
+          <button class="menu-tab" role="tab" aria-selected="false" aria-controls="menu-panel" data-category="pasta" id="tab-pasta">Паста</button>
+          <button class="menu-tab" role="tab" aria-selected="false" aria-controls="menu-panel" data-category="desserts" id="tab-desserts">Десерты</button>
+          <button class="menu-tab" role="tab" aria-selected="false" aria-controls="menu-panel" data-category="drinks" id="tab-drinks">Напитки</button>
+        </div>
+        
+        <div class="menu-grid" id="menuGrid" role="tabpanel" aria-labelledby="tab-starters">
+          <!-- Menu items populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking" id="booking" aria-labelledby="booking-title">
+      <div class="container">
+        <div class="booking-wrapper">
+          <div class="booking-info">
+            <span class="section-tag">Бронирование</span>
+            <h2 class="section-title" id="booking-title">Забронировать стол</h2>
+            <p class="booking-description">
+              Выберите удобную дату, время и стол. Мы подтвердим бронь 
+              по SMS в течение 5 минут.
+            </p>
+            
+            <div class="booking-benefits">
+              <div class="benefit-item">
+                <span class="benefit-icon" aria-hidden="true">⚡</span>
+                <span class="benefit-text">Мгновенное подтверждение</span>
+              </div>
+              <div class="benefit-item">
+                <span class="benefit-icon" aria-hidden="true">📱</span>
+                <span class="benefit-text">SMS-уведомление</span>
+              </div>
+              <div class="benefit-item">
+                <span class="benefit-icon" aria-hidden="true">🔄</span>
+                <span class="benefit-text">Бесплатная отмена</span>
+              </div>
+            </div>
+          </div>
+          
+          <form class="booking-form" id="bookingForm" novalidate aria-label="Форма бронирования стола">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="bookingDate" class="form-label">Дата</label>
+                <input 
+                  type="date" 
+                  id="bookingDate" 
+                  name="date" 
+                  class="form-input"
+                  min=""
+                  required
+                  aria-required="true"
+                >
+              </div>
+              
+              <div class="form-group">
+                <label for="bookingTime" class="form-label">Время</label>
+                <select id="bookingTime" name="time" class="form-select" required aria-required="true">
+                  <option value="">Выберите время</option>
+                  <option value="12:00">12:00</option>
+                  <option value="12:30">12:30</option>
+                  <option value="13:00">13:00</option>
+                  <option value="13:30">13:30</option>
+                  <option value="14:00">14:00</option>
+                  <option value="18:00">18:00</option>
+                  <option value="18:30">18:30</option>
+                  <option value="19:00">19:00</option>
+                  <option value="19:30">19:30</option>
+                  <option value="20:00">20:00</option>
+                  <option value="20:30">20:30</option>
+                  <option value="21:00">21:00</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="bookingGuests" class="form-label">Гости</label>
+                <select id="bookingGuests" name="guests" class="form-select" required aria-required="true">
+                  <option value="1">1 гость</option>
+                  <option value="2" selected>2 гостя</option>
+                  <option value="3">3 гостя</option>
+                  <option value="4">4 гостя</option>
+                  <option value="5">5 гостей</option>
+                  <option value="6">6 гостей</option>
+                  <option value="7">7 гостей</option>
+                  <option value="8">8 гостей</option>
+                  <option value="10">10 гостей (банкет)</option>
+                </select>
+              </div>
+            </div>
+            
+            <fieldset class="table-selection">
+              <legend class="form-label">Выберите стол</legend>
+              <div class="hall-scheme" role="radiogroup" aria-label="Схема зала ресторана">
+                <div class="hall-window" aria-hidden="true">
+                  <span>Окно</span>
+                </div>
+                
+                <button type="button" class="table table--available" data-table="1" data-seats="2" data-location="window" role="radio" aria-checked="false" aria-label="Стол 1, у окна, 2 места">
+                  <span class="table-number">1</span>
+                  <span class="table-seats">2 м.</span>
+                  <span class="table-location">У окна</span>
+                </button>
+                
+                <button type="button" class="table table--available" data-table="2" data-seats="2" data-location="window" role="radio" aria-checked="false" aria-label="Стол 2, у окна, 2 места">
+                  <span class="table-number">2</span>
+                  <span class="table-seats">2 м.</span>
+                  <span class="table-location">У окна</span>
+                </button>
+                
+                <button type="button" class="table table--available" data-table="3" data-seats="4" data-location="center" role="radio" aria-checked="false" aria-label="Стол 3, в центре зала, 4 места">
+                  <span class="table-number">3</span>
+                  <span class="table-seats">4 м.</span>
+                  <span class="table-location">Центр</span>
+                </button>
+                
+                <button type="button" class="table table--booked" data-table="4" disabled aria-label="Стол 4, занят">
+                  <span class="table-number">4</span>
+                  <span class="table-seats">Занят</span>
+                </button>
+                
+                <button type="button" class="table table--available" data-table="5" data-seats="2" data-location="terrace" role="radio" aria-checked="false" aria-label="Стол 5, на веранде, 2 места">
+                  <span class="table-number">5</span>
+                  <span class="table-seats">2 м.</span>
+                  <span class="table-location">Веранда</span>
+                </button>
+                
+                <button type="button" class="table table--vip table--available" data-table="6" data-seats="6" data-location="vip" role="radio" aria-checked="false" aria-label="Стол VIP, VIP-зона, 6 мест">
+                  <span class="table-number">VIP</span>
+                  <span class="table-seats">6 м.</span>
+                  <span class="table-location">VIP-зона</span>
+                </button>
+              </div>
+              
+              <div class="selected-table-info" id="selectedTableInfo" aria-live="polite">
+                <span class="info-icon" aria-hidden="true">ℹ️</span>
+                <span class="info-text">Выберите стол на схеме</span>
+              </div>
+            </fieldset>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="bookingName" class="form-label">Имя</label>
+                <input 
+                  type="text" 
+                  id="bookingName" 
+                  name="name" 
+                  class="form-input"
+                  placeholder="Иван"
+                  required
+                  aria-required="true"
+                  autocomplete="name"
+                >
+              </div>
+              
+              <div class="form-group">
+                <label for="bookingPhone" class="form-label">Телефон</label>
+                <input 
+                  type="tel" 
+                  id="bookingPhone" 
+                  name="phone" 
+                  class="form-input"
+                  placeholder="+7 (999) 123-45-67"
+                  required
+                  aria-required="true"
+                  autocomplete="tel"
+                  inputmode="tel"
+                >
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="bookingWishes" class="form-label">Пожелания <span class="form-label-optional">(необязательно)</span></label>
+              <textarea 
+                id="bookingWishes" 
+                name="wishes" 
+                class="form-textarea"
+                placeholder="Детское кресло, место у окна, праздничный торт..."
+                rows="3"
+              ></textarea>
+            </div>
+            
+            <div class="form-checkbox">
+              <input type="checkbox" id="bookingConsent" name="consent" required aria-required="true">
+              <label for="bookingConsent">
+                Я согласен на обработку <a href="#privacy" class="link">персональных данных</a>
+              </label>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-lg form-submit" id="bookingSubmit">
+              <span class="btn-text">Забронировать</span>
+              <span class="btn-loader" aria-hidden="true" style="display: none;">
+                <svg class="spinner" viewBox="0 0 24 24" width="20" height="20">
+                  <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="3" stroke-dasharray="31.4" stroke-dashoffset="10"/>
+                </svg>
+              </span>
+            </button>
+            
+            <p class="booking-note">
+              ⚡ Бронь действует 15 минут до прихода. 
+              Подтверждение придет по SMS.
+            </p>
+            
+            <div class="form-error" id="bookingError" role="alert" aria-live="assertive" style="display: none;"></div>
+            <div class="form-success" id="bookingSuccess" role="status" aria-live="polite" style="display: none;"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Delivery Section -->
+    <section class="delivery" id="delivery" aria-labelledby="delivery-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Доставка</span>
+          <h2 class="section-title" id="delivery-title">Доставка еды</h2>
+          <p class="section-subtitle">
+            Наши блюда у вас дома. Бесплатная доставка от 2000 ₽.
+          </p>
+        </div>
+        
+        <div class="delivery-grid">
+          <div class="delivery-card">
+            <div class="delivery-card-icon" aria-hidden="true">🚗</div>
+            <h3 class="delivery-card-title">Доставим за 30–60 минут</h3>
+            <p class="delivery-card-text">Быстрая доставка горячих блюд курьером по Москве в пределах МКАД.</p>
+          </div>
+          
+          <div class="delivery-card">
+            <div class="delivery-card-icon" aria-hidden="true">💰</div>
+            <h3 class="delivery-card-title">Бесплатно от 2000 ₽</h3>
+            <p class="delivery-card-text">При заказе от 2000 ₽ доставка бесплатная. Иначе — 350 ₽.</p>
+          </div>
+          
+          <div class="delivery-card">
+            <div class="delivery-card-icon" aria-hidden="true">💳</div>
+            <h3 class="delivery-card-title">Онлайн-оплата</h3>
+            <p class="delivery-card-text">Оплачивайте картой онлайн или наличными курьеру при получении.</p>
+          </div>
+          
+          <div class="delivery-card">
+            <div class="delivery-card-icon" aria-hidden="true">📦</div>
+            <h3 class="delivery-card-title">Самовывоз со скидкой</h3>
+            <p class="delivery-card-text">Заберите заказ сами и получите скидку 10%. Ждём вас!</p>
+          </div>
+        </div>
+        
+        <div class="delivery-cta">
+          <a href="#menu" class="btn btn-primary btn-lg">
+            Заказать доставку
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="about-wrapper">
+          <div class="about-image">
+            <div class="about-image-placeholder" role="img" aria-label="Шеф-повар ресторана">
+              <span class="about-image-icon" aria-hidden="true">👨‍🍳</span>
+            </div>
+          </div>
+          
+          <div class="about-content">
+            <span class="section-tag">О ресторане</span>
+            <h2 class="section-title" id="about-title">Наша история</h2>
+            <p class="about-text">
+              Ла Чича — это место, где классическая итальянская кухня встречается 
+              с современной подачей. Мы используем только свежие ингредиенты, 
+              привезённые напрямую из Италии.
+            </p>
+            <p class="about-text">
+              Наш шеф-повар Марко Росси — уроженец Тосканы с 15-летним опытом работы 
+              в лучших ресторанах Рима и Москвы. Его философия — простота, качество 
+              и уважение к продукту.
+            </p>
+            
+            <div class="about-stats">
+              <div class="stat-item">
+                <span class="stat-number">15+</span>
+                <span class="stat-label">Лет опыта шефа</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">50+</span>
+                <span class="stat-label">Блюд в меню</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">4.8</span>
+                <span class="stat-label">Рейтинг на Яндекс.Картах</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery" aria-labelledby="gallery-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Галерея</span>
+          <h2 class="section-title" id="gallery-title">Атмосфера ресторана</h2>
+        </div>
+        
+        <div class="gallery-grid">
+          <div class="gallery-item gallery-item--large">
+            <div class="gallery-placeholder" role="img" aria-label="Интерьер ресторана">
+              <span aria-hidden="true">🖼️</span>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-placeholder" role="img" aria-label="Блюда шеф-повара">
+              <span aria-hidden="true">🍽️</span>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-placeholder" role="img" aria-label="Барная стойка">
+              <span aria-hidden="true">🍸</span>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-placeholder" role="img" aria-label="Теранда">
+              <span aria-hidden="true">🌿</span>
+            </div>
+          </div>
+          <div class="gallery-item">
+            <div class="gallery-placeholder" role="img" aria-label="Десерты">
+              <span aria-hidden="true">🍰</span>
+            </div>
+          </div>
+          <div class="gallery-item gallery-item--large">
+            <div class="gallery-placeholder" role="img" aria-label="Банкетный зал">
+              <span aria-hidden="true">🎉</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacts Section -->
+    <section class="contacts" id="contacts" aria-labelledby="contacts-title">
+      <div class="container">
+        <div class="contacts-wrapper">
+          <div class="contacts-info">
+            <span class="section-tag">Контакты</span>
+            <h2 class="section-title" id="contacts-title">Как нас найти</h2>
+            
+            <div class="contacts-list">
+              <div class="contact-item">
+                <span class="contact-icon" aria-hidden="true">📍</span>
+                <div class="contact-details">
+                  <span class="contact-label">Адрес</span>
+                  <span class="contact-value">ул. Примерная, 10, Москва</span>
+                </div>
+              </div>
+              
+              <div class="contact-item">
+                <span class="contact-icon" aria-hidden="true">📞</span>
+                <div class="contact-details">
+                  <span class="contact-label">Телефон</span>
+                  <a href="tel:+74951234567" class="contact-value contact-link">+7 (495) 123-45-67</a>
+                </div>
+              </div>
+              
+              <div class="contact-item">
+                <span class="contact-icon" aria-hidden="true">✉️</span>
+                <div class="contact-details">
+                  <span class="contact-label">Email</span>
+                  <a href="mailto:info@la-cucina.ru" class="contact-value contact-link">info@la-cucina.ru</a>
+                </div>
+              </div>
+              
+              <div class="contact-item">
+                <span class="contact-icon" aria-hidden="true">🕐</span>
+                <div class="contact-details">
+                  <span class="contact-label">Часы работы</span>
+                  <span class="contact-value">Пн–Пт: 12:00–23:00<br>Сб–Вс: 11:00–00:00</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="contacts-social">
+              <a href="https://instagram.com/la_cucina" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+              </a>
+              <a href="https://t.me/la_cucina" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          
+          <div class="contacts-map">
+            <div class="map-placeholder" role="img" aria-label="Карта проезда">
+              <span class="map-icon" aria-hidden="true">🗺️</span>
+              <p>Карта загружается...</p>
+              <a href="https://yandex.ru/maps" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                Открыть на Яндекс.Картах
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="./" class="logo footer-logo" aria-label="Ла Чича — На главную">
+            <span class="logo-icon">🍷</span>
+            <span class="logo-text">Ла Чича</span>
+          </a>
+          <p class="footer-tagline">Итальянская кухня в сердце Москвы</p>
+        </div>
+        
+        <div class="footer-nav">
+          <h3 class="footer-heading">Навигация</h3>
+          <ul class="footer-links">
+            <li><a href="#menu">Меню</a></li>
+            <li><a href="#booking">Бронирование</a></li>
+            <li><a href="#delivery">Доставка</a></li>
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-contact">
+          <h3 class="footer-heading">Контакты</h3>
+          <ul class="footer-links">
+            <li><a href="tel:+74951234567">+7 (495) 123-45-67</a></li>
+            <li><a href="mailto:info@la-cucina.ru">info@la-cucina.ru</a></li>
+            <li>ул. Примерная, 10</li>
+          </ul>
+        </div>
+        
+        <div class="footer-hours">
+          <h3 class="footer-heading">Часы работы</h3>
+          <p>Пн–Пт: 12:00–23:00</p>
+          <p>Сб–Вс: 11:00–00:00</p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2026 Ла Чича. Все права защищены.</p>
+        <div class="footer-legal">
+          <a href="#privacy">Политика конфиденциальности</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notification Container -->
+  <div id="notificationContainer" aria-live="polite" aria-atomic="true"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

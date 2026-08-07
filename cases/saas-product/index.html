@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="FlowBoard — SaaS платформа для управления проектами. Аналитика, автоматизация, интеграции. Бесплатно для команд до 5 человек.">
+  <meta name="keywords" content="управление проектами, CRM, аналитика, автоматизация, SaaS, проектный менеджмент">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="FlowBoard">
+  <meta name="theme-color" content="#6366F1">
+  <meta name="color-scheme" content="light dark">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';" />
+  <title>FlowBoard — Управляйте проектами в 10 раз быстрее</title>
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://flowboard.app">
+  <meta property="og:title" content="FlowBoard — Управляйте проектами в 10 раз быстрее">
+  <meta property="og:description" content="SaaS платформа для управления проектами. Аналитика, автоматизация, интеграции.">
+  <meta property="og:image" content="https://flowboard.app/assets/og-image.png">
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="FlowBoard — Управляйте проектами в 10 раз быстрее" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@flowboard" />
+  <meta name="twitter:title" content="FlowBoard — Управляйте проектами в 10 раз быстрее" />
+  <meta name="twitter:description" content="SaaS платформа для управления проектами." />
+  <meta name="twitter:image" content="https://flowboard.app/assets/og-image.png" />
+  <meta name="twitter:image:alt" content="FlowBoard — Управляйте проектами в 10 раз быстрее" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://flowboard.app/" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="./assets/manifest.json" />
+  <meta name="theme-color" content="#6366F1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="FlowBoard" />
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" crossorigin />
+  <link rel="preload" as="style" href="assets/styles.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'" crossorigin />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" crossorigin></noscript>
+  <link rel="stylesheet" href="assets/styles.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="assets/styles.css"></noscript>
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "FlowBoard",
+    "description": "SaaS платформа для управления проектами. Аналитика, автоматизация, интеграции.",
+    "url": "https://flowboard.app/",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "AggregateOffer",
+      "lowPrice": "0",
+      "highPrice": "79",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "150",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Skip Navigation -->
+  <a href="#main" class="skip-link">Перейти к основному содержимому</a>
+
+  <!-- Header / Navigation -->
+  <header class="header" id="header" role="banner">
+    <div class="container header-inner">
+      <a href="./" class="logo" aria-label="FlowBoard — На главную">
+        <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <rect width="32" height="32" rx="8" fill="#6366F1"/>
+          <path d="M8 16L14 22L24 10" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="logo-text">FlowBoard</span>
+      </a>
+
+      <nav role="navigation" aria-label="Основная навигация" class="nav-desktop">
+        <ul class="nav-list">
+          <li><a href="#features" class="nav-link">Возможности</a></li>
+          <li><a href="#how-it-works" class="nav-link">Как это работает</a></li>
+          <li><a href="#pricing" class="nav-link">Цены</a></li>
+          <li><a href="#cases" class="nav-link">Кейсы</a></li>
+          <li><a href="#faq" class="nav-link">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#signup" class="btn btn-ghost">Войти</a>
+        <a href="#signup" class="btn btn-primary btn-sm">Начать бесплатно</a>
+      </div>
+
+      <button class="mobile-menu-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Мобильное меню" aria-hidden="true">
+      <nav aria-label="Мобильная навигация">
+        <ul class="mobile-nav-list">
+          <li><a href="#features" class="mobile-nav-link">Возможности</a></li>
+          <li><a href="#how-it-works" class="mobile-nav-link">Как это работает</a></li>
+          <li><a href="#pricing" class="mobile-nav-link">Цены</a></li>
+          <li><a href="#cases" class="mobile-nav-link">Кейсы</a></li>
+          <li><a href="#faq" class="mobile-nav-link">FAQ</a></li>
+        </ul>
+      </nav>
+      <div class="mobile-menu-actions">
+        <a href="#signup" class="btn btn-ghost btn-full">Войти</a>
+        <a href="#signup" class="btn btn-primary btn-full">Начать бесплатно</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main">
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-gradient"></div>
+        <div class="hero-grid"></div>
+      </div>
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge" role="status">
+            <span class="badge-icon" aria-hidden="true">🚀</span>
+            <span>Новая версия 2.0</span>
+            <span class="badge-arrow" aria-hidden="true">&rarr;</span>
+          </div>
+          <h1 class="hero-title" id="hero-title">
+            Управляйте проектами
+            <span class="title-accent">в 10 раз быстрее</span>
+          </h1>
+          <p class="hero-subtitle">
+            Всё в одном месте для вашей команды.
+            От задач до аналитики. Бесплатно для малых команд.
+          </p>
+          <div class="hero-cta">
+            <a href="#signup" class="btn btn-primary btn-lg">Начать бесплатно</a>
+            <button class="btn btn-secondary btn-lg" id="demo-btn" aria-label="Посмотреть демо">
+              <span class="play-icon" aria-hidden="true">▶</span> Посмотреть демо
+            </button>
+          </div>
+          <div class="hero-trust">
+            <div class="trust-item">
+              <span class="trust-icon" aria-hidden="true">✓</span>
+              <span>Бесплатно до 5 пользователей</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon" aria-hidden="true">✓</span>
+              <span>Без кредитной карты</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon" aria-hidden="true">✓</span>
+              <span>Настройка за 5 минут</span>
+            </div>
+          </div>
+          <div class="hero-social-proof" aria-label="Социальное доказательство">
+            <div class="avatars" aria-hidden="true">
+              <div class="avatar avatar-1"></div>
+              <div class="avatar avatar-2"></div>
+              <div class="avatar avatar-3"></div>
+              <div class="avatar avatar-4"></div>
+              <div class="avatar avatar-5"></div>
+            </div>
+            <div class="proof-text">
+              <span class="proof-count">2,500+</span> команд уже используют
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="product-mockup">
+            <div class="mockup-header">
+              <div class="mockup-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="mockup-url">app.flowboard.app</div>
+            </div>
+            <div class="mockup-content">
+              <div class="mockup-dashboard">
+                <div class="mockup-sidebar">
+                  <div class="mockup-nav-item active"></div>
+                  <div class="mockup-nav-item"></div>
+                  <div class="mockup-nav-item"></div>
+                  <div class="mockup-nav-item"></div>
+                </div>
+                <div class="mockup-main">
+                  <div class="mockup-chart"></div>
+                  <div class="mockup-cards">
+                    <div class="mockup-card"></div>
+                    <div class="mockup-card"></div>
+                    <div class="mockup-card"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mockup-glow" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem" id="problem" aria-labelledby="problem-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Проблема</span>
+          <h2 class="section-title" id="problem-title">Знакомо?</h2>
+          <p class="section-subtitle">У каждой команды свои боли. Мы знаем, как их решить.</p>
+        </div>
+        <div class="problem-grid">
+          <div class="problem-card">
+            <div class="problem-icon" aria-hidden="true">😵</div>
+            <h3 class="problem-title">Хаос в задачах</h3>
+            <p class="problem-description">Задачи разбросаны по чатам, заметкам и таблицам. Непонятно, кто что делает.</p>
+          </div>
+          <div class="problem-card">
+            <div class="problem-icon" aria-hidden="true">📊</div>
+            <h3 class="problem-title">Нет аналитики</h3>
+            <p class="problem-description">Не знаете, сколько времени уходит на задачи. Невозможно планировать спринты.</p>
+          </div>
+          <div class="problem-card">
+            <div class="problem-icon" aria-hidden="true">🔄</div>
+            <h3 class="problem-title">Ручная рутина</h3>
+            <p class="problem-description">Одни и те же действия каждый день. Автоматизация? Это же сложно!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution" id="solution" aria-labelledby="solution-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Решение</span>
+          <h2 class="section-title" id="solution-title">FlowBoard решает это</h2>
+          <p class="section-subtitle">Одна платформа для всех процессов вашей команды.</p>
+        </div>
+        <div class="solution-content">
+          <div class="solution-visual">
+            <div class="solution-app">
+              <div class="app-header">
+                <div class="app-tabs">
+                  <span class="app-tab active">Доски</span>
+                  <span class="app-tab">Аналитика</span>
+                  <span class="app-tab">Настройки</span>
+                </div>
+              </div>
+              <div class="app-board">
+                <div class="board-column">
+                  <div class="column-header">
+                    <span class="column-dot" style="background:#F59E0B"></span>
+                    <span>К выполнению</span>
+                    <span class="column-count">4</span>
+                  </div>
+                  <div class="board-card">Дизайн лендинга</div>
+                  <div class="board-card">API интеграция</div>
+                  <div class="board-card">Тесты</div>
+                </div>
+                <div class="board-column">
+                  <div class="column-header">
+                    <span class="column-dot" style="background:#6366F1"></span>
+                    <span>В работе</span>
+                    <span class="column-count">2</span>
+                  </div>
+                  <div class="board-card">Бэкенд</div>
+                  <div class="board-card">UI компоненты</div>
+                </div>
+                <div class="board-column">
+                  <div class="column-header">
+                    <span class="column-dot" style="background:#10B981"></span>
+                    <span>Готово</span>
+                    <span class="column-count">6</span>
+                  </div>
+                  <div class="board-card done">Деплой</div>
+                  <div class="board-card done">Документация</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="solution-features">
+            <div class="solution-feature">
+              <div class="solution-feature-icon" aria-hidden="true">📋</div>
+              <h3>Визуальные доски</h3>
+              <p>Kanban, Scrum, Gantt — выбирайте удобный формат.</p>
+            </div>
+            <div class="solution-feature">
+              <div class="solution-feature-icon" aria-hidden="true">⚡</div>
+              <h3>Автоматизация</h3>
+              <p>Правила, шаблоны, повторяющиеся задачи — без рутины.</p>
+            </div>
+            <div class="solution-feature">
+              <div class="solution-feature-icon" aria-hidden="true">📈</div>
+              <h3>Аналитика</h3>
+              <p>Дашборды, отчёты, метрики — всё в реальном времени.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Возможности</span>
+          <h2 class="section-title" id="features-title">Всё что нужно для продуктивной работы</h2>
+          <p class="section-subtitle">Мощные инструменты, простой интерфейс.</p>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card feature-card--large">
+            <div class="feature-icon" aria-hidden="true">📊</div>
+            <h3 class="feature-title">Аналитика в реальном времени</h3>
+            <p class="feature-description">Отслеживайте метрики, создавайте дашборды, принимайте решения на основе данных.</p>
+            <div class="feature-visual">
+              <div class="mini-chart">
+                <div class="chart-bar" style="height:40%"></div>
+                <div class="chart-bar" style="height:60%"></div>
+                <div class="chart-bar" style="height:45%"></div>
+                <div class="chart-bar" style="height:80%"></div>
+                <div class="chart-bar" style="height:70%"></div>
+                <div class="chart-bar" style="height:55%"></div>
+                <div class="chart-bar" style="height:90%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🤖</div>
+            <h3 class="feature-title">Автоматизация</h3>
+            <p class="feature-description">Настройте правила автоматизации и освободите время от рутины.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🔗</div>
+            <h3 class="feature-title">Интеграции</h3>
+            <p class="feature-description">Более 50 интеграций: Slack, Notion, GitHub и другие.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">👥</div>
+            <h3 class="feature-title">Командная работа</h3>
+            <p class="feature-description">Приглашайте команду, назначайте задачи, отслеживайте прогресс.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">🔒</div>
+            <h3 class="feature-title">Безопасность</h3>
+            <p class="feature-description">Шифрование данных, 2FA, SSO. Корпоративный уровень.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon" aria-hidden="true">📱</div>
+            <h3 class="feature-title">Мобильное приложение</h3>
+            <p class="feature-description">Работайте с любого устройства. iOS и Android.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works" aria-labelledby="how-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Как это работает</span>
+          <h2 class="section-title" id="how-title">Начните за 3 простых шага</h2>
+          <p class="section-subtitle">Без сложных настроек. Без обучения.</p>
+        </div>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number" aria-hidden="true">01</div>
+            <div class="step-content">
+              <h3 class="step-title">Зарегистрируйтесь</h3>
+              <p class="step-description">Введите email и пароль. 30 секунд — и аккаунт готов.</p>
+            </div>
+            <div class="step-connector" aria-hidden="true"></div>
+          </div>
+          <div class="step-card">
+            <div class="step-number" aria-hidden="true">02</div>
+            <div class="step-content">
+              <h3 class="step-title">Настройте проект</h3>
+              <p class="step-description">Выберите шаблон или создайте доску с нуля.</p>
+            </div>
+            <div class="step-connector" aria-hidden="true"></div>
+          </div>
+          <div class="step-card">
+            <div class="step-number" aria-hidden="true">03</div>
+            <div class="step-content">
+              <h3 class="step-title">Пригласите команду</h3>
+              <p class="step-description">Поделитесь ссылкой — все готовы к работе.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing" aria-labelledby="pricing-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Цены</span>
+          <h2 class="section-title" id="pricing-title">Прозрачные цены. Без сюрпризов.</h2>
+          <p class="section-subtitle">Начните бесплатно. Обновите, когда будете готовы.</p>
+        </div>
+        <div class="pricing-toggle" role="radiogroup" aria-label="Переключение периода оплаты">
+          <button class="toggle-btn active" role="radio" aria-checked="true" data-period="monthly" id="toggle-monthly">Ежемесячно</button>
+          <button class="toggle-btn" role="radio" aria-checked="false" data-period="yearly" id="toggle-yearly">Годовая <span class="toggle-badge">-20%</span></button>
+        </div>
+        <div class="pricing-grid" role="list">
+          <!-- Starter -->
+          <article class="pricing-card" role="listitem" aria-labelledby="plan-starter">
+            <div class="pricing-header">
+              <h3 class="pricing-name" id="plan-starter">Starter</h3>
+              <p class="pricing-description">Для небольших команд</p>
+            </div>
+            <div class="pricing-price">
+              <span class="price-currency" aria-hidden="true">$</span>
+              <span class="price-value" data-monthly="0" data-yearly="0" aria-label="0 долларов в месяц">0</span>
+              <span class="price-period">/мес</span>
+            </div>
+            <ul class="pricing-features" aria-label="Фичи плана Starter">
+              <li class="feature-item feature-item--included">
+                <span class="feature-icon" aria-hidden="true">✓</span>
+                <span>До 5 пользователей</span>
+              </li>
+              <li class="feature-item feature-item--included">
+                <span class="feature-icon" aria-hidden="true">✓</span>
+                <span>3 проекта</span>
+              </li>
+              <li class="feature-item feature-item--included">
+                <span class="feature-icon" aria-hidden="true">✓</span>
+                <span>Базовая аналитика</span>
+              </li>
+              <li class="feature-item feature-item--excluded">
+                <span class="feature-icon" aria-hidden="true">✗</span>
+                <span>Интеграции</span>
+              </li>
+              <li class="feature-item feature-item--excluded">
+                <span class="feature-icon" aria-hidden="true">✗</span>
+                <span>Приоритетная поддержка</span>
+              </li>
+            </ul>
+            <a href="#signup" class="btn btn-pricing" aria-label="Начать бесплатно с планом Starter">Начать бесплатно</a>
+          </article>
+
+          <!-- Pro -->
+          <article class="pricing-card pricing-card--popular" role="listitem" aria-labelledby="plan-pro">
+            <div class="pricing-badge" aria-label="Популярный план">Популярный</div>
+            <div class="pricing-header">
+              <h3 class="pricing-name" id="plan-pro">Pro</h3>
+              <p class="pricing-description">Для растущих команд</p>
+            </div>
+            <div class="pricing-price">
+              <span class="price-currency" aria-hidden="true">$</span>
+              <span class="price-value" data-monthly="29" data-yearly="23" aria-label="29 долларов в месяц">29</span>
+              <span class="price-period">/мес</span>
+            </div>
+            <ul class="pricing-features" aria-label="Фичи плана Pro">
+              <li class="feature-item feature-item--included">
+                <span class="feature-icon" aria-hidden="true">✓</span>
+                <span>До 20 пользователей</span>
+              </li>
+              <li class="feature-item feature-item--included">
+                <span class="feature-icon" aria-hidden="true">✓</span>
+                <span>Безлимитные проекты</span>
+              </li>
+              <li class="feature-item feature-item--included">
+                <span class="feature-icon" aria-hidden="true">✓</span>
+                <span>Продвинутая аналитика</span>
+              </li>
+              <li class="feature-item feature-item--included">
+                <span class="feature-icon" aria-hidden="true">✓</span>
+                <span>Интеграции</span>
+              </li>
+              <li class="feature-item feature-item--included">
+                <span class="feature-icon" aria-hidden="true">✓</span>
+                <span>Поддержка 24/7</span>
+              </li>
+            </ul>
+            <a href="#signup" class="btn btn-pricing btn-pricing--primary" aria-label="Начать пробный период с планом Pro">Начать пробный период</a>
+          </article>
+
+          <!-- Business -->
+          <article class="pricing-card" role="listitem" aria-labelledby="plan-business">
+            <div class="pricing-header">
+              <h3 class="pricing-name" id="plan-business">Business</h3>
+              <p class="pricing-description">Для крупных компаний</p>
+            </div>
+            <div class="pricing-price">
+              <span class="price-currency" aria-hidden="true">$</span>
+              <span class="price-value" data-monthly="79" data-yearly="63" aria-label="79 долларов в месяц">79</span>
+              <span class="price-period">/мес</span>
+            </div>
+            <ul class="pricing-features" aria-label="Фичи плана Business">
+              <li class="feature-item feature-item--included">
+                <span class="feature-icon" aria-hidden="true">✓</span>
+                <span>Безлимитные пользователи</span>
+              </li>
+              <li class="feature-item feature-item--included">
+                <span class="feature-icon" aria-hidden="true">✓</span>
+                <span>Безлимитные проекты</span>
+              </li>
+              <li class="feature-item feature-item--included">
+                <span class="feature-icon" aria-hidden="true">✓</span>
+                <span>Аналитика + API</span>
+              </li>
+              <li class="feature-item feature-item--included">
+                <span class="feature-icon" aria-hidden="true">✓</span>
+                <span>SSO</span>
+              </li>
+              <li class="feature-item feature-item--included">
+                <span class="feature-icon" aria-hidden="true">✓</span>
+                <span>Приоритетный менеджер</span>
+              </li>
+            </ul>
+            <a href="#contact" class="btn btn-pricing" aria-label="Связаться с нами для плана Business">Связаться с нами</a>
+          </article>
+        </div>
+
+        <!-- Enterprise -->
+        <div class="enterprise-banner">
+          <div class="enterprise-content">
+            <h3 class="enterprise-title">Enterprise</h3>
+            <p class="enterprise-description">Кастомные условия, SLA 99.9%, выделенный сервер, персональный менеджер.</p>
+          </div>
+          <a href="#contact" class="btn btn-secondary btn-lg">Позвонить нам</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cases Section -->
+    <section class="cases" id="cases" aria-labelledby="cases-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Кейсы</span>
+          <h2 class="section-title" id="cases-title">Нам доверяют</h2>
+          <p class="section-subtitle">Команды по всему миру уже используют FlowBoard.</p>
+        </div>
+        <div class="cases-grid">
+          <article class="case-card" aria-label="Отзыв клиента">
+            <div class="case-stars" aria-label="5 из 5 звёзд">★★★★★</div>
+            <blockquote class="case-quote">
+              "FlowBoard помог нам увеличить скорость доставки на 40%. Мы видим каждую задачу и каждого исполнителя."
+            </blockquote>
+            <div class="case-author">
+              <div class="case-avatar case-avatar--1" aria-hidden="true"></div>
+              <div>
+                <div class="case-name">Алексей Петров</div>
+                <div class="case-role">CTO, TechStart</div>
+              </div>
+            </div>
+            <div class="case-metrics">
+              <div class="case-metric">
+                <span class="metric-value">+40%</span>
+                <span class="metric-label">скорость</span>
+              </div>
+              <div class="case-metric">
+                <span class="metric-value">15</span>
+                <span class="metric-label">человек в команде</span>
+              </div>
+            </div>
+          </article>
+          <article class="case-card" aria-label="Отзыв клиента">
+            <div class="case-stars" aria-label="5 из 5 звёзд">★★★★★</div>
+            <blockquote class="case-quote">
+              "Наконец-то одна платформа для всех процессов. Перешли с 5 разных инструментов."
+            </blockquote>
+            <div class="case-author">
+              <div class="case-avatar case-avatar--2" aria-hidden="true"></div>
+              <div>
+                <div class="case-name">Мария Иванова</div>
+                <div class="case-role">Product Manager, DesignLab</div>
+              </div>
+            </div>
+            <div class="case-metrics">
+              <div class="case-metric">
+                <span class="metric-value">$3k</span>
+                <span class="metric-label">экономия/год</span>
+              </div>
+              <div class="case-metric">
+                <span class="metric-value">-60%</span>
+                <span class="metric-label">времени</span>
+              </div>
+            </div>
+          </article>
+          <article class="case-card" aria-label="Отзыв клиента">
+            <div class="case-stars" aria-label="5 из 5 звёзд">★★★★★</div>
+            <blockquote class="case-quote">
+              "Автоматизация сэкономила нам 20 часов в неделю. Мы занимаемся продуктом, а не рутиной."
+            </blockquote>
+            <div class="case-author">
+              <div class="case-avatar case-avatar--3" aria-hidden="true"></div>
+              <div>
+                <div class="case-name">Дмитрий Козлов</div>
+                <div class="case-role">CEO, StartupHub</div>
+              </div>
+            </div>
+            <div class="case-metrics">
+              <div class="case-metric">
+                <span class="metric-value">20ч</span>
+                <span class="metric-label">экономия/неделю</span>
+              </div>
+              <div class="case-metric">
+                <span class="metric-value">98%</span>
+                <span class="metric-label">удовлетворённость</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq" aria-labelledby="faq-title">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">FAQ</span>
+          <h2 class="section-title" id="faq-title">Часто задаваемые вопросы</h2>
+          <p class="section-subtitle">Не нашли ответ? Напишите нам на support@flowboard.app</p>
+        </div>
+        <div class="faq-list" role="list">
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+              <span>Бесплатный план — навсегда?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-q-1">
+              <p>Да, бесплатный план доступен навсегда для команд до 5 человек. Никаких скрытых платежей.</p>
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+              <span>Можно ли отменить подписку?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-answer-2" role="region" aria-labelledby="faq-q-2">
+              <p>Да, в любой момент через личный кабинет. Доступ сохранится до конца периода.</p>
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+              <span>Есть ли пробный период?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-answer-3" role="region" aria-labelledby="faq-q-3">
+              <p>Да, 14 дней бесплатно. Без кредитной карты.</p>
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
+              <span>Какие интеграции доступны?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-answer-4" role="region" aria-labelledby="faq-q-4">
+              <p>Slack, Notion, GitHub, Jira, Google Calendar и 50+ других сервисов.</p>
+            </div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
+              <span>Безопасны ли мои данные?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-answer" id="faq-answer-5" role="region" aria-labelledby="faq-q-5">
+              <p>Да. Шифрование AES-256, 2FA, регулярные аудиты безопасности. Серверы в РФ и ЕС.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="cta" aria-labelledby="cta-title">
+      <div class="container">
+        <div class="cta-content">
+          <h2 class="cta-title" id="cta-title">Готовы начать?</h2>
+          <p class="cta-subtitle">Присоединяйтесь к 2,500+ команд, которые уже используют FlowBoard.</p>
+          <div class="cta-buttons">
+            <a href="#signup" class="btn btn-primary btn-lg">Начать бесплатно</a>
+            <a href="#contact" class="btn btn-secondary btn-lg">Связаться с нами</a>
+          </div>
+          <p class="cta-note">Бесплатно до 5 пользователей. Без кредитной карты.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Signup / Waitlist Section -->
+    <section class="signup" id="signup" aria-labelledby="signup-title">
+      <div class="container">
+        <div class="signup-card">
+          <div class="section-header">
+            <span class="section-tag">Регистрация</span>
+            <h2 class="section-title" id="signup-title">Присоединяйтесь к листу ожидания</h2>
+            <p class="section-subtitle">Получите ранний доступ и.special предложение.</p>
+          </div>
+          <form class="signup-form" id="signup-form" novalidate>
+            <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="signup-name" class="form-label">Имя</label>
+                <input type="text" id="signup-name" name="name" class="form-input" placeholder="Ваше имя" required autocomplete="name">
+                <span class="form-error" role="alert" aria-live="polite"></span>
+              </div>
+              <div class="form-group">
+                <label for="signup-email" class="form-label">Email</label>
+                <input type="email" id="signup-email" name="email" class="form-input" placeholder="you@company.com" required autocomplete="email">
+                <span class="form-error" role="alert" aria-live="polite"></span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="signup-company" class="form-label">Компания <span class="form-optional">(необязательно)</span></label>
+              <input type="text" id="signup-company" name="company" class="form-input" placeholder="Название компании" autocomplete="organization">
+            </div>
+            <div class="form-group">
+              <label for="signup-team-size" class="form-label">Размер команды</label>
+              <select id="signup-team-size" name="team_size" class="form-select" required>
+                <option value="" disabled selected>Выберите размер</option>
+                <option value="1-5">1–5 человек</option>
+                <option value="6-20">6–20 человек</option>
+                <option value="21-50">21–50 человек</option>
+                <option value="50+">50+ человек</option>
+              </select>
+              <span class="form-error" role="alert" aria-live="polite"></span>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-full form-submit" id="submit-btn">
+              <span class="btn-text">Вступить в лист ожидания</span>
+              <span class="btn-loading" aria-hidden="true">
+                <span class="spinner"></span>
+              </span>
+            </button>
+            <p class="form-note">Нажимая «Вступить», вы соглашаетесь с <a href="#privacy">политикой конфиденциальности</a>.</p>
+          </form>
+          <div class="success-message" id="success-message" role="status" aria-live="polite" hidden>
+            <div class="success-icon" aria-hidden="true">✓</div>
+            <h3>Вы в списке!</h3>
+            <p>Мы отправим письмо, когда откроем доступ.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="./" class="logo" aria-label="FlowBoard — На главную">
+            <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <rect width="32" height="32" rx="8" fill="#6366F1"/>
+              <path d="M8 16L14 22L24 10" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="logo-text">FlowBoard</span>
+          </a>
+          <p class="footer-tagline">Управляйте проектами в 10 раз быстрее.</p>
+        </div>
+        <div class="footer-links">
+          <h4 class="footer-heading">Продукт</h4>
+          <ul>
+            <li><a href="#features">Возможности</a></li>
+            <li><a href="#pricing">Цены</a></li>
+            <li><a href="#cases">Кейсы</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4 class="footer-heading">Компания</h4>
+          <ul>
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#blog">Блог</a></li>
+            <li><a href="#careers">Карьера</a></li>
+            <li><a href="#contact">Контакты</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4 class="footer-heading">Ресурсы</h4>
+          <ul>
+            <li><a href="#docs">Документация</a></li>
+            <li><a href="#api">API</a></li>
+            <li><a href="#status">Статус</a></li>
+            <li><a href="#security">Безопасность</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4 class="footer-heading">Юридическое</h4>
+          <ul>
+            <li><a href="#privacy">Конфиденциальность</a></li>
+            <li><a href="#terms">Условия</a></li>
+            <li><a href="#gdpr">GDPR</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 FlowBoard. Все права защищены.</p>
+        <div class="footer-social">
+          <a href="https://twitter.com/flowboard" aria-label="Twitter" rel="noopener noreferrer" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://github.com/flowboard" aria-label="GitHub" rel="noopener noreferrer" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          </a>
+          <a href="https://linkedin.com/company/flowboard" aria-label="LinkedIn" rel="noopener noreferrer" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Demo Modal -->
+  <div class="modal" id="demo-modal" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title" hidden>
+    <div class="modal-backdrop" aria-hidden="true"></div>
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Закрыть">&times;</button>
+      <h3 class="modal-title" id="demo-modal-title">Демо FlowBoard</h3>
+      <div class="modal-body">
+        <div class="demo-placeholder">
+          <div class="demo-play" aria-hidden="true">▶</div>
+          <p>Видео-демонстрация</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <noscript>
+    <style>
+      .hero-visual, .mockup-glow { display: none; }
+      .hero .container { grid-template-columns: 1fr; text-align: center; }
+      .hero-subtitle { margin-left: auto; margin-right: auto; }
+      .hero-cta, .hero-trust, .hero-social-proof { justify-content: center; }
+    </style>
+  </noscript>
+
+  <!-- Scripts -->
+  <script src="assets/app.js" defer></script>
+
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js').then(function(registration) {
+          console.log('[SW] Зарегистрирован:', registration.scope);
+        }).catch(function(error) {
+          console.log('[SW] Ошибка регистрации:', error);
+        });
+      });
+    }
+  </script>
+
+  <!-- Analytics (placeholder) -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', { anonymize_ip: true });
+  </script>
+</body>
+</html>

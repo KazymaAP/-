@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#6C5CE7">
+  <meta name="description" content="Образовательный тренажёр — флеш-карточки с интервальными повторениями для эффективного запоминания. Telegram Mini App.">
+  <meta name="keywords" content="флеш-карточки, интервальные повторения, обучение, запоминание, тренажёр, spaced repetition">
+  <meta name="author" content="Dashboard App">
+  <meta name="robots" content="index, follow">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'">
+
+  <meta property="og:title" content="Образовательный тренажёр — Флеш-карточки с интервальными повторениями">
+  <meta property="og:description" content="Эффективное запоминание с флеш-карточками. Интервальные повторения, тесты, прогресс, достижения. Бесплатно в Telegram.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nodeforge.dev/miniapps/education-trainer/">
+  <meta property="og:image" content="https://nodeforge.dev/miniapps/education-trainer/og-image.png">
+  <meta property="og:locale" content="ru_RU">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@nodeforge_dev">
+  <meta name="twitter:title" content="Образовательный тренажёр — Флеш-карточки с интервальными повторениями">
+  <meta name="twitter:description" content="Эффективное запоминание с флеш-карточками. Интервальные повторения, тесты, прогресс, достижения.">
+  <meta name="twitter:image" content="https://nodeforge.dev/miniapps/education-trainer/og-image.png">
+  
+  <link rel="canonical" href="https://nodeforge.dev/miniapps/education-trainer/">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+  <link rel="stylesheet" href="./styles/main.css">
+  <title>Образовательный тренажёр — Флеш-карточки с интервальными повторениями</title>
+
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Образовательный тренажёр",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Telegram Mini App",
+      "description": "Флеш-карточки с интервальными повторениями для эффективного запоминания. Создавайте колоды, проходите тесты, отслеживайте прогресс.",
+      "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "RUB",
+          "availability": "https://schema.org/InStock"
+      },
+      "author": {
+          "@type": "Person",
+          "name": "Nodeforge",
+          "url": "https://nodeforge.dev/"
+      },
+      "featureList": [
+          "Флеш-карточки (Spaced Repetition)",
+          "Создание своих колод",
+          "Тесты с 10 вопросами",
+          "Прогресс и статистика",
+          "Достижения и стрики",
+          "Напоминания",
+          "Импорт/экспорт данных"
+      ],
+      "url": "https://nodeforge.dev/miniapps/education-trainer/",
+      "sameAs": "https://t.me/nodeforge_dev"
+  }
+  </script>
+</head>
+<body>
+  <div id="app" class="app">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="screen active" role="status" aria-label="Загрузка">
+      <div class="loading-content">
+        <div class="loading-spinner" aria-hidden="true"></div>
+        <p class="loading-text">Загрузка...</p>
+      </div>
+    </div>
+
+    <!-- Home Screen -->
+    <div id="home-screen" class="screen" role="main" aria-label="Главная страница">
+      <header class="screen-header">
+        <div class="header-top">
+          <div class="user-greeting">
+            <span class="greeting-emoji" aria-hidden="true">🧠</span>
+            <div>
+              <h1 class="greeting-title" id="user-name">Образовательный тренажёр</h1>
+              <p class="greeting-subtitle">День практики <span id="day-number">1</span></p>
+            </div>
+          </div>
+          <button class="icon-btn" id="settings-btn" aria-label="Настройки" title="Настройки">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <section class="streak-banner" aria-label="Стрик">
+        <div class="streak-info">
+          <span class="streak-fire" aria-hidden="true">🔥</span>
+          <div>
+            <span class="streak-count" id="streak-count">0</span>
+            <span class="streak-label">дней стрик</span>
+          </div>
+        </div>
+        <div class="streak-meta">
+          <span>Лучший: <strong id="best-streak">0</strong></span>
+        </div>
+      </section>
+
+      <section class="due-section" aria-label="Карточки на сегодня">
+        <div class="due-card">
+          <div class="due-number" id="due-count">0</div>
+          <div class="due-text">карточек на повторение</div>
+        </div>
+      </section>
+
+      <section class="action-buttons" aria-label="Действия">
+        <button class="btn btn-primary btn-large" id="start-review-btn" aria-label="Повторять карточки">
+          <span class="btn-icon" aria-hidden="true">▶</span>
+          Повторить <span id="review-count-btn">0</span> карточек
+        </button>
+        <button class="btn btn-secondary btn-large" id="start-quiz-btn" aria-label="Пройти тест">
+          <span class="btn-icon" aria-hidden="true">🎯</span>
+          Пройти тест (10 вопросов)
+        </button>
+      </section>
+
+      <section class="decks-section" aria-label="Темы">
+        <h2 class="section-title">Мои темы</h2>
+        <div class="deck-list" id="deck-list" role="list" aria-label="Список колод">
+          <div class="empty-state" id="decks-empty">
+            <span class="empty-icon" aria-hidden="true">📚</span>
+            <p>Нет колод. Создайте первую!</p>
+          </div>
+        </div>
+        <button class="btn btn-outline" id="add-deck-btn" aria-label="Добавить колоду">
+          <span aria-hidden="true">+</span> Добавить колоду
+        </button>
+      </section>
+
+      <section class="weekly-progress" aria-label="Прогресс недели">
+        <h2 class="section-title">Прогресс недели</h2>
+        <div class="week-bar" id="week-bar" role="img" aria-label="Прогресс за неделю">
+          <div class="day-dot" data-day="0"><span class="day-label">Пн</span></div>
+          <div class="day-dot" data-day="1"><span class="day-label">Вт</span></div>
+          <div class="day-dot" data-day="2"><span class="day-label">Ср</span></div>
+          <div class="day-dot" data-day="3"><span class="day-label">Чт</span></div>
+          <div class="day-dot" data-day="4"><span class="day-label">Пт</span></div>
+          <div class="day-dot" data-day="5"><span class="day-label">Сб</span></div>
+          <div class="day-dot" data-day="6"><span class="day-label">Вс</span></div>
+        </div>
+      </section>
+
+      <nav class="bottom-nav" role="navigation" aria-label="Навигация">
+        <button class="nav-item active" data-screen="home" aria-label="Главная" aria-current="page">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Главная</span>
+        </button>
+        <button class="nav-item" data-screen="progress" aria-label="Прогресс">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span>Прогресс</span>
+        </button>
+        <button class="nav-item" data-screen="achievements" aria-label="Достижения">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          <span>Достижения</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Study (Flashcard) Screen -->
+    <div id="study-screen" class="screen" role="main" aria-label="Режим карточек">
+      <header class="screen-header study-header">
+        <button class="icon-btn back-btn" id="study-back-btn" aria-label="Назад">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="study-progress">
+          <span id="card-index">0</span> из <span id="total-cards">0</span>
+          <span class="study-deck-name" id="study-deck-name"></span>
+        </div>
+        <div class="study-timer" id="study-timer" aria-label="Время тренировки">0:00</div>
+      </header>
+
+      <div class="flashcard-container">
+        <div class="flashcard" id="flashcard" role="button" tabindex="0" aria-label="Нажмите чтобы перевернуть карточку" aria-expanded="false">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="card-content">
+                <span class="hint-toggle" id="hint-toggle" role="button" tabindex="0" aria-label="Показать подсказку">
+                  💡 <span id="hint-text">Показать подсказку</span>
+                </span>
+                <div class="front-text" id="card-front-text"></div>
+                <div class="card-image" id="card-image" hidden>
+                  <img id="card-img" src="" alt="" loading="lazy">
+                </div>
+                <span class="flip-hint">Нажмите, чтобы перевернуть</span>
+              </div>
+            </div>
+            <div class="card-back">
+              <div class="card-content">
+                <div class="back-text" id="card-back-text"></div>
+                <div class="card-example" id="card-example" hidden>
+                  <strong>Пример:</strong> <span id="example-text"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grade-buttons" id="grade-buttons" hidden>
+        <button class="grade-btn grade-again" data-grade="again" aria-label="Заново">
+          <span class="grade-icon" aria-hidden="true">🔁</span>
+          <span class="grade-label">Заново</span>
+        </button>
+        <button class="grade-btn grade-hard" data-grade="hard" aria-label="Сложно">
+          <span class="grade-icon" aria-hidden="true">🤔</span>
+          <span class="grade-label">Сложно</span>
+        </button>
+        <button class="grade-btn grade-good" data-grade="good" aria-label="Помню">
+          <span class="grade-icon" aria-hidden="true">✅</span>
+          <span class="grade-label">Помню</span>
+        </button>
+        <button class="grade-btn grade-easy" data-grade="easy" aria-label="Легко">
+          <span class="grade-icon" aria-hidden="true">🚀</span>
+          <span class="grade-label">Легко</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="quiz-screen" class="screen" role="main" aria-label="Режим теста">
+      <header class="screen-header study-header">
+        <button class="icon-btn back-btn" id="quiz-back-btn" aria-label="Назад">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="study-progress">
+          Вопрос <span id="quiz-index">1</span> из <span id="quiz-total">10</span>
+        </div>
+        <div class="study-timer" id="quiz-timer" aria-label="Время теста">0:00</div>
+      </header>
+
+      <div class="quiz-container">
+        <div class="quiz-question" id="quiz-question" role="question" aria-live="polite"></div>
+        <div class="quiz-options" id="quiz-options" role="radiogroup" aria-label="Варианты ответа"></div>
+      </div>
+
+      <div class="quiz-stats" id="quiz-stats">
+        <span class="quiz-stat">Ошибки: <strong id="quiz-errors">0</strong></span>
+        <span class="quiz-stat">Правильно: <strong id="quiz-correct">0</strong></span>
+      </div>
+    </div>
+
+    <!-- Quiz Results Screen -->
+    <div id="quiz-results-screen" class="screen" role="main" aria-label="Результаты теста">
+      <div class="results-container">
+        <div class="results-icon" aria-hidden="true">🎉</div>
+        <h2 class="results-title">Тест завершён!</h2>
+        <div class="results-score">
+          <span class="score-number" id="result-score">0</span>
+          <span class="score-total">из <span id="result-total">10</span></span>
+        </div>
+        <div class="results-details">
+          <div class="result-item">
+            <span class="result-icon" aria-hidden="true">✅</span>
+            <span>Правильных: <strong id="result-correct">0</strong></span>
+          </div>
+          <div class="result-item">
+            <span class="result-icon" aria-hidden="true">❌</span>
+            <span>Ошибок: <strong id="result-wrong">0</strong></span>
+          </div>
+          <div class="result-item">
+            <span class="result-icon" aria-hidden="true">⏱</span>
+            <span>Время: <strong id="result-time">0:00</strong></span>
+          </div>
+        </div>
+        <div class="results-actions">
+          <button class="btn btn-primary btn-large" id="retry-quiz-btn">Пройти ещё раз</button>
+          <button class="btn btn-outline" id="review-mistakes-btn">Повторить ошибки</button>
+          <button class="btn btn-ghost" id="quiz-home-btn">На главную</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Progress Screen -->
+    <div id="progress-screen" class="screen" role="main" aria-label="Прогресс">
+      <header class="screen-header">
+        <h1>📈 Мой прогресс</h1>
+      </header>
+
+      <div class="progress-content">
+        <section class="stats-grid" aria-label="Статистика">
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">🔥</div>
+            <div class="stat-value" id="stat-streak">0</div>
+            <div class="stat-label">Текущий стрик</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">📚</div>
+            <div class="stat-value" id="stat-reviews">0</div>
+            <div class="stat-label">Карточек повторено</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">🆕</div>
+            <div class="stat-value" id="stat-learned">0</div>
+            <div class="stat-label">Выучено</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" aria-hidden="true">🎯</div>
+            <div class="stat-value" id="stat-retention">0%</div>
+            <div class="stat-label">Точность</div>
+          </div>
+        </section>
+
+        <section class="calendar-section" aria-label="Календарь занятий">
+          <h2 class="section-title">Календарь</h2>
+          <div class="calendar" id="calendar" role="grid" aria-label="Календарь занятий"></div>
+        </section>
+
+        <section class="chart-section" aria-label="График прогресса">
+          <h2 class="section-title">Активность за неделю</h2>
+          <div class="chart" id="weekly-chart" role="img" aria-label="График активности"></div>
+        </section>
+      </div>
+
+      <nav class="bottom-nav" aria-label="Навигация">
+        <button class="nav-item" data-screen="home" aria-label="Главная">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Главная</span>
+        </button>
+        <button class="nav-item active" data-screen="progress" aria-label="Прогресс" aria-current="page">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span>Прогресс</span>
+        </button>
+        <button class="nav-item" data-screen="achievements" aria-label="Достижения">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          <span>Достижения</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Achievements Screen -->
+    <div id="achievements-screen" class="screen" role="main" aria-label="Достижения">
+      <header class="screen-header">
+        <h1>🏅 Достижения</h1>
+      </header>
+
+      <div class="achievements-content">
+        <div class="achievements-summary" aria-label="Итого">
+          <span class="earned-count" id="earned-count">0</span>
+          <span class="earned-label">из <span id="total-achievements">0</span></span>
+        </div>
+        <div class="achievements-grid" id="achievements-grid" role="list" aria-label="Список достижений"></div>
+      </div>
+
+      <nav class="bottom-nav" aria-label="Навигация">
+        <button class="nav-item" data-screen="home" aria-label="Главная">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>Главная</span>
+        </button>
+        <button class="nav-item" data-screen="progress" aria-label="Прогресс">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          <span>Прогресс</span>
+        </button>
+        <button class="nav-item active" data-screen="achievements" aria-label="Достижения" aria-current="page">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          <span>Достижения</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Settings Screen -->
+    <div id="settings-screen" class="screen" role="main" aria-label="Настройки">
+      <header class="screen-header study-header">
+        <button class="icon-btn back-btn" id="settings-back-btn" aria-label="Назад">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <h1>Настройки</h1>
+      </header>
+
+      <div class="settings-content">
+        <div class="settings-group">
+          <h2 class="settings-group-title">Напоминания</h2>
+          <div class="setting-item">
+            <label for="reminder-toggle" class="setting-label">Напоминания</label>
+            <label class="toggle">
+              <input type="checkbox" id="reminder-toggle" checked>
+              <span class="toggle-slider" aria-hidden="true"></span>
+            </label>
+          </div>
+          <div class="setting-item">
+            <label for="reminder-time" class="setting-label">Время напоминания</label>
+            <input type="time" id="reminder-time" value="20:00" class="setting-input">
+          </div>
+          <div class="setting-item">
+            <label for="timezone-select" class="setting-label">Часовой пояс</label>
+            <select id="timezone-select" class="setting-select">
+              <option value="Europe/Moscow">Москва (UTC+3)</option>
+              <option value="Europe/Kiev">Киев (UTC+2)</option>
+              <option value="Europe/Minsk">Минск (UTC+3)</option>
+              <option value="Asia/Almaty">Алматы (UTC+6)</option>
+              <option value="Asia/Tashkent">Ташкент (UTC+5)</option>
+              <option value="Asia/Bishkek">Бишкек (UTC+6)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h2 class="settings-group-title">Тренировка</h2>
+          <div class="setting-item">
+            <label for="new-limit" class="setting-label">Новых карточек в день</label>
+            <input type="range" id="new-limit" min="0" max="50" value="10" class="setting-range">
+            <span class="range-value" id="new-limit-value">10</span>
+          </div>
+          <div class="setting-item">
+            <label for="review-limit" class="setting-label">Повторений в день</label>
+            <input type="range" id="review-limit" min="0" max="100" value="30" class="setting-range">
+            <span class="range-value" id="review-limit-value">30</span>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <h2 class="settings-group-title">О приложении</h2>
+          <div class="setting-item">
+            <span class="setting-label">Версия</span>
+            <span class="setting-value">1.0.0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create Deck Modal -->
+    <div id="create-deck-modal" class="modal" role="dialog" aria-modal="true" aria-label="Создать колоду" hidden>
+      <div class="modal-backdrop" aria-hidden="true"></div>
+      <div class="modal-content">
+        <h2 class="modal-title">Новая колода</h2>
+        <form id="create-deck-form" novalidate>
+          <div class="form-group">
+            <label for="deck-title-input" class="form-label">Название</label>
+            <input type="text" id="deck-title-input" class="form-input" placeholder="Например: Irregular Verbs" required maxlength="200" autocomplete="off">
+          </div>
+          <div class="form-group">
+            <label for="deck-desc-input" class="form-label">Описание</label>
+            <textarea id="deck-desc-input" class="form-input form-textarea" placeholder="Описание колоды..." maxlength="2000" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="deck-emoji-input" class="form-label">Эмодзи</label>
+            <input type="text" id="deck-emoji-input" class="form-input" value="📚" maxlength="10">
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-ghost" id="cancel-deck-btn">Отмена</button>
+            <button type="submit" class="btn btn-primary">Создать</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Session Complete Modal -->
+    <div id="session-complete-modal" class="modal" role="dialog" aria-modal="true" aria-label="Сессия завершена" hidden>
+      <div class="modal-backdrop" aria-hidden="true"></div>
+      <div class="modal-content results-container">
+        <div class="results-icon" aria-hidden="true">🎉</div>
+        <h2 class="results-title">Сессия завершена!</h2>
+        <div class="results-details">
+          <div class="result-item">
+            <span class="result-icon" aria-hidden="true">📚</span>
+            <span>Повторено: <strong id="session-reviewed">0</strong></span>
+          </div>
+          <div class="result-item">
+            <span class="result-icon" aria-hidden="true">✅</span>
+            <span>Помню/Легко: <strong id="session-correct">0</strong></span>
+          </div>
+          <div class="result-item">
+            <span class="result-icon" aria-hidden="true">⏱</span>
+            <span>Время: <strong id="session-time">0:00</strong></span>
+          </div>
+        </div>
+        <div class="modal-actions">
+          <button class="btn btn-primary btn-large" id="session-home-btn">На главную</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container" role="alert" aria-live="polite" aria-atomic="true"></div>
+  </div>
+
+  <script src="./src/app.js"></script>
+</body>
+</html>

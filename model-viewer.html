@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none';" />
+    <meta name="description" content="Страница отладки 3D-модели Nodeforge — интерактивный просмотр модели hero-секции с HUD." />
+    <title>Nodeforge — просмотр 3D модели (Debug)</title>
+    <link rel="canonical" href="https://nodeforge.dev/model-viewer.html" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: #0a0a0a;
+            overflow: hidden;
+        }
+        #three-container {
+            position: fixed;
+            inset: 0;
+        }
+        #three-container canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        /* subtle vignette per spec — deep black bg with edge falloff */
+        .vignette {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%);
+            z-index: 2;
+        }
+        .back-link {
+            position: fixed;
+            top: 16px;
+            left: 16px;
+            color: #A0A8B8;
+            text-decoration: none;
+            font-family: system-ui, -apple-system, sans-serif;
+            font-size: 13px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            background: rgba(6, 7, 10, 0.8);
+            border: 1px solid rgba(255,255,255,0.08);
+            z-index: 10;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .back-link:hover,
+        .back-link:focus {
+            color: #F5F7FA;
+            border-color: rgba(255,255,255,0.15);
+            outline: none;
+        }
+        .back-link:focus-visible {
+            outline: 2px solid #7C8EFF;
+            outline-offset: 2px;
+        }
+        /* HUD styles */
+        #hud {
+            position: fixed;
+            left: 14px;
+            bottom: 14px;
+            font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+            color: #BFE6FF;
+            background: rgba(6, 7, 10, 0.72);
+            border: 1px solid rgba(111, 216, 255, 0.35);
+            border-radius: 8px;
+            padding: 10px 14px;
+            pointer-events: none;
+            white-space: pre;
+            z-index: 5;
+            user-select: none;
+        }
+        /* Fallback message */
+        .three-fallback {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #A0A8B8;
+            font-size: 14px;
+            font-family: system-ui, -apple-system, sans-serif;
+            padding: 24px;
+            text-align: center;
+        }
+        .three-fallback.hidden {
+            display: none;
+        }
+        .noscript-fallback {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #A0A8B8;
+            font-size: 14px;
+            font-family: system-ui, -apple-system, sans-serif;
+            padding: 24px;
+            text-align: center;
+        }
+        .noscript-fallback.visible {
+            display: flex;
+        }
+    </style>
+    <!-- Three.js r160+ with integrity hash -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" 
+            integrity="sha512-vnmn/Qqn6aG0POAc9mIGzjq0IybrvxJXYDafNvp9JSnDGxeF3pbkSqLvf+YGd5ku63pT7sa/jxHn7/d0mU8+tA==" 
+            crossorigin="anonymous" 
+            defer
+            id="three-script"></script>
+    <noscript>
+        <div class="noscript-fallback visible" aria-live="polite">
+            3D-модель требует JavaScript<br>
+            <small>Включите JavaScript для просмотра интерактивной 3D-сцены</small>
+        </div>
+    </noscript>
+</head>
+<body>
+    <a href="index.html" class="back-link" aria-label="Вернуться на главную страницу Nodeforge">← Назад к сайту</a>
+    
+    <div id="three-container" data-hud="true">
+        <div class="three-fallback" id="three-fallback" aria-live="polite">
+            Загрузка 3D-модели…<br>
+            <small>Требуется JavaScript и поддержка WebGL</small>
+        </div>
+    </div>
+    
+    <div class="vignette" aria-hidden="true"></div>
+    
+    <script src="js/scene.js" defer></script>
+    
+    <script>
+        // CDN fallback handler for Three.js
+        (function() {
+            var threeScript = document.getElementById('three-script');
+            var fallback = document.getElementById('three-fallback');
+            var container = document.getElementById('three-container');
+            var noscriptFallback = document.querySelector('.noscript-fallback');
+            
+            if (threeScript) {
+                threeScript.addEventListener('error', function() {
+                    if (fallback) {
+                        fallback.innerHTML = 'Не удалось загрузить Three.js с CDN.<br><small>Проверьте подключение к интернету или используйте локальную копию.</small>';
+                        fallback.classList.remove('hidden');
+                    }
+                    if (container) {
+                        container.dataset.hud = 'false';
+                    }
+                    console.error('[model-viewer] Three.js CDN load failed');
+                });
+                
+                threeScript.addEventListener('load', function() {
+                    if (fallback) {
+                        fallback.classList.add('hidden');
+                    }
+                    if (noscriptFallback) {
+                        noscriptFallback.classList.remove('visible');
+                    }
+                });
+            }
+            
+            // Check WebGL support
+            var canvas = document.createElement('canvas');
+            var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            canvas = null; // cleanup
+            if (!gl) {
+                if (fallback) {
+                    fallback.innerHTML = 'WebGL не поддерживается в этом браузере.<br><small>3D-модель недоступна.</small>';
+                    fallback.classList.remove('hidden');
+                }
+                if (container) {
+                    container.dataset.hud = 'false';
+                }
+                if (noscriptFallback) {
+                    noscriptFallback.classList.remove('visible');
+                }
+            }
+        })();
+    </script>
+</body>
+</html>

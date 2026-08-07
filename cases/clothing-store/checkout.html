@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оформление заказа — Brand Name</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/components2.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Перейти к оформлению</a>
+  <header class="header"><div class="container header__inner">
+    <a href="./" class="header__logo">Brand Name</a>
+    <nav class="header__nav"><a href="./" class="header__nav-link">Главная</a><a href="catalog.html" class="header__nav-link">Каталог</a></nav>
+    <div class="header__actions"><a href="cart.html" class="header__action-btn" aria-label="Корзина"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg><span class="header__badge cart-badge" style="display:none">0</span></a></div>
+  </div></header>
+
+  <main id="main" class="page-wrapper">
+    <div class="container checkout-page">
+      <h1 class="checkout-page__title">Оформление заказа</h1>
+      <div class="checkout-page__layout">
+        <div>
+          <form id="checkout-form" novalidate>
+            <div class="checkout-section">
+              <h2 class="checkout-section__title"><span class="checkout-section__number">1</span> Контактные данные</h2>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div class="input-group"><label class="input-group__label input-group__label--required" for="checkout-name">Имя</label><input type="text" id="checkout-name" class="input" required autocomplete="name" placeholder="Анна"></div>
+                <div class="input-group"><label class="input-group__label input-group__label--required" for="checkout-phone">Телефон</label><input type="tel" id="checkout-phone" class="input" required autocomplete="tel" placeholder="+7 (999) 123-45-67"></div>
+              </div>
+              <div class="input-group"><label class="input-group__label" for="checkout-email">Email</label><input type="email" id="checkout-email" class="input" autocomplete="email" placeholder="anna@mail.ru"></div>
+            </div>
+
+            <div class="checkout-section">
+              <h2 class="checkout-section__title"><span class="checkout-section__number">2</span> Доставка</h2>
+              <div class="delivery-options" id="delivery-options">
+                <label class="delivery-option delivery-option--active"><input type="radio" name="delivery" value="courier" checked><div class="delivery-option__info"><div class="delivery-option__name">Курьером</div><div class="delivery-option__time">1-3 дня, бесплатно от 5 000 ₽</div></div><span class="delivery-option__price">350 ₽</span></label>
+                <label class="delivery-option"><input type="radio" name="delivery" value="cdek"><div class="delivery-option__info"><div class="delivery-option__name">СДЭК</div><div class="delivery-option__time">2-5 дней</div></div><span class="delivery-option__price">300 ₽</span></label>
+                <label class="delivery-option"><input type="radio" name="delivery" value="boxberry"><div class="delivery-option__info"><div class="delivery-option__name">Boxberry</div><div class="delivery-option__time">2-4 дня</div></div><span class="delivery-option__price">280 ₽</span></label>
+                <label class="delivery-option"><input type="radio" name="delivery" value="post"><div class="delivery-option__info"><div class="delivery-option__name">Почта России</div><div class="delivery-option__time">5-10 дней</div></div><span class="delivery-option__price">200 ₽</span></label>
+              </div>
+              <div class="input-group mt-16"><label class="input-group__label input-group__label--required" for="checkout-address">Адрес доставки</label><input type="text" id="checkout-address" class="input" required placeholder="ул. Примерная, д. 1, кв. 10"></div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+                <div class="input-group"><label class="input-group__label" for="checkout-city">Город</label><input type="text" id="checkout-city" class="input" placeholder="Москва"></div>
+                <div class="input-group"><label class="input-group__label" for="checkout-index">Индекс</label><input type="text" id="checkout-index" class="input" placeholder="101000"></div>
+              </div>
+              <div class="input-group"><label class="input-group__label" for="checkout-comment">Комментарий к заказу</label><textarea id="checkout-comment" class="input" rows="3" placeholder="Код домофона, этаж..."></textarea></div>
+            </div>
+
+            <div class="checkout-section">
+              <h2 class="checkout-section__title"><span class="checkout-section__number">3</span> Оплата</h2>
+              <div class="payment-options">
+                <label class="payment-option payment-option--active"><input type="radio" name="payment" value="card" checked><div class="payment-option__icon">💳</div><span class="payment-option__name">Банковская карта</span></label>
+                <label class="payment-option"><input type="radio" name="payment" value="sbp"><div class="payment-option__icon">📱</div><span class="payment-option__name">СБП (Система Быстрых Платежей)</span></label>
+                <label class="payment-option"><input type="radio" name="payment" value="cash"><div class="payment-option__icon">💵</div><span class="payment-option__name">Наличными при получении</span></label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--full btn--lg" id="submit-order">Подтвердить и оплатить</button>
+          </form>
+        </div>
+
+        <aside>
+          <div class="order-summary" id="checkout-summary">
+            <h2 class="order-summary__title">Ваш заказ</h2>
+            <div id="checkout-items"></div>
+            <div class="order-summary__row mt-16"><span>Товары</span><span id="checkout-subtotal">0 ₽</span></div>
+            <div class="order-summary__row order-summary__row--discount" id="checkout-discount-row" style="display:none"><span>Скидка</span><span id="checkout-discount">-0 ₽</span></div>
+            <div class="order-summary__row"><span>Доставка</span><span id="checkout-delivery-price">350 ₽</span></div>
+            <div class="order-summary__row order-summary__row--total"><span>Итого</span><span id="checkout-total">0 ₽</span></div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <div class="modal-backdrop" id="success-modal">
+    <div class="modal">
+      <div class="modal__body">
+        <div class="order-success">
+          <div class="order-success__icon">✓</div>
+          <h2 class="order-success__title">Заказ оформлен!</h2>
+          <p class="order-success__number">Номер заказа: <strong id="order-number">#12346</strong></p>
+          <p class="order-success__text">Мы отправим SMS с подтверждением и статусом доставки. Следите за заказом в личном кабинете.</p>
+          <a href="./" class="btn btn--primary btn--lg">На главную</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer"><div class="container"><div class="footer__bottom"><span>© 2026 Brand Name</span></div></div></footer>
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/favorites.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const deliveryPrices = { courier: 350, cdek: 300, boxberry: 280, post: 200 };
+      let selectedDelivery = 'courier';
+      const itemsEl = document.getElementById('checkout-items');
+      const subtotalEl = document.getElementById('checkout-subtotal');
+      const deliveryEl = document.getElementById('checkout-delivery-price');
+      const totalEl = document.getElementById('checkout-total');
+
+      function renderSummary() {
+        const items = cart.items;
+        itemsEl.innerHTML = items.map(i => `<div style="display:flex;justify-content:space-between;font-size:13px;padding:6px 0"><span>${Utils.sanitizeHTML(i.name)} × ${i.quantity}</span><span>${(i.price * i.quantity).toLocaleString('ru-RU')} ₽</span></div>`).join('');
+        const subtotal = cart.getTotal();
+        const deliveryPrice = deliveryPrices[selectedDelivery];
+        subtotalEl.textContent = subtotal.toLocaleString('ru-RU') + ' ₽';
+        deliveryEl.textContent = subtotal >= 5000 ? 'Бесплатно' : deliveryPrice.toLocaleString('ru-RU') + ' ₽';
+        const total = subtotal >= 5000 ? subtotal : subtotal + deliveryPrice;
+        totalEl.textContent = total.toLocaleString('ru-RU') + ' ₽';
+      }
+
+      document.getElementById('delivery-options').addEventListener('change', (e) => {
+        if (e.target.name === 'delivery') { selectedDelivery = e.target.value; renderSummary(); }
+        document.querySelectorAll('.delivery-option').forEach(o => o.classList.toggle('delivery-option--active', o.querySelector('input').checked));
+      });
+
+      document.querySelectorAll('.payment-option').forEach(o => {
+        o.addEventListener('click', () => document.querySelectorAll('.payment-option').forEach(p => p.classList.remove('payment-option--active')));
+        o.addEventListener('change', () => o.classList.add('payment-option--active'));
+      });
+
+      document.getElementById('checkout-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('checkout-name').value.trim();
+        const phone = document.getElementById('checkout-phone').value.trim();
+        const address = document.getElementById('checkout-address').value.trim();
+        if (!name || !phone || !address) { window.showToast('Заполните обязательные поля', 'error'); return; }
+        if (name.length < 2 || name.length > 100) { window.showToast('Имя должно быть от 2 до 100 символов', 'error'); return; }
+        if (!/^\+?[0-9\s\-\(\)]{10,20}$/.test(phone)) { window.showToast('Некорректный номер телефона', 'error'); return; }
+        if (address.length < 5 || address.length > 500) { window.showToast('Адрес должен быть от 5 до 500 символов', 'error'); return; }
+        const orderId = Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+        document.getElementById('order-number').textContent = '#' + orderId.toUpperCase();
+        document.getElementById('success-modal').classList.add('open');
+        cart.clear();
+      });
+
+      document.getElementById('success-modal').addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal-backdrop')) { window.location.href = '/'; }
+      });
+
+      renderSummary();
+    });
+  </script>
+</body>
+</html>

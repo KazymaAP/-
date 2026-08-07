@@ -1,0 +1,28 @@
+# robots.txt for lawyer consultant site
+User-agent: *
+Allow: /
+
+# Disallow admin/api
+Disallow: /api/
+Disallow: /server/
+Disallow: /db/
+Disallow: /docker/
+Disallow: /tests/
+Disallow: /.github/
+Disallow: /node_modules/
+Disallow: /*.json
+Disallow: /*.md
+Disallow: /*.js
+Disallow: /*.css
+Disallow: /Dockerfile
+Disallow: /docker-compose.yml
+Disallow: /jest.config.js
+Disallow: /playwright.config.js
+Disallow: /.eslintrc.json
+Disallow: /.env
+
+# Sitemap
+Sitemap: https://lawyer-name.ru/sitemap.xml
+
+# Host
+Host: https://lawyer-name.ru

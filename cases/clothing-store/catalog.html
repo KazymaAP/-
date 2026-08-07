@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Каталог одежды Brand Name. Платья, блузки, штаны, куртки. Бесплатная доставка от 5000₽.">
+  <meta name="theme-color" content="#000000">
+  <meta name="color-scheme" content="light dark">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; object-src 'none'; frame-ancestors 'none';">
+  <meta property="og:title" content="Каталог — Brand Name">
+  <meta property="og:description" content="Каталог одежды Brand Name. Платья, блузки, штаны, куртки. Бесплатная доставка от 5000₽.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://shop.ru/catalog">
+  <meta property="og:image" content="https://shop.ru/og-image.jpg">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Каталог — Brand Name">
+  <meta name="twitter:description" content="Каталог одежды Brand Name. Платья, блузки, штаны, куртки. Бесплатная доставка от 5000₽.">
+  <title>Каталог — Brand Name</title>
+  <link rel="canonical" href="https://shop.ru/catalog">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/components2.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Перейти к каталогу</a>
+
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="./" class="header__logo">Brand Name</a>
+      <nav class="header__nav" aria-label="Основная навигация">
+        <a href="./" class="header__nav-link">Главная</a>
+        <a href="catalog.html" class="header__nav-link header__nav-link--active">Каталог</a>
+        <a href="catalog.html?sale=1" class="header__nav-link">SALE</a>
+        <a href="catalog.html?new=1" class="header__nav-link">Новинки</a>
+      </nav>
+      <div class="header__actions">
+        <button class="header__action-btn" id="search-btn" aria-label="Поиск">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+        <a href="favorites.html" class="header__action-btn" aria-label="Избранное">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <span class="header__badge favorites-badge" style="display:none">0</span>
+        </a>
+        <a href="account.html" class="header__action-btn" aria-label="Личный кабинет">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </a>
+        <a href="cart.html" class="header__action-btn" aria-label="Корзина">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="header__badge cart-badge" style="display:none">0</span>
+        </a>
+        <button class="header__hamburger" id="hamburger-btn" aria-label="Меню" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu__overlay" id="mobile-overlay"></div>
+  <nav class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu__nav">
+      <a href="./" class="mobile-menu__link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Главная</a>
+      <a href="catalog.html" class="mobile-menu__link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Каталог</a>
+      <a href="favorites.html" class="mobile-menu__link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Избранное</a>
+      <a href="account.html" class="mobile-menu__link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Профиль</a>
+      <a href="cart.html" class="mobile-menu__link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>Корзина</a>
+    </div>
+  </nav>
+
+  <div class="search-overlay" id="search-overlay">
+    <div class="search-overlay__inner">
+      <div style="position:relative">
+        <svg class="search-overlay__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" class="search-overlay__input" id="search-input" placeholder="Найти товар..." autocomplete="off">
+      </div>
+      <div class="search-overlay__results" id="search-results"></div>
+    </div>
+    <button class="search-overlay__close" id="search-close" aria-label="Закрыть">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+  </div>
+
+  <main id="main" class="page-wrapper">
+    <div class="container catalog-page">
+      <nav class="breadcrumb" aria-label="Навигация">
+        <a href="./" class="breadcrumb__item">Главная</a>
+        <span class="breadcrumb__separator">/</span>
+        <span class="breadcrumb__item breadcrumb__item--active" id="breadcrumb-current">Каталог</span>
+      </nav>
+
+      <div class="catalog-page__header">
+        <div>
+          <h1 class="catalog-page__title" id="catalog-title">Каталог</h1>
+          <p class="catalog-page__count" id="catalog-count"></p>
+        </div>
+        <div class="catalog-page__sort flex items-center gap-12">
+          <button class="btn btn--outline btn--sm catalog-page__filter-toggle" id="filter-toggle">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+            Фильтры
+          </button>
+          <label class="catalog-page__sort-label" for="sort-select">Сортировка:</label>
+          <select class="select" id="sort-select" style="width:auto;padding-right:32px">
+            <option value="popular">По популярности</option>
+            <option value="price-asc">Цена ↑</option>
+            <option value="price-desc">Цена ↓</option>
+            <option value="new">Новинки</option>
+            <option value="rating">По рейтингу</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="catalog-page__layout">
+        <aside class="catalog-page__sidebar" aria-label="Фильтры">
+          <div class="filter-sidebar" id="filter-sidebar"></div>
+        </aside>
+
+        <div>
+          <div class="catalog-page__products" id="catalog-products"></div>
+          <div class="catalog-page__load-more" id="load-more-wrapper">
+            <button class="btn btn--outline btn--lg" id="load-more-btn">Показать ещё</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="filter-modal" id="filter-modal">
+    <div class="filter-modal__backdrop" id="filter-modal-backdrop"></div>
+    <div class="filter-modal__content">
+      <div class="filter-modal__header">
+        <h2 class="filter-modal__title">Фильтры</h2>
+        <button class="modal__close" id="filter-modal-close" aria-label="Закрыть">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div id="filter-modal-body"></div>
+      <div class="filter-modal__footer">
+        <button class="btn btn--outline btn--full" id="filter-reset-mobile">Сбросить</button>
+        <button class="btn btn--primary btn--full" id="filter-apply-mobile">Применить</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <div class="footer__brand">Brand Name</div>
+          <p class="footer__desc">Стильная одежда для каждого дня.</p>
+        </div>
+        <div>
+          <h3 class="footer__title">Каталог</h3>
+          <a href="catalog.html?category=dresses" class="footer__link">Платья</a>
+          <a href="catalog.html?category=blouses" class="footer__link">Блузки</a>
+          <a href="catalog.html?category=pants" class="footer__link">Штаны</a>
+          <a href="catalog.html?category=jackets" class="footer__link">Куртки</a>
+        </div>
+        <div>
+          <h3 class="footer__title">Покупателям</h3>
+          <a href="#" class="footer__link">Доставка и оплата</a>
+          <a href="#" class="footer__link">Возврат</a>
+          <a href="#" class="footer__link">Размерная сетка</a>
+        </div>
+        <div>
+          <h3 class="footer__title">Контакты</h3>
+          <a href="tel:+78001234567" class="footer__link">8 (800) 123-45-67</a>
+          <a href="mailto:info@shop.ru" class="footer__link">info@shop.ru</a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Brand Name</span>
+      </div>
+    </div>
+  </footer>
+
+  <nav class="bottom-nav" aria-label="Мобильная навигация">
+    <a href="./" class="bottom-nav__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Главная</a>
+    <a href="catalog.html" class="bottom-nav__item bottom-nav__item--active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Каталог</a>
+    <a href="favorites.html" class="bottom-nav__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Избранное</a>
+    <a href="cart.html" class="bottom-nav__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>Корзина<span class="bottom-nav__badge cart-badge-mobile" style="display:none">0</span></a>
+    <a href="account.html" class="bottom-nav__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Профиль</a>
+  </nav>
+
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <script src="js/utils.js"></script>
+  <script src="js/favorites.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/catalog.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

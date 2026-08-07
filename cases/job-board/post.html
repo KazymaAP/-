@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Разместите вакансию бесплатно. Найдите нужного специалиста.">
+  <title>Разместить вакансию — Работа Мало</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/responsive.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Перейти к контенту</a>
+
+  <header class="header" role="banner">
+    <div class="container header-inner">
+      <a href="./" class="logo" aria-label="Работа Мало — На главную">
+        <div class="logo-icon" aria-hidden="true">Р</div>
+        <span>Работа Мало</span>
+      </a>
+      <nav class="nav" id="mainNav" role="navigation">
+        <a href="./vacancies" class="nav-link">Вакансии</a>
+        <a href="./pricing" class="nav-link">Тарифы</a>
+        <div class="nav-auth" id="navAuth">
+          <a href="./login" class="btn btn-secondary btn-sm">Войти</a>
+          <a href="./login?mode=register" class="btn btn-primary btn-sm">Регистрация</a>
+        </div>
+        <div class="nav-auth" id="navUser" style="display:none;">
+          <a href="./dashboard" class="nav-link">Кабинет</a>
+          <button class="btn btn-secondary btn-sm" id="logoutBtn">Выйти</button>
+        </div>
+      </nav>
+      <button class="mobile-menu-btn" aria-label="Открыть меню" id="mobileMenuBtn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="page-content">
+    <section class="post-section">
+      <div class="post-card">
+        <h1 class="post-title">Разместить вакансию</h1>
+
+        <form id="postForm" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="postTitle">Название вакансии *</label>
+            <input type="text" class="form-input" id="postTitle" required placeholder="Например: Frontend-разработчик">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="postCompany">Компания *</label>
+            <select class="form-select" id="postCompany" required>
+              <option value="">Выберите компанию</option>
+            </select>
+            <p class="form-hint">Если нет компании, <a href="./dashboard">создайте профиль</a> в личном кабинете</p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="postCity">Город</label>
+            <input type="text" class="form-input" id="postCity" placeholder="Например: Москва">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="postFormat">Формат работы</label>
+            <select class="form-select" id="postFormat">
+              <option value="remote">Удалённо</option>
+              <option value="office">Офис</option>
+              <option value="hybrid">Гибрид</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="postExperience">Уровень опыта</label>
+            <select class="form-select" id="postExperience">
+              <option value="junior">Junior</option>
+              <option value="middle" selected>Middle</option>
+              <option value="senior">Senior</option>
+              <option value="lead">Lead</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="postCategory">Категория</label>
+            <select class="form-select" id="postCategory">
+              <option value="IT">IT</option>
+              <option value="Marketing">Маркетинг</option>
+              <option value="Design">Дизайн</option>
+              <option value="Sales">Продажи</option>
+              <option value="Office">Офис</option>
+              <option value="Other">Другое</option>
+            </select>
+          </div>
+
+          <div class="salary-fields">
+            <div class="form-group">
+              <label class="form-label" for="postSalaryMin">Зарплата от (₽)</label>
+              <input type="number" class="form-input" id="postSalaryMin" placeholder="100000">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="postSalaryMax">Зарплата до (₽)</label>
+              <input type="number" class="form-input" id="postSalaryMax" placeholder="200000">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="postDescription">Описание вакансии *</label>
+            <textarea class="form-textarea" id="postDescription" rows="6" required placeholder="Опишите responsibilities, проекты, команду..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="postRequirements">Требования</label>
+            <textarea class="form-textarea" id="postRequirements" rows="4" placeholder="Каждое требование с новой строки"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="postConditions">Условия</label>
+            <textarea class="form-textarea" id="postConditions" rows="4" placeholder="Бонусы, ДМС, гибкий график..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="postEmail">Контактный email</label>
+            <input type="email" class="form-input" id="postEmail" placeholder="hr@company.com">
+          </div>
+
+          <div style="display:flex;gap:12px;margin-top:24px;">
+            <button type="submit" class="btn btn-primary btn-lg" id="postSubmitBtn" style="flex:1;">Опубликовать вакансию</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 Работа Мало. Все права защищены.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/js/app.js"></script>
+  <script>
+    const token = localStorage.getItem('token');
+    if (!token) { window.location.href = '/login'; }
+
+    fetch('/api/companies/my', { headers: { 'Authorization': 'Bearer ' + token } })
+      .then(r => r.json())
+      .then(company => {
+        const select = document.getElementById('postCompany');
+        if (company && company.id) {
+          select.innerHTML = '<option value="' + company.id + '">' + company.name + '</option>';
+        } else {
+          select.innerHTML = '<option value="">Сначала создайте компанию в кабинете</option>';
+        }
+      });
+
+    document.getElementById('postForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('postSubmitBtn');
+      btn.disabled = true;
+      btn.textContent = 'Публикация...';
+
+      try {
+        const res = await fetch('/api/vacancies', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+          body: JSON.stringify({
+            title: document.getElementById('postTitle').value,
+            description: document.getElementById('postDescription').value,
+            requirements: document.getElementById('postRequirements').value,
+            conditions: document.getElementById('postConditions').value,
+            salary_min: parseInt(document.getElementById('postSalaryMin').value) || null,
+            salary_max: parseInt(document.getElementById('postSalaryMax').value) || null,
+            city: document.getElementById('postCity').value,
+            work_format: document.getElementById('postFormat').value,
+            experience_level: document.getElementById('postExperience').value,
+            category: document.getElementById('postCategory').value,
+            contact_email: document.getElementById('postEmail').value
+          })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          App.toast('Вакансия опубликована!', 'success');
+          setTimeout(() => window.location.href = '/vacancy/' + data.id, 1000);
+        } else {
+          App.toast(data.error || 'Ошибка публикации', 'error');
+        }
+      } catch {
+        App.toast('Ошибка сети', 'error');
+      }
+      btn.disabled = false;
+      btn.textContent = 'Опубликовать вакансию';
+    });
+  </script>
+</body>
+</html>

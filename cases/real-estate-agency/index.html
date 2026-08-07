@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Агентство недвижимости НедвижимостьПро — квартиры, дома, коммерческая недвижимость. Поиск, подбор, сопровождение сделок.">
+  <meta name="keywords" content="недвижимость, агентство, квартиры, дома, коммерческая недвижимость, Москва">
+  <title>НедвижимостьПро — Агентство недвижимости</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
+</head>
+<body>
+
+<a href="#catalog" class="skip-link" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">Перейти к основному содержимому</a>
+
+<header>
+    <div class="logo">НедвижимостьПро</div>
+    <nav>
+        <a href="#catalog">Каталог</a>
+        <a href="#about">О нас</a>
+        <a href="#contacts">Контакты</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>Найдите <span>идеальную</span> недвижимость</h1>
+    <p>Квартиры, дома и коммерческая недвижимость в вашем городе</p>
+    <form class="search-form" onsubmit="return false;">
+        <select>
+            <option>Тип объекта</option>
+            <option>Квартира</option>
+            <option>Дом</option>
+            <option>Коммерческая</option>
+        </select>
+        <select>
+            <option>Комнат</option>
+            <option>Студия</option>
+            <option>1-2</option>
+            <option>3+</option>
+        </select>
+        <input type="text" placeholder="Район или адрес">
+        <button type="submit">Найти</button>
+    </form>
+</section>
+
+<section class="properties" id="catalog">
+    <h2>Популярные <span>объекты</span></h2>
+    <div class="grid">
+        <div class="card">
+            <img src="https://placehold.co/600x400/1A1D25/6FD8FF?text=Квартира" alt="Квартира">
+            <div class="card-body">
+                <h3>2-комнатная квартира</h3>
+                <div class="location">ул. Ленина, 45 · Центр</div>
+                <div class="price">8 500 000 ₽</div>
+                <div class="meta"><span>62 м²</span><span>2 комнаты</span><span>5/12 этаж</span></div>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://placehold.co/600x400/1A1D25/6FD8FF?text=Дом" alt="Дом">
+            <div class="card-body">
+                <h3>Коттедж с участком</h3>
+                <div class="location">п. Солнечный · 12 км от центра</div>
+                <div class="price">15 200 000 ₽</div>
+                <div class="meta"><span>180 м²</span><span>4 комнаты</span><span>участок 12 сот.</span></div>
+            </div>
+        </div>
+        <div class="card">
+            <img src="https://placehold.co/600x400/1A1D25/6FD8FF?text=Офис" alt="Офис">
+            <div class="card-body">
+                <h3>Офисное помещение</h3>
+                <div class="location">Бизнес-центр «Горизонт»</div>
+                <div class="price">250 000 ₽/мес</div>
+                <div class="meta"><span>95 м²</span><span>open space</span><span>2-й этаж</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer id="contacts">
+    <div class="contacts">
+        <span>📞 +7 (800) 555-35-35</span>
+        <span>✉️ info@nedvizhimostpro.ru</span>
+        <span>📍 г. Москва, ул. Примерная, 10</span>
+    </div>
+<p>© 2026 НедвижимостьПро. Все права защищены. · <a href="../../index.html#cases">← Вернуться на сайт</a></p>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Личный кабинет — мои отклики, вакансии, профиль">
+  <title>Личный кабинет — Работа Мало</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/responsive.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Перейти к контенту</a>
+
+  <header class="header" role="banner">
+    <div class="container header-inner">
+      <a href="./" class="logo" aria-label="Работа Мало — На главную">
+        <div class="logo-icon" aria-hidden="true">Р</div>
+        <span>Работа Мало</span>
+      </a>
+      <nav class="nav" id="mainNav" role="navigation">
+        <a href="./vacancies" class="nav-link">Вакансии</a>
+        <a href="./pricing" class="nav-link">Тарифы</a>
+        <div class="nav-auth" id="navUser">
+          <a href="./dashboard" class="nav-link active">Кабинет</a>
+          <button class="btn btn-secondary btn-sm" id="logoutBtn">Выйти</button>
+        </div>
+      </nav>
+      <button class="mobile-menu-btn" aria-label="Открыть меню" id="mobileMenuBtn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="page-content">
+    <section class="dashboard">
+      <div class="container">
+        <div class="dashboard-layout">
+          <aside class="dashboard-sidebar" role="navigation" aria-label="Меню кабинета">
+            <nav>
+              <a href="#applications" class="active" data-tab="applications">Мои отклики</a>
+              <a href="#saved" data-tab="saved">Сохранённые</a>
+              <a href="#my-vacancies" data-tab="my-vacancies">Мои вакансии</a>
+              <a href="#company" data-tab="company">Компания</a>
+              <a href="#resume" data-tab="resume">Резюме</a>
+              <a href="#subscription" data-tab="subscription">Подписка</a>
+            </nav>
+          </aside>
+
+          <main class="dashboard-main">
+            <div id="tab-applications" class="tab-content active">
+              <h2 class="dashboard-title">Мои отклики</h2>
+              <div id="applications"><div class="loading"><div class="spinner"></div></div></div>
+            </div>
+
+            <div id="tab-saved" class="tab-content" style="display:none;">
+              <h2 class="dashboard-title">Сохранённые вакансии</h2>
+              <div id="savedVacancies"><div class="loading"><div class="spinner"></div></div></div>
+            </div>
+
+            <div id="tab-my-vacancies" class="tab-content" style="display:none;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;">
+                <h2 class="dashboard-title" style="margin:0;">Мои вакансии</h2>
+                <a href="./post" class="btn btn-primary btn-sm">+ Новая вакансия</a>
+              </div>
+              <div id="myVacancies"><div class="loading"><div class="spinner"></div></div></div>
+            </div>
+
+            <div id="tab-company" class="tab-content" style="display:none;">
+              <h2 class="dashboard-title">Профиль компании</h2>
+              <form id="companyForm" class="card" novalidate>
+                <div class="form-group">
+                  <label class="form-label" for="companyName">Название компании *</label>
+                  <input type="text" class="form-input" id="companyName" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="companyDesc">Описание</label>
+                  <textarea class="form-textarea" id="companyDesc" rows="4"></textarea>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                  <div class="form-group">
+                    <label class="form-label" for="companyIndustry">Отрасль</label>
+                    <input type="text" class="form-input" id="companyIndustry" placeholder="IT, Маркетинг...">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="companySize">Размер</label>
+                    <select class="form-select" id="companySize">
+                      <option value="1-5">1-5 сотрудников</option>
+                      <option value="5-10">5-10 сотрудников</option>
+                      <option value="10-50">10-50 сотрудников</option>
+                      <option value="50+">50+ сотрудников</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="companyCity">Город</label>
+                    <input type="text" class="form-input" id="companyCity">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="companyWebsite">Сайт</label>
+                    <input type="url" class="form-input" id="companyWebsite" placeholder="https://...">
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+              </form>
+            </div>
+
+            <div id="tab-resume" class="tab-content" style="display:none;">
+              <h2 class="dashboard-title">Моё резюме</h2>
+              <form id="resumeForm" class="card" novalidate>
+                <div class="form-group">
+                  <label class="form-label" for="resumeTitle">Заголовок</label>
+                  <input type="text" class="form-input" id="resumeTitle" placeholder="Frontend Developer">
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                  <div class="form-group">
+                    <label class="form-label" for="resumeName">Имя *</label>
+                    <input type="text" class="form-input" id="resumeName" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="resumeEmail">Email</label>
+                    <input type="email" class="form-input" id="resumeEmail">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="resumePhone">Телефон</label>
+                    <input type="tel" class="form-input" id="resumePhone">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="resumeCity">Город</label>
+                    <input type="text" class="form-input" id="resumeCity">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="resumeExp">Опыт (лет)</label>
+                    <input type="number" class="form-input" id="resumeExp" min="0" max="50">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="resumeSalary">Ожидаемая зарплата (₽)</label>
+                    <input type="number" class="form-input" id="resumeSalary">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="resumeSkills">Навыки (через запятую)</label>
+                  <input type="text" class="form-input" id="resumeSkills" placeholder="React, TypeScript, Node.js">
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="resumeAbout">О себе</label>
+                  <textarea class="form-textarea" id="resumeAbout" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Сохранить резюме</button>
+              </form>
+            </div>
+
+            <div id="tab-subscription" class="tab-content" style="display:none;">
+              <h2 class="dashboard-title">Подписка</h2>
+              <div id="subscriptionInfo" class="card"><div class="loading"><div class="spinner"></div></div></div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 Работа Мало. Все права защищены.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/js/app.js"></script>
+  <script src="./assets/js/dashboard.js"></script>
+</body>
+</html>

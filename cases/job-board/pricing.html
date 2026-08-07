@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Тарифы для работодателей. Бесплатный, Стандарт, Премиум.">
+  <title>Тарифы — Работа Мало</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/responsive.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Перейти к контенту</a>
+
+  <header class="header" role="banner">
+    <div class="container header-inner">
+      <a href="./" class="logo" aria-label="Работа Мало — На главную">
+        <div class="logo-icon" aria-hidden="true">Р</div>
+        <span>Работа Мало</span>
+      </a>
+      <nav class="nav" id="mainNav" role="navigation">
+        <a href="./vacancies" class="nav-link">Вакансии</a>
+        <a href="./pricing" class="nav-link active">Тарифы</a>
+        <div class="nav-auth" id="navAuth">
+          <a href="./login" class="btn btn-secondary btn-sm">Войти</a>
+          <a href="./login?mode=register" class="btn btn-primary btn-sm">Регистрация</a>
+        </div>
+        <div class="nav-auth" id="navUser" style="display:none;">
+          <a href="./dashboard" class="nav-link">Кабинет</a>
+          <button class="btn btn-secondary btn-sm" id="logoutBtn">Выйти</button>
+        </div>
+      </nav>
+      <button class="mobile-menu-btn" aria-label="Открыть меню" id="mobileMenuBtn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="page-content">
+    <section class="pricing-section">
+      <div class="container">
+        <h1 style="text-align:center;margin-bottom:8px;">Тарифы для работодателей</h1>
+        <p style="text-align:center;color:var(--text-secondary);margin-bottom:48px;max-width:500px;margin-left:auto;margin-right:auto;">Выберите подходящий план для публикации вакансий и поиска сотрудников</p>
+
+        <div class="pricing-grid" id="pricingGrid">
+          <div class="pricing-card">
+            <div class="pricing-name">Бесплатный</div>
+            <div class="pricing-price">0 ₽</div>
+            <div class="pricing-period">в месяц</div>
+            <ul class="pricing-features">
+              <li>1 вакансия</li>
+              <li>Базовые фильтры</li>
+              <li>Стандартное размещение</li>
+            </ul>
+            <a href="./login?mode=register" class="btn btn-outline" style="width:100%;">Начать бесплатно</a>
+          </div>
+
+          <div class="pricing-card popular">
+            <div class="pricing-name">Стандарт</div>
+            <div class="pricing-price">2 900 ₽</div>
+            <div class="pricing-period">в месяц</div>
+            <ul class="pricing-features">
+              <li>5 вакансий</li>
+              <li>Выделение вакансии</li>
+              <li>Вакансия в топе</li>
+              <li>Статистика просмотров</li>
+              <li>Приоритетная поддержка</li>
+            </ul>
+            <button class="btn btn-primary" style="width:100%;" onclick="selectPlan('standard')">Подключить</button>
+          </div>
+
+          <div class="pricing-card">
+            <div class="pricing-name">Премиум</div>
+            <div class="pricing-price">7 900 ₽</div>
+            <div class="pricing-period">в месяц</div>
+            <ul class="pricing-features">
+              <li>20 вакансий</li>
+              <li>TOP в ленте</li>
+              <li>Баннер на главной</li>
+              <li>Рассылка соискателям</li>
+              <li>API доступ</li>
+              <li>Персональный менеджер</li>
+            </ul>
+            <button class="btn btn-outline" style="width:100%;" onclick="selectPlan('premium')">Связаться</button>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:48px;color:var(--text-secondary);font-size:14px;">
+          <p>Все тарифы включают: HTTPS, техподдержку, мобильную версию</p>
+          <p>Оплата через ЮKassa, банковскую карту или СБП</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 Работа Мало. Все права защищены.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/js/app.js"></script>
+  <script>
+    function selectPlan(plan) {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        window.location.href = '/login?mode=register';
+        return;
+      }
+      fetch('/api/payments/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+        body: JSON.stringify({ plan })
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.success) {
+          App.toast('Тариф подключён!', 'success');
+          setTimeout(() => window.location.href = '/dashboard', 1500);
+        } else {
+          App.toast(data.error || 'Ошибка', 'error');
+        }
+      })
+      .catch(() => App.toast('Ошибка сети', 'error'));
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Студия Фитнес — йога, пилатес, кроссфит, функциональные тренировки. Онлайн-запись, абонементы. Первое посещение бесплатно.">
+  <meta name="keywords" content="фитнес, йога, пилатес, кроссфит, тренировки, абонементы, Москва">
+  <meta name="author" content="Студия Фитнес">
+  <meta name="robots" content="index, follow">
+
+  <meta property="og:title" content="Студия Фитнес — Тренировки, которые работают">
+  <meta property="og:description" content="Йога, пилатес, кроссфит. Онлайн-запись, абонементы. Первое посещение бесплатно.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fitness-studio.ru">
+  <meta property="og:image" content="/images/og-image.jpg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Студия Фитнес — Тренировки, которые работают">
+  <meta name="twitter:description" content="Йога, пилатес, кроссфит. Онлайн-запись, абонементы.">
+  <meta name="twitter:image" content="/images/og-image.jpg">
+
+  <title>Студия Фитнес — Тренировки, которые работают</title>
+
+  <link rel="canonical" href="https://fitness-studio.ru">
+  <link rel="icon" type="image/svg+xml" href="./images/favicon.svg">
+  <link rel="apple-touch-icon" href="./images/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../public/css/variables.css">
+  <link rel="stylesheet" href="../../public/css/base.css">
+  <link rel="stylesheet" href="../../public/css/components.css">
+  <link rel="stylesheet" href="../../public/css/layout.css">
+  <link rel="stylesheet" href="../../public/css/pages.css">
+  <link rel="stylesheet" href="../../public/css/responsive.css">
+  <link rel="stylesheet" href="../../public/css/animations.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HealthClub",
+    "name": "Студия Фитнес",
+    "description": "Йога, пилатес, кроссфит. Онлайн-запись, абонементы.",
+    "url": "https://fitness-studio.ru",
+    "telephone": "+7-495-123-45-67",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "ул. Примерная, 5",
+      "addressLocality": "Москва",
+      "addressCountry": "RU"
+    },
+    "openingHours": "Mo-Su 07:00-22:00",
+    "priceRange": "$$",
+    "sameAs": [
+      "https://instagram.com/fitness-studio",
+      "https://t.me/fitness-studio"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a href="#main" class="skip-link">Перейти к основному содержимому</a>
+
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="./" class="logo" aria-label="Студия Фитнес — на главную">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">Фитнес<span class="logo-accent">Студия</span></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Основная навигация">
+        <ul class="nav-list">
+          <li><a href="./schedule" class="nav-link">Расписание</a></li>
+          <li><a href="./trainers" class="nav-link">Тренеры</a></li>
+          <li><a href="./membership" class="nav-link">Абонементы</a></li>
+          <li><a href="./about" class="nav-link">О нас</a></li>
+          <li><a href="./contacts" class="nav-link">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="./booking" class="btn btn-primary btn-sm">Записаться</a>
+        <a href="./login" class="btn btn-ghost btn-sm" id="authBtn">Войти</a>
+        <a href="./profile" class="btn btn-ghost btn-sm hidden" id="profileBtn">Кабинет</a>
+        <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav">
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+          <span class="burger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="hero">
+      <div class="hero-background">
+        <div class="hero-overlay"></div>
+        <div class="hero-particles" id="heroParticles"></div>
+      </div>
+
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge" role="status">
+            <span class="badge-pulse"></span>
+            <span>Первая тренировка бесплатно</span>
+          </div>
+
+          <h1 class="hero-title">
+            <span class="title-studio">Студия</span>
+            <span class="title-name">Фитнес</span>
+          </h1>
+
+          <p class="hero-subtitle">
+            Тренировки, которые работают.<br>
+            Йога, пилатес, кроссфит, функциональные тренировки.
+          </p>
+
+          <div class="hero-stats" role="list" aria-label="Статистика студии">
+            <div class="stat-item" role="listitem">
+              <span class="stat-value" data-count="5">0</span>
+              <span class="stat-label">залов</span>
+            </div>
+            <div class="stat-divider" aria-hidden="true"></div>
+            <div class="stat-item" role="listitem">
+              <span class="stat-value" data-count="12">0</span>
+              <span class="stat-label">тренеров</span>
+            </div>
+            <div class="stat-divider" aria-hidden="true"></div>
+            <div class="stat-item" role="listitem">
+              <span class="stat-value" data-count="30" data-suffix="+">0</span>
+              <span class="stat-label">тренировок в неделю</span>
+            </div>
+          </div>
+
+          <div class="hero-cta">
+            <a href="./booking" class="btn btn-primary btn-lg">
+              Записаться на тренировку
+            </a>
+            <a href="./schedule" class="btn btn-secondary btn-lg">
+              Посмотреть расписание
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <div class="container">
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📅</div>
+            <h3 class="feature-title">Онлайн-запись</h3>
+            <p class="feature-desc">Запишитесь на тренировку за 30 секунд. Выберите время и тренера.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🏋️</div>
+            <h3 class="feature-title">6 направлений</h3>
+            <p class="feature-desc">Йога, пилатес, кроссфит, HIIT, функциональные, стретчинг.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">👥</div>
+            <h3 class="feature-title">12 тренеров</h3>
+            <p class="feature-desc">Профессионалы с сертификатами и опытом от 4 до 8 лет.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">💎</div>
+            <h3 class="feature-title">3 тарифа</h3>
+            <p class="feature-desc">От 4 900 ₽/мес. Первое посещение бесплатно.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="schedule-preview" id="schedulePreview">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Расписание</span>
+          <h2 class="section-title">Ближайшие тренировки</h2>
+          <p class="section-subtitle">
+            Выберите удобное время и запишитесь онлайн.
+          </p>
+        </div>
+
+        <div class="schedule-quick" id="scheduleQuick">
+          <div class="loading-skeleton">
+            <div class="skeleton-item"></div>
+            <div class="skeleton-item"></div>
+            <div class="skeleton-item"></div>
+          </div>
+        </div>
+
+        <div class="section-cta">
+          <a href="./schedule" class="btn btn-secondary">Все расписание →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="trainers-preview" id="trainersPreview">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Команда</span>
+          <h2 class="section-title">Наши тренеры</h2>
+          <p class="section-subtitle">
+            Профессиональная команда с многолетним опытом.
+          </p>
+        </div>
+
+        <div class="trainers-carousel" id="trainersCarousel">
+          <div class="loading-skeleton">
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+          </div>
+        </div>
+
+        <div class="section-cta">
+          <a href="./trainers" class="btn btn-secondary">Все тренеры →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="membership-preview" id="membershipPreview">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Абонементы</span>
+          <h2 class="section-title">Выберите свой абонемент</h2>
+          <p class="section-subtitle">
+            Первое посещение — бесплатно. Без обязательств.
+          </p>
+        </div>
+
+        <div class="membership-preview-cards" id="membershipCards">
+          <div class="loading-skeleton">
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+            <div class="skeleton-card"></div>
+          </div>
+        </div>
+
+        <div class="section-cta">
+          <a href="./membership" class="btn btn-secondary">Все абонементы →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" id="cta">
+      <div class="container">
+        <div class="cta-card">
+          <div class="cta-content">
+            <h2 class="cta-title">Первая тренировка бесплатно</h2>
+            <p class="cta-subtitle">
+              Приходите, пробуйте, выбирайте направление. Без оплаты и обязательств.
+            </p>
+            <a href="./booking" class="btn btn-primary btn-lg">
+              Записаться бесплатно
+            </a>
+          </div>
+          <div class="cta-decoration" aria-hidden="true">
+            <div class="cta-circle cta-circle-1"></div>
+            <div class="cta-circle cta-circle-2"></div>
+            <div class="cta-circle cta-circle-3"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="./" class="logo">
+            <span class="logo-icon">⚡</span>
+            <span class="logo-text">Фитнес<span class="logo-accent">Студия</span></span>
+          </a>
+          <p class="footer-tagline">Тренировки, которые работают.</p>
+          <div class="footer-socials">
+            <a href="https://instagram.com/fitness-studio" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://t.me/fitness-studio" class="social-link" aria-label="Telegram" target="_blank" rel="noopener noreferrer">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h4 class="footer-heading">Навигация</h4>
+          <ul class="footer-nav">
+            <li><a href="./schedule">Расписание</a></li>
+            <li><a href="./trainers">Тренеры</a></li>
+            <li><a href="./membership">Абонементы</a></li>
+            <li><a href="./about">О нас</a></li>
+            <li><a href="./contacts">Контакты</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4 class="footer-heading">Контакты</h4>
+          <ul class="footer-nav">
+            <li><a href="tel:+74951234567">+7 (495) 123-45-67</a></li>
+            <li><a href="mailto:info@fitness-studio.ru">info@fitness-studio.ru</a></li>
+            <li>ул. Примерная, 5</li>
+            <li>Москва</li>
+          </ul>
+        </div>
+
+        <div class="footer-links">
+          <h4 class="footer-heading">Время работы</h4>
+          <ul class="footer-nav">
+            <li>Пн-Пт: 07:00 – 22:00</li>
+            <li>Сб-Вс: 09:00 – 20:00</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">&copy; 2024 Студия Фитнес. Все права защищены.</p>
+        <div class="footer-legal">
+          <a href="./privacy">Политика конфиденциальности</a>
+          <a href="./terms">Условия использования</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast-container" id="toastContainer" role="alert" aria-live="polite"></div>
+
+  <script src="./js/utils.js"></script>
+  <script src="./js/api.js"></script>
+  <script src="./js/auth.js"></script>
+  <script src="./js/components.js"></script>
+  <script src="./js/main.js"></script>
+</body>
+</html>

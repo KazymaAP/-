@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ФитнесПро — Фитнес-студия</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #06070A;
+            --accent: #6FD8FF;
+            --accent-dim: rgba(111, 216, 255, 0.15);
+            --card: #0D0F14;
+            --card-hover: #141720;
+            --border: #1A1D26;
+            --text: #E2E4E9;
+            --text-dim: #8A8D96;
+            --white: #FFFFFF;
+            --radius: 12px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ── Header ── */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(6, 7, 10, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: -0.5px;
+        }
+
+        .logo span { color: var(--accent); }
+
+        nav { display: flex; gap: 28px; }
+
+        nav a {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: var(--white); text-decoration: none; }
+
+        .nav-back {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            padding: 100px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-dim);
+            max-width: 520px;
+            margin: 0 auto 36px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover { text-decoration: none; transform: translateY(-2px); }
+
+        .btn-accent {
+            background: var(--accent);
+            color: var(--bg);
+            box-shadow: 0 0 30px rgba(111, 216, 255, 0.3);
+        }
+
+        .btn-accent:hover { box-shadow: 0 0 50px rgba(111, 216, 255, 0.45); }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent);
+            border: 1.5px solid var(--accent);
+            margin-left: 14px;
+        }
+
+        /* ── Section ── */
+        section { padding: 80px 0; }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 48px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+            margin: 14px auto 0;
+        }
+
+        /* ── Schedule ── */
+        .schedule-wrap {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .schedule {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+
+        .schedule th,
+        .schedule td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.92rem;
+        }
+
+        .schedule thead th {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .schedule tbody tr:hover { background: var(--card-hover); }
+
+        .schedule .time { color: var(--text-dim); font-variant-numeric: tabular-nums; }
+
+        .class-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            background: var(--accent-dim);
+            color: var(--accent);
+            font-size: 0.82rem;
+            font-weight: 500;
+        }
+
+        /* ── Trainers ── */
+        .trainers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .trainer-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            text-align: center;
+            transition: border-color 0.25s, transform 0.25s;
+        }
+
+        .trainer-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .trainer-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--accent-dim);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: var(--accent);
+        }
+
+        .trainer-card h3 {
+            font-size: 1.1rem;
+            color: var(--white);
+            margin-bottom: 6px;
+        }
+
+        .trainer-card .role {
+            font-size: 0.85rem;
+            color: var(--accent);
+            margin-bottom: 14px;
+        }
+
+        .trainer-card p {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            line-height: 1.55;
+        }
+
+        /* ── Plans ── */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .plan-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 36px 28px;
+            text-align: center;
+            position: relative;
+            transition: border-color 0.25s;
+        }
+
+        .plan-card:hover { border-color: var(--accent); }
+
+        .plan-card.featured {
+            border-color: var(--accent);
+            box-shadow: 0 0 40px rgba(111, 216, 255, 0.1);
+        }
+
+        .plan-card.featured::before {
+            content: 'Популярный';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: var(--bg);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .plan-card h3 {
+            font-size: 1.15rem;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .plan-price {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+
+        .plan-price span { font-size: 1rem; font-weight: 400; color: var(--text-dim); }
+
+        .plan-period {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 24px;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 28px;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 8px 0;
+            font-size: 0.9rem;
+            color: var(--text);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .plan-features li::before {
+            content: '✓ ';
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .plan-card .btn { width: 100%; }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 48px 0 32px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin-bottom: 36px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.9rem;
+            color: var(--white);
+            margin-bottom: 14px;
+            font-weight: 600;
+        }
+
+        .footer-col p,
+        .footer-col a {
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── Mobile ── */
+        @media (max-width: 768px) {
+            nav { display: none; }
+
+            .hero { padding: 64px 0 48px; }
+            .hero h1 { font-size: 1.8rem; }
+            .hero p { font-size: 1rem; }
+
+            section { padding: 56px 0; }
+            .section-title { font-size: 1.4rem; margin-bottom: 32px; }
+
+            .btn-outline { margin-left: 0; margin-top: 12px; }
+            .hero .btn { display: block; }
+            .hero .btn + .btn { display: block; margin-left: 0; margin-top: 12px; }
+
+            .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+        }
+
+        @media (max-width: 480px) {
+            .plan-price { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<a href="#schedule" class="skip-link" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">Перейти к основному содержимому</a>
+
+<header>
+    <div class="container header-inner">
+        <a href="#" class="logo">Фитнес<span>Про</span></a>
+        <nav>
+            <a href="#schedule">Расписание</a>
+            <a href="#trainers">Тренеры</a>
+            <a href="#plans">Абонементы</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+        <a href="../../index.html#cases" class="nav-back">← На главную</a>
+    </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="container">
+        <h1>Начни менять себя<br>прямо сейчас</h1>
+        <p>Профессиональные тренеры, современный зал и проверенные программы тренировок для любого уровня подготовки.</p>
+        <a href="#plans" class="btn btn-accent">Записаться на пробную тренировку</a>
+        <a href="#schedule" class="btn btn-outline">Смотреть расписание</a>
+    </div>
+</section>
+
+<!-- Schedule -->
+<section id="schedule">
+    <div class="container">
+        <h2 class="section-title">Расписание занятий</h2>
+        <div class="schedule-wrap">
+            <table class="schedule">
+                <thead>
+                    <tr>
+                        <th>Время</th>
+                        <th>Пн</th>
+                        <th>Вт</th>
+                        <th>Ср</th>
+                        <th>Чт</th>
+                        <th>Пт</th>
+                        <th>Сб</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="time">07:00</td>
+                        <td><span class="class-badge">Кроссфит</span></td>
+                        <td><span class="class-badge">Йога</span></td>
+                        <td><span class="class-badge">Кроссфит</span></td>
+                        <td><span class="class-badge">Йога</span></td>
+                        <td><span class="class-badge">Кроссфит</span></td>
+                        <td><span class="class-badge">Функциональный</span></td>
+                    </tr>
+                    <tr>
+                        <td class="time">09:00</td>
+                        <td><span class="class-badge">Пилатес</span></td>
+                        <td><span class="class-badge">Кроссфит</span></td>
+                        <td><span class="class-badge">Пилатес</span></td>
+                        <td><span class="class-badge">Кроссфит</span></td>
+                        <td><span class="class-badge">Пилатес</span></td>
+                        <td><span class="class-badge">Кроссфит</span></td>
+                    </tr>
+                    <tr>
+                        <td class="time">11:00</td>
+                        <td><span class="class-badge">Силовая</span></td>
+                        <td><span class="class-badge">Стретчинг</span></td>
+                        <td><span class="class-badge">Силовая</span></td>
+                        <td><span class="class-badge">Стретчинг</span></td>
+                        <td><span class="class-badge">Силовая</span></td>
+                        <td><span class="class-badge">Стретчинг</span></td>
+                    </tr>
+                    <tr>
+                        <td class="time">14:00</td>
+                        <td><span class="class-badge">HIIT</span></td>
+                        <td><span class="class-badge">Бокс</span></td>
+                        <td><span class="class-badge">HIIT</span></td>
+                        <td><span class="class-badge">Бокс</span></td>
+                        <td><span class="class-badge">HIIT</span></td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td class="time">18:00</td>
+                        <td><span class="class-badge">Кроссфит</span></td>
+                        <td><span class="class-badge">Кроссфит</span></td>
+                        <td><span class="class-badge">Кроссфит</span></td>
+                        <td><span class="class-badge">Кроссфит</span></td>
+                        <td><span class="class-badge">Кроссфит</span></td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td class="time">20:00</td>
+                        <td><span class="class-badge">Йога</span></td>
+                        <td><span class="class-badge">Функциональный</span></td>
+                        <td><span class="class-badge">Йога</span></td>
+                        <td><span class="class-badge">Функциональный</span></td>
+                        <td><span class="class-badge">Йога</span></td>
+                        <td>—</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Trainers -->
+<section id="trainers" style="background: var(--card);">
+    <div class="container">
+        <h2 class="section-title">Наши тренеры</h2>
+        <div class="trainers-grid">
+            <div class="trainer-card">
+                <div class="trainer-avatar">А</div>
+                <h3>Алексей Волков</h3>
+                <div class="role">Кроссфит • Силовой тренинг</div>
+                <p>Мастер спорта по тяжёлой атлетике. 12 лет опыта. Подготовил более 200 спортсменов.</p>
+            </div>
+            <div class="trainer-card">
+                <div class="trainer-avatar">М</div>
+                <h3>Мария Соколова</h3>
+                <div class="role">Пилатес • Йога • Стретчинг</div>
+                <p>Сертифицированный инструктор. Специализация — восстановление и гибкость.</p>
+            </div>
+            <div class="trainer-card">
+                <div class="trainer-avatar">Д</div>
+                <h3>Дмитрий Орлов</h3>
+                <div class="role">HIIT • Бокс • Функциональный</div>
+                <p>Мастер спорта по боксу. Высшее образование в области физической культуры.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Plans -->
+<section id="plans">
+    <div class="container">
+        <h2 class="section-title">Абонементы</h2>
+        <div class="plans-grid">
+            <div class="plan-card">
+                <h3>Базовый</h3>
+                <div class="plan-price">2 490 <span>₽</span></div>
+                <div class="plan-period">в месяц</div>
+                <ul class="plan-features">
+                    <li>8 групповых занятий</li>
+                    <li>Доступ в тренажёрный зал</li>
+                    <li>Разовое посещение сауны</li>
+                </ul>
+                <a href="#" class="btn btn-outline">Выбрать</a>
+            </div>
+            <div class="plan-card featured">
+                <h3>Оптимальный</h3>
+                <div class="plan-price">3 990 <span>₽</span></div>
+                <div class="plan-period">в месяц</div>
+                <ul class="plan-features">
+                    <li>Безлимитные групповые занятия</li>
+                    <li>Доступ в тренажёрный зал</li>
+                    <li>4 посещения сауны</li>
+                    <li>Персональная консультация</li>
+                </ul>
+                <a href="#" class="btn btn-accent">Выбрать</a>
+            </div>
+            <div class="plan-card">
+                <h3>Премиум</h3>
+                <div class="plan-price">5 990 <span>₽</span></div>
+                <div class="plan-period">в месяц</div>
+                <ul class="plan-features">
+                    <li>Безлимитные занятия</li>
+                    <li>Доступ в тренажёрный зал 24/7</li>
+                    <li>Безлимитная сауна</li>
+                    <li>2 персональные тренировки</li>
+                    <li>Составление плана питания</li>
+                </ul>
+                <a href="#" class="btn btn-outline">Выбрать</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="contacts">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>ФитнесПро</h4>
+                <p>Современная фитнес-студия с профессиональными тренерами и лучшим оборудованием.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Контакты</h4>
+                <p>
+                    г. Москва, ул. Спортивная, 42<br>
+                    Тел: <a href="tel:+74951234567">+7 (495) 123-45-67</a><br>
+                    Email: <a href="mailto:info@fitnesspro.ru">info@fitnesspro.ru</a>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Режим работы</h4>
+                <p>
+                    Пн–Пт: 06:00 – 23:00<br>
+                    Сб: 07:00 – 20:00<br>
+                    Вс: выходной
+                </p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 ФитнесПро. Все права защищены.
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#6C5CE7">
+  <meta name="description" content="Бронирование услуг онлайн — удобный календарь, выбор времени, мгновенное подтверждение. Telegram Mini App для бизнеса.">
+  <meta name="robots" content="index, follow">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <meta property="og:title" content="Бронирование — Онлайн запись с календарём | Telegram Mini App">
+  <meta property="og:description" content="Удобное бронирование: календарь, выбор времени, мгновенное подтверждение. Для салонов, врачей, мастеров.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nodeforge.dev/miniapps/booking/">
+  <meta property="og:image" content="https://nodeforge.dev/miniapps/booking/og-image.png">
+  <meta property="og:locale" content="ru_RU">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@nodeforge_dev">
+  <meta name="twitter:title" content="Бронирование — Онлайн запись с календарём | Telegram Mini App">
+  <meta name="twitter:description" content="Удобное бронирование: календарь, выбор времени, мгновенное подтверждение.">
+  <meta name="twitter:image" content="https://nodeforge.dev/miniapps/booking/og-image.png">
+  
+  <link rel="canonical" href="https://nodeforge.dev/miniapps/booking/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/main.css">
+  <link rel="manifest" href="./manifest.json">
+   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <title>Бронирование — Онлайн запись с календарём</title>
+
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Бронирование",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Telegram Mini App",
+      "description": "Telegram Mini App для онлайн-бронирования: календарь, выбор времени, мгновенное подтверждение. Для салонов, врачей, мастеров.",
+      "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "RUB",
+          "availability": "https://schema.org/InStock"
+      },
+      "author": {
+          "@type": "Person",
+          "name": "Nodeforge",
+          "url": "https://nodeforge.dev/"
+      },
+      "featureList": [
+          "Календарь с доступными слотами",
+          "Выбор услуги и мастера",
+          "Мгновенное подтверждение",
+          "Напоминания за 2 часа",
+          "История бронирований"
+      ],
+      "url": "https://nodeforge.dev/miniapps/booking/",
+      "sameAs": "https://t.me/nodeforge_dev"
+  }
+  </script>
+</head>
+<body>
+  <div id="app">
+    <header class="app-header" role="banner">
+      <div class="header-content">
+        <h1 class="header-title" id="app-title">Бронирование</h1>
+        <nav class="header-nav" role="navigation" aria-label="Основная навигация">
+          <button class="nav-btn active" data-view="services" aria-current="page">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <span>Услуги</span>
+          </button>
+          <button class="nav-btn" data-view="bookings">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            <span>Мои брони</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="app-main" role="main" aria-live="polite">
+      <div id="view-services" class="view active">
+        <section class="section" aria-labelledby="services-heading">
+          <h2 id="services-heading" class="section-title">Выберите услугу</h2>
+          <div id="resources-list" class="resources-grid" role="list" aria-label="Список услуг">
+            <div class="loading-state" aria-label="Загрузка">
+              <div class="spinner" aria-hidden="true"></div>
+              <p>Загрузка услуг...</p>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div id="view-calendar" class="view">
+        <section class="section" aria-labelledby="calendar-heading">
+          <button class="back-btn" id="back-to-services" aria-label="Назад к услугам">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            Назад
+          </button>
+          <h2 id="calendar-heading" class="section-title">Выберите дату</h2>
+          <div id="calendar-container" class="calendar-wrapper"></div>
+        </section>
+
+        <section id="time-slots-section" class="section hidden" aria-labelledby="slots-heading">
+          <h2 id="slots-heading" class="section-title">Выберите время</h2>
+          <div id="time-slots" class="slots-grid" role="radiogroup" aria-label="Доступное время"></div>
+        </section>
+      </div>
+
+      <div id="view-booking" class="view">
+        <section class="section" aria-labelledby="booking-heading">
+          <button class="back-btn" id="back-to-calendar" aria-label="Назад к календарю">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            Назад
+          </button>
+          <h2 id="booking-heading" class="section-title">Детали бронирования</h2>
+          <div id="booking-summary" class="booking-summary-card"></div>
+          <form id="booking-form" class="booking-form" novalidate>
+            <div class="form-group">
+              <label for="booking-name">Ваше имя <span class="required" aria-hidden="true">*</span></label>
+              <input type="text" id="booking-name" name="name" required minlength="2" maxlength="100" autocomplete="name" placeholder="Иван Иванов" aria-required="true">
+              <span class="error-text" id="name-error" role="alert" aria-live="assertive"></span>
+            </div>
+            <div class="form-group">
+              <label for="booking-phone">Телефон <span class="required" aria-hidden="true">*</span></label>
+              <input type="tel" id="booking-phone" name="phone" required placeholder="+7 (999) 123-45-67" aria-required="true" inputmode="tel">
+              <span class="error-text" id="phone-error" role="alert" aria-live="assertive"></span>
+            </div>
+            <div class="form-group">
+              <label for="booking-email">Email</label>
+              <input type="email" id="booking-email" name="email" placeholder="email@example.com" autocomplete="email">
+              <span class="error-text" id="email-error" role="alert" aria-live="assertive"></span>
+            </div>
+            <div class="form-group">
+              <label for="booking-notes">Комментарий</label>
+              <textarea id="booking-notes" name="notes" rows="3" maxlength="500" placeholder="Особые пожелания..."></textarea>
+            </div>
+            <div class="form-checkbox">
+              <input type="checkbox" id="booking-agree" name="agree" required aria-required="true">
+              <label for="booking-agree">
+                Я согласен с правилами бронирования и политикой конфиденциальности
+              </label>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary btn-block" id="submit-booking" disabled>
+                <span class="btn-text">Подтвердить бронь</span>
+                <span class="btn-loading hidden" aria-hidden="true">
+                  <span class="spinner-sm"></span>
+                </span>
+              </button>
+            </div>
+            <p class="form-hint">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+              </svg>
+              Напомним за 2 часа до визита
+            </p>
+          </form>
+        </section>
+      </div>
+
+      <div id="view-confirmation" class="view">
+        <section class="section confirmation-section" aria-labelledby="confirmation-heading">
+          <div class="confirmation-icon" aria-hidden="true">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#00b894" stroke-width="2">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h2 id="confirmation-heading" class="section-title">Бронирование подтверждено!</h2>
+          <div id="confirmation-details" class="confirmation-card"></div>
+          <button class="btn btn-primary btn-block" id="back-to-home">
+            На главную
+          </button>
+        </section>
+      </div>
+
+      <div id="view-bookings" class="view">
+        <section class="section" aria-labelledby="my-bookings-heading">
+          <h2 id="my-bookings-heading" class="section-title">Мои брони</h2>
+          <div id="my-bookings-list" class="bookings-list">
+            <div class="loading-state" aria-label="Загрузка бронирований">
+              <div class="spinner" aria-hidden="true"></div>
+              <p>Загрузка...</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <div id="toast-container" class="toast-container" aria-live="assertive" aria-atomic="true"></div>
+
+    <div id="modal-overlay" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-content">
+        <h3 id="modal-title" class="modal-title"></h3>
+        <p id="modal-message" class="modal-message"></p>
+        <div class="modal-actions">
+          <button class="btn btn-secondary" id="modal-cancel">Отмена</button>
+          <button class="btn btn-primary" id="modal-confirm">Подтвердить</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <noscript>
+    <div class="noscript-notice">
+      <p>Для работы приложения необходим JavaScript.</p>
+    </div>
+  </noscript>
+
+  <script src="./js/utils.js"></script>
+  <script src="./js/api.js"></script>
+  <script src="./js/calendar.js"></script>
+  <script src="./js/booking.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; connect-src 'self' https:; font-src 'self' https://fonts.gstatic.com; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'">
+
+  <meta name="theme-color" content="#6C5CE7">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; connect-src 'self' https:; font-src 'self' https://fonts.gstatic.com; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'">
+
+  <meta name="description" content="Квиз-тест: Узнайте свой уровень маркетинга и получите персональную рекомендацию. 10 вопросов, 3 минуты, бесплатно.">
+  <meta name="robots" content="index, follow">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <meta property="og:title" content="Какой вы маркетолог? — Квиз-тест за 3 минуты">
+  <meta property="og:description" content="Ответьте на 10 вопросов и узнайте свой уровень маркетинга. Получите персональную рекомендацию и промокод!">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nodeforge.dev/miniapps/quiz/">
+  <meta property="og:image" content="https://nodeforge.dev/miniapps/quiz/og-image.png">
+  <meta property="og:locale" content="ru_RU">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@nodeforge_dev">
+  <meta name="twitter:title" content="Какой вы маркетолог? — Квиз-тест за 3 минуты">
+  <meta name="twitter:description" content="Ответьте на 10 вопросов и узнайте свой уровень маркетинга. Получите персональную рекомендацию!">
+  <meta name="twitter:image" content="https://nodeforge.dev/miniapps/quiz/og-image.png">
+  
+  <link rel="canonical" href="https://nodeforge.dev/miniapps/quiz/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/main.css">
+  <title>Какой вы маркетолог? — Квиз-тест за 3 минуты</title>
+
+  <script type="application/ld+json">
+  {
+      "@context": "https://schema.org",
+      "@type": "Quiz",
+      "name": "Какой вы маркетолог?",
+      "description": "Ответьте на 10 вопросов и узнайте свой уровень маркетинга. Получите персональную рекомендацию.",
+      "educationalLevel": "Beginner to Advanced",
+      "assesses": "Marketing knowledge",
+      "author": {
+          "@type": "Person",
+          "name": "Nodeforge",
+          "url": "https://nodeforge.dev/"
+      },
+      "url": "https://nodeforge.dev/miniapps/quiz/",
+      "sameAs": "https://t.me/nodeforge_dev",
+      "typicalAgeRange": "18+",
+      "learningResourceType": "Quiz"
+  }
+  </script>
+</head>
+<body>
+  <div id="app" class="app" role="main">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="screen active" aria-live="polite">
+      <div class="loading-container">
+        <div class="loading-spinner" aria-hidden="true">
+          <div class="spinner-ring"></div>
+        </div>
+        <p class="loading-text">Загрузка...</p>
+      </div>
+    </div>
+
+    <!-- Error Screen -->
+    <div id="error-screen" class="screen" role="alert" aria-live="assertive">
+      <div class="error-container">
+        <div class="error-icon" aria-hidden="true">⚠️</div>
+        <h2 class="error-title">Что-то пошло не так</h2>
+        <p class="error-message" id="error-message">Не удалось загрузить квиз</p>
+        <button class="btn btn-primary" onclick="app.retry()" aria-label="Попробовать загрузить заново">
+          Попробовать снова
+        </button>
+      </div>
+    </div>
+
+    <!-- Start Screen -->
+    <div id="start-screen" class="screen" role="region" aria-label="Начало квиза">
+      <div class="start-container">
+        <div class="start-header">
+          <div class="quiz-icon" aria-hidden="true">🧪</div>
+          <h1 class="quiz-title" id="quiz-title">Какой вы маркетолог?</h1>
+          <p class="quiz-description" id="quiz-description">
+            Ответьте на вопросы и узнайте свой уровень маркетинга.
+            Получите персональную рекомендацию!
+          </p>
+        </div>
+
+        <div class="quiz-meta" role="list" aria-label="Информация о квизе">
+          <div class="meta-item" role="listitem">
+            <span class="meta-icon" aria-hidden="true">📝</span>
+            <span class="meta-text" id="questions-count">10 вопросов</span>
+          </div>
+          <div class="meta-item" role="listitem">
+            <span class="meta-icon" aria-hidden="true">⏱️</span>
+            <span class="meta-text" id="estimated-time">~3 минуты</span>
+          </div>
+          <div class="meta-item" role="listitem">
+            <span class="meta-icon" aria-hidden="true">👥</span>
+            <span class="meta-text" id="completions-count">0 прошли</span>
+          </div>
+        </div>
+
+        <div class="quiz-benefits" role="list" aria-label="Что вы узнаете">
+          <h3 class="benefits-title">Что вы узнаете:</h3>
+          <ul class="benefits-list" id="benefits-list">
+            <li class="benefit-item" role="listitem">Узнайте свой реальный уровень</li>
+            <li class="benefit-item" role="listitem">Получите персональную рекомендацию</li>
+            <li class="benefit-item" role="listitem">Бесплатный промокод на курс</li>
+            <li class="benefit-item" role="listitem">Сравните себя с другими</li>
+          </ul>
+        </div>
+
+        <button class="btn btn-primary btn-lg start-btn" id="start-btn" onclick="app.startQuiz()" aria-label="Начать тест">
+          Начать тест
+        </button>
+
+        <p class="privacy-note" role="note">
+          Ваши данные защищены и не передаются третьим лицам
+        </p>
+      </div>
+    </div>
+
+    <!-- Question Screen -->
+    <div id="question-screen" class="screen" role="region" aria-label="Вопрос квиза">
+      <div class="question-container">
+        <div class="question-header">
+          <span class="question-counter" id="question-counter" aria-live="polite">
+            1 из 10
+          </span>
+          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Прогресс прохождения">
+            <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <div class="question-content" id="question-content">
+          <h2 class="question-text" id="question-text">Загрузка вопроса...</h2>
+        </div>
+
+        <div class="answers-container" id="answers-container" role="radiogroup" aria-label="Варианты ответов">
+          <!-- Answer buttons will be rendered here -->
+        </div>
+
+        <div class="question-feedback" id="question-feedback" role="status" aria-live="polite" hidden>
+          <p class="feedback-text" id="feedback-text"></p>
+        </div>
+
+        <button class="btn btn-primary next-btn" id="next-btn" onclick="app.nextQuestion()" hidden aria-label="Следующий вопрос">
+          Следующий вопрос
+        </button>
+      </div>
+    </div>
+
+    <!-- Result Screen -->
+    <div id="result-screen" class="screen" role="region" aria-label="Результат квиза">
+      <div class="result-container">
+        <div class="result-header" id="result-header">
+          <div class="result-emoji" id="result-emoji" aria-hidden="true">🎯</div>
+          <h2 class="result-title" id="result-title">Ваш уровень</h2>
+          <p class="result-subtitle" id="result-subtitle">Загрузка...</p>
+        </div>
+
+        <div class="score-display">
+          <div class="score-circle" id="score-circle">
+            <svg viewBox="0 0 120 120" class="score-svg" aria-hidden="true">
+              <circle cx="60" cy="60" r="54" class="score-bg"/>
+              <circle cx="60" cy="60" r="54" class="score-progress" id="score-progress"/>
+            </svg>
+            <div class="score-value">
+              <span class="score-number" id="score-number">0</span>
+              <span class="score-max" id="score-max">/100</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-details">
+          <div class="result-card" id="result-card">
+            <h3 class="card-title">Рекомендация</h3>
+            <p class="card-text" id="result-recommendation">Загрузка...</p>
+          </div>
+
+          <div class="promo-card" id="promo-card" hidden>
+            <span class="promo-label">Ваш промокод</span>
+            <span class="promo-code" id="promo-code">-----</span>
+            <button class="btn btn-sm btn-outline copy-promo-btn" onclick="app.copyPromo()" aria-label="Скопировать промокод">
+              Копировать
+            </button>
+          </div>
+        </div>
+
+        <div class="result-actions">
+          <button class="btn btn-primary btn-lg" id="lead-btn" onclick="app.showLeadForm()" aria-label="Оставить заявку">
+            Записаться на курс
+          </button>
+          <button class="btn btn-secondary" onclick="app.shareResult()" aria-label="Поделиться результатом">
+            Поделиться результатом
+          </button>
+          <button class="btn btn-ghost" onclick="app.restart()" aria-label="Пройти тест ещё раз">
+            Пройти ещё раз
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lead Form Screen -->
+    <div id="lead-screen" class="screen" role="region" aria-label="Форма контакта">
+      <div class="lead-container">
+        <button class="back-btn" onclick="app.hideLeadForm()" aria-label="Назад к результату">
+          <span aria-hidden="true">←</span> Назад
+        </button>
+
+        <div class="lead-header">
+          <h2 class="lead-title">Получите персональную рекомендацию</h2>
+          <p class="lead-subtitle">Оставьте контакт и мы свяжемся с вами</p>
+        </div>
+
+        <form class="lead-form" id="lead-form" onsubmit="app.submitLead(event)" novalidate>
+          <div class="form-group">
+            <label for="lead-name" class="form-label">Ваше имя <span class="required" aria-hidden="true">*</span></label>
+            <input
+              type="text"
+              id="lead-name"
+              name="name"
+              class="form-input"
+              placeholder="Как вас зовут?"
+              required
+              minlength="2"
+              maxlength="100"
+              autocomplete="name"
+              aria-required="true"
+            >
+            <span class="form-error" id="name-error" role="alert" hidden></span>
+          </div>
+
+          <div class="form-group">
+            <label for="lead-phone" class="form-label">Телефон</label>
+            <input
+              type="tel"
+              id="lead-phone"
+              name="phone"
+              class="form-input"
+              placeholder="+7 (999) 123-45-67"
+              pattern="^\+?[0-9\s\-()]{7,20}$"
+              autocomplete="tel"
+            >
+            <span class="form-error" id="phone-error" role="alert" hidden></span>
+          </div>
+
+          <div class="form-group">
+            <label for="lead-email" class="form-label">Email</label>
+            <input
+              type="email"
+              id="lead-email"
+              name="email"
+              class="form-input"
+              placeholder="email@example.com"
+              autocomplete="email"
+            >
+            <span class="form-error" id="email-error" role="alert" hidden></span>
+          </div>
+
+          <div class="form-checkbox">
+            <input
+              type="checkbox"
+              id="lead-consent"
+              name="consent"
+              class="checkbox-input"
+              required
+              aria-required="true"
+            >
+            <label for="lead-consent" class="checkbox-label">
+              Я согласен на обработку персональных данных
+            </label>
+          </div>
+          <span class="form-error" id="consent-error" role="alert" hidden></span>
+
+          <button type="submit" class="btn btn-primary btn-lg submit-btn" id="submit-lead-btn">
+            Отправить
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Share Screen -->
+    <div id="share-screen" class="screen" role="region" aria-label="Поделиться результатом">
+      <div class="share-container">
+        <button class="back-btn" onclick="app.hideShareScreen()" aria-label="Назад к результату">
+          <span aria-hidden="true">←</span> Назад
+        </button>
+
+        <div class="share-header">
+          <div class="share-icon" aria-hidden="true">📤</div>
+          <h2 class="share-title">Поделитесь результатом</h2>
+        </div>
+
+        <div class="share-preview" id="share-preview">
+          <p class="share-text" id="share-text">
+            Я прошёл квиз "Какой вы маркетолог?" и получил уровень: <span id="share-result-title">--</span>! 🎯
+          </p>
+          <p class="share-score" id="share-score">Мой результат: 0/100</p>
+          <p class="share-cta">А ты какой? Пройди тест!</p>
+        </div>
+
+        <div class="share-actions">
+          <button class="btn btn-primary btn-lg share-telegram-btn" onclick="app.shareToTelegram()" aria-label="Поделиться в Telegram">
+            <span class="btn-icon" aria-hidden="true">✈️</span>
+            Поделиться в Telegram
+          </button>
+          <button class="btn btn-secondary" onclick="app.copyShareLink()" aria-label="Скопировать ссылку">
+            Скопировать ссылку
+          </button>
+        </div>
+
+        <div class="share-toast" id="share-toast" role="status" aria-live="polite" hidden>
+          Ссылка скопирована!
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+      <span class="toast-icon" id="toast-icon" aria-hidden="true"></span>
+      <span class="toast-message" id="toast-message"></span>
+    </div>
+  </div>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>

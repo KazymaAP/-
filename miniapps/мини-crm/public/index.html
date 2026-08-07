@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://telegram.org; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; connect-src 'self' https:; font-src 'self' https://fonts.gstatic.com; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'">
+
+    <meta name="description" content="Мини-CRM — простая CRM-система для фрилансеров и малого бизнеса. Управляйте контактами, сделками и задачами.">
+    <meta name="keywords" content="CRM, мини CRM, контакты, сделки, канбан, задачи, фриланс">
+    <meta name="theme-color" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:title" content="Мини-CRM — CRM для фрилансеров и малого бизнеса">
+    <meta property="og:description" content="Простая CRM: контакты, сделки, канбан-доска, задачи. Управляйте бизнесом в Telegram.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nodeforge.dev/miniapps/mini-crm/">
+    <meta property="og:image" content="https://nodeforge.dev/miniapps/mini-crm/og-image.png">
+    <meta property="og:locale" content="ru_RU">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@nodeforge_dev">
+    <meta name="twitter:title" content="Мини-CRM — CRM для фрилансеров и малого бизнеса">
+    <meta name="twitter:description" content="Простая CRM: контакты, сделки, канбан-доска, задачи. Управляйте бизнесом в Telegram.">
+    <meta name="twitter:image" content="https://nodeforge.dev/miniapps/mini-crm/og-image.png">
+    
+    <link rel="canonical" href="https://nodeforge.dev/miniapps/mini-crm/">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+    <link rel="apple-touch-icon" href="assets/images/logo.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Мини-CRM — CRM для фрилансеров и малого бизнеса</title>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Мини-CRM",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Telegram Mini App",
+        "description": "Простая CRM-система для фрилансеров и малого бизнеса. Управление контактами, сделками, задачами и канбан-доской.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "RUB",
+            "availability": "https://schema.org/InStock"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "Nodeforge",
+            "url": "https://nodeforge.dev/"
+        },
+        "featureList": [
+            "Управление контактами",
+            "Канбан-доска сделок",
+            "Задачи и напоминания",
+            "Аналитика и воронка продаж",
+            "Экспорт/импорт данных",
+            "Тёмная тема"
+        ],
+        "url": "https://nodeforge.dev/miniapps/mini-crm/",
+        "sameAs": "https://t.me/nodeforge_dev"
+    }
+    </script>
+</head>
+<body>
+    <div id="app" class="app" role="application" aria-label="Мини-CRM приложение">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar" role="navigation" aria-label="Главное меню">
+            <div class="sidebar-header">
+                <div class="logo" aria-hidden="true">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <rect width="32" height="32" rx="8" fill="#6366f1"/>
+                        <path d="M8 10h16M8 16h12M8 22h8" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h1 class="app-title">Мини-CRM</h1>
+                <button class="sidebar-close" id="sidebarClose" aria-label="Закрыть меню">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"/>
+                    </svg>
+                </button>
+            </div>
+            <ul class="nav-list" role="menubar">
+                <li role="none">
+                    <a href="#dashboard" class="nav-item active" role="menuitem" data-view="dashboard" aria-current="page">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="7" rx="1"/>
+                            <rect x="14" y="3" width="7" height="7" rx="1"/>
+                            <rect x="3" y="14" width="7" height="7" rx="1"/>
+                            <rect x="14" y="14" width="7" height="7" rx="1"/>
+                        </svg>
+                        <span>Дашборд</span>
+                    </a>
+                </li>
+                <li role="none">
+                    <a href="#contacts" class="nav-item" role="menuitem" data-view="contacts">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 010 7.75"/>
+                        </svg>
+                        <span>Контакты</span>
+                        <span class="nav-badge" id="contactsBadge">0</span>
+                    </a>
+                </li>
+                <li role="none">
+                    <a href="#deals" class="nav-item" role="menuitem" data-view="deals">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                        <span>Сделки</span>
+                        <span class="nav-badge" id="dealsBadge">0</span>
+                    </a>
+                </li>
+                <li role="none">
+                    <a href="#tasks" class="nav-item" role="menuitem" data-view="tasks">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11l3 3L22 4"/>
+                            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                        </svg>
+                        <span>Задачи</span>
+                        <span class="nav-badge" id="tasksBadge">0</span>
+                    </a>
+                </li>
+                <li role="none">
+                    <a href="#analytics" class="nav-item" role="menuitem" data-view="analytics">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 20V10"/>
+                            <path d="M12 20V4"/>
+                            <path d="M6 20v-6"/>
+                        </svg>
+                        <span>Аналитика</span>
+                    </a>
+                </li>
+                <li role="none">
+                    <a href="#settings" class="nav-item" role="menuitem" data-view="settings">
+                        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+                        </svg>
+                        <span>Настройки</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <div class="user-info" id="userInfo">
+                    <div class="user-avatar" aria-hidden="true">У</div>
+                    <div class="user-details">
+                        <span class="user-name">Пользователь</span>
+                        <span class="user-role">Фрилансер</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Header -->
+        <header class="mobile-header" id="mobileHeader">
+            <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12h18M3 6h18M3 18h18"/>
+                </svg>
+            </button>
+            <h1 class="mobile-title" id="mobileTitle">Дашборд</h1>
+            <button class="theme-toggle" id="themeToggle" aria-label="Переключить тему">
+                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"/>
+                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+                </svg>
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+                </svg>
+            </button>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content" id="mainContent" role="main">
+            <!-- Dashboard View -->
+            <section class="view active" id="dashboardView" aria-label="Дашборд">
+                <div class="view-header">
+                    <h2>Дашборд</h2>
+                    <div class="header-actions">
+                        <span class="current-date" id="currentDate"></span>
+                    </div>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="stats-cards" id="statsCards">
+                        <div class="stat-card" data-stat="contacts">
+                            <div class="stat-icon" style="background: rgba(99, 102, 241, 0.1); color: #6366f1;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                                    <circle cx="9" cy="7" r="4"/>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="contactsCount">0</span>
+                                <span class="stat-label">Контактов</span>
+                            </div>
+                        </div>
+                        <div class="stat-card" data-stat="deals">
+                            <div class="stat-icon" style="background: rgba(16, 185, 129, 0.1); color: #10b981;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="dealsCount">0</span>
+                                <span class="stat-label">Сделок</span>
+                            </div>
+                        </div>
+                        <div class="stat-card" data-stat="revenue">
+                            <div class="stat-icon" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="revenueValue">0 ₽</span>
+                                <span class="stat-label">Сумма воронки</span>
+                            </div>
+                        </div>
+                        <div class="stat-card" data-stat="tasks">
+                            <div class="stat-icon" style="background: rgba(239, 68, 68, 0.1); color: #ef4444;">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M12 6v6l4 2"/>
+                                </svg>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="pendingTasksCount">0</span>
+                                <span class="stat-label">Задач сегодня</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-row">
+                        <div class="card funnel-card">
+                            <div class="card-header">
+                                <h3>Воронка продаж</h3>
+                                <a href="#deals" class="card-link">Все сделки →</a>
+                            </div>
+                            <div class="funnel-chart" id="funnelChart" role="img" aria-label="Диаграмма воронки продаж"></div>
+                        </div>
+
+                        <div class="card reminders-card">
+                            <div class="card-header">
+                                <h3>Ближайшие задачи</h3>
+                                <a href="#tasks" class="card-link">Все задачи →</a>
+                            </div>
+                            <div class="reminders-list" id="upcomingTasks" role="list">
+                                <div class="empty-state">
+                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3">
+                                        <path d="M9 11l3 3L22 4"/>
+                                        <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                                    </svg>
+                                    <p>Нет задач на сегодня</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card recent-activity-card">
+                        <div class="card-header">
+                            <h3>Последняя активность</h3>
+                        </div>
+                        <div class="activity-list" id="recentActivity" role="list">
+                            <div class="empty-state">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3">
+                                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <p>Пока нет активности</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contacts View -->
+            <section class="view" id="contactsView" aria-label="Контакты" style="display:none">
+                <div class="view-header">
+                    <h2>Контакты</h2>
+                    <div class="header-actions">
+                        <div class="search-box">
+                            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/>
+                                <path d="M21 21l-4.35-4.35"/>
+                            </svg>
+                            <input type="search" id="contactSearch" placeholder="Поиск контактов..." aria-label="Поиск контактов">
+                        </div>
+                        <button class="btn btn-primary" id="addContactBtn" aria-label="Добавить контакт">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 5v14M5 12h14"/>
+                            </svg>
+                            <span>Добавить</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="contacts-grid" id="contactsList" role="list">
+                    <div class="empty-state" id="contactsEmpty">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3">
+                            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 010 7.75"/>
+                        </svg>
+                        <h3>Нет контактов</h3>
+                        <p>Добавьте первый контакт, чтобы начать работу</p>
+                        <button class="btn btn-primary" onclick="App.openContactModal()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 5v14M5 12h14"/>
+                            </svg>
+                            Добавить контакт
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Deals View -->
+            <section class="view" id="dealsView" aria-label="Сделки" style="display:none">
+                <div class="view-header">
+                    <h2>Сделки</h2>
+                    <div class="header-actions">
+                        <div class="view-toggle" role="radiogroup" aria-label="Режим отображения">
+                            <button class="toggle-btn active" data-mode="kanban" role="radio" aria-checked="true" aria-label="Канбан">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="5" height="18" rx="1"/>
+                                    <rect x="10" y="3" width="5" height="12" rx="1"/>
+                                    <rect x="17" y="3" width="5" height="15" rx="1"/>
+                                </svg>
+                            </button>
+                            <button class="toggle-btn" data-mode="list" role="radio" aria-checked="false" aria-label="Список">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <button class="btn btn-primary" id="addDealBtn" aria-label="Добавить сделку">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 5v14M5 12h14"/>
+                            </svg>
+                            <span>Добавить</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="kanban-board" id="kanbanBoard" role="region" aria-label="Канбан-доска">
+                    <div class="kanban-columns" id="kanbanColumns"></div>
+                </div>
+                <div class="deals-list" id="dealsList" style="display:none" role="region" aria-label="Список сделок">
+                    <div class="list-header">
+                        <span class="list-col">Название</span>
+                        <span class="list-col">Контакт</span>
+                        <span class="list-col">Сумма</span>
+                        <span class="list-col">Этап</span>
+                        <span class="list-col">Обновлено</span>
+                        <span class="list-col">Действия</span>
+                    </div>
+                    <div class="list-body" id="dealsListBody"></div>
+                </div>
+                <div class="empty-state" id="dealsEmpty" style="display:none">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                    </svg>
+                    <h3>Нет сделок</h3>
+                    <p>Создайте первую сделку для отслеживания прогресса</p>
+                    <button class="btn btn-primary" onclick="App.openDealModal()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                        Создать сделку
+                    </button>
+                </div>
+            </section>
+
+            <!-- Tasks View -->
+            <section class="view" id="tasksView" aria-label="Задачи" style="display:none">
+                <div class="view-header">
+                    <h2>Задачи</h2>
+                    <div class="header-actions">
+                        <div class="filter-group">
+                            <button class="filter-btn active" data-filter="all">Все</button>
+                            <button class="filter-btn" data-filter="pending">Активные</button>
+                            <button class="filter-btn" data-filter="completed">Завершённые</button>
+                        </div>
+                        <button class="btn btn-primary" id="addTaskBtn" aria-label="Добавить задачу">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 5v14M5 12h14"/>
+                            </svg>
+                            <span>Добавить</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="tasks-list" id="tasksList" role="list">
+                    <div class="empty-state" id="tasksEmpty">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3">
+                            <path d="M9 11l3 3L22 4"/>
+                            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                        </svg>
+                        <h3>Нет задач</h3>
+                        <p>Добавьте задачу, чтобы ничего не забыть</p>
+                        <button class="btn btn-primary" onclick="App.openTaskModal()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 5v14M5 12h14"/>
+                            </svg>
+                            Добавить задачу
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics View -->
+            <section class="view" id="analyticsView" aria-label="Аналитика" style="display:none">
+                <div class="view-header">
+                    <h2>Аналитика</h2>
+                </div>
+                <div class="analytics-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Конверсия воронки</h3>
+                        </div>
+                        <div class="analytics-metric">
+                            <span class="metric-value" id="conversionRate">0%</span>
+                            <span class="metric-label">Конверсия лидов в сделки</span>
+                        </div>
+                        <div class="conversion-bars" id="conversionBars"></div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Средний чек</h3>
+                        </div>
+                        <div class="analytics-metric">
+                            <span class="metric-value" id="avgDealValue">0 ₽</span>
+                            <span class="metric-label">Средняя сумма сделки</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Сделки по этапам</h3>
+                        </div>
+                        <div class="stage-chart" id="stageChart"></div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Выполнение задач</h3>
+                        </div>
+                        <div class="analytics-metric">
+                            <span class="metric-value" id="taskCompletionRate">0%</span>
+                            <span class="metric-label">Процент выполненных задач</span>
+                        </div>
+                        <div class="task-progress-bar">
+                            <div class="progress-fill" id="taskProgressFill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="card full-width">
+                        <div class="card-header">
+                            <h3>Активность по дням</h3>
+                        </div>
+                        <div class="activity-chart" id="activityChart"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings View -->
+            <section class="view" id="settingsView" aria-label="Настройки" style="display:none">
+                <div class="view-header">
+                    <h2>Настройки</h2>
+                </div>
+                <div class="settings-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Внешний вид</h3>
+                        </div>
+                        <div class="settings-group">
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <span class="setting-label">Тёмная тема</span>
+                                    <span class="setting-desc">Переключить между светлой и тёмной темой</span>
+                                </div>
+                                <label class="switch" aria-label="Переключить тёмную тему">
+                                    <input type="checkbox" id="darkModeToggle">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <span class="setting-label">Уведомления</span>
+                                    <span class="setting-desc">Включить push-уведомления</span>
+                                </div>
+                                <label class="switch" aria-label="Переключить уведомления">
+                                    <input type="checkbox" id="notificationsToggle" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Данные</h3>
+                        </div>
+                        <div class="settings-group">
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <span class="setting-label">Экспорт данных</span>
+                                    <span class="setting-desc">Выгрузить контакты и сделки в CSV</span>
+                                </div>
+                                <button class="btn btn-secondary" id="exportDataBtn">Экспорт</button>
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <span class="setting-label">Импорт контактов</span>
+                                    <span class="setting-desc">Загрузить контакты из CSV-файла</span>
+                                </div>
+                                <button class="btn btn-secondary" id="importDataBtn">Импорт</button>
+                                <input type="file" id="importFileInput" accept=".csv,.json" style="display:none">
+                            </div>
+                            <div class="setting-item">
+                                <div class="setting-info">
+                                    <span class="setting-label">Очистить данные</span>
+                                    <span class="setting-desc">Удалить все данные из локального хранилища</span>
+                                </div>
+                                <button class="btn btn-danger" id="clearDataBtn">Очистить</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>О приложении</h3>
+                        </div>
+                        <div class="settings-group">
+                            <div class="setting-item">
+                                <span class="setting-label">Версия</span>
+                                <span class="setting-value">1.0.0</span>
+                            </div>
+                            <div class="setting-item">
+                                <span class="setting-label">Хранилище</span>
+                                <span class="setting-value" id="storageUsage">0 записей</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Mobile Bottom Navigation -->
+        <nav class="bottom-nav" id="bottomNav" role="navigation" aria-label="Навигация внизу">
+            <a href="#dashboard" class="bottom-nav-item active" data-view="dashboard" aria-label="Дашборд">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="7" height="7" rx="1"/>
+                    <rect x="14" y="3" width="7" height="7" rx="1"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1"/>
+                    <rect x="14" y="14" width="7" height="7" rx="1"/>
+                </svg>
+                <span>Дашборд</span>
+            </a>
+            <a href="#contacts" class="bottom-nav-item" data-view="contacts" aria-label="Контакты">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                </svg>
+                <span>Контакты</span>
+            </a>
+            <a href="#deals" class="bottom-nav-item" data-view="deals" aria-label="Сделки">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+                <span>Сделки</span>
+            </a>
+            <a href="#tasks" class="bottom-nav-item" data-view="tasks" aria-label="Задачи">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 11l3 3L22 4"/>
+                    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                </svg>
+                <span>Задачи</span>
+            </a>
+            <a href="#settings" class="bottom-nav-item" data-view="settings" aria-label="Настройки">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3"/>
+                    <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+                </svg>
+                <span>Настройки</span>
+            </a>
+        </nav>
+
+        <!-- Overlay for mobile sidebar -->
+        <div class="overlay" id="overlay"></div>
+
+        <!-- Modal Container -->
+        <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" style="display:none">
+            <div class="modal-content" id="modalContent">
+                <div class="modal-header">
+                    <h2 id="modalTitle"></h2>
+                    <button class="modal-close" id="modalClose" aria-label="Закрыть">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 6L6 18M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="modal-body" id="modalBody"></div>
+            </div>
+        </div>
+
+        <!-- Toast Container -->
+        <div class="toast-container" id="toastContainer" role="alert" aria-live="polite"></div>
+
+        <!-- Confirm Dialog -->
+        <div class="confirm-overlay" id="confirmOverlay" style="display:none" role="alertdialog" aria-modal="true">
+            <div class="confirm-dialog">
+                <div class="confirm-icon">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 8v4M12 16h.01"/>
+                    </svg>
+                </div>
+                <h3 id="confirmTitle"></h3>
+                <p id="confirmMessage"></p>
+                <div class="confirm-actions">
+                    <button class="btn btn-secondary" id="confirmCancel">Отмена</button>
+                    <button class="btn btn-danger" id="confirmOk">Удалить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

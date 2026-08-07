@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=5.0">
+  <meta name="theme-color" content="#6366f1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'nonce-{CSP_NONCE}' https://telegram.org; style-src 'self' 'nonce-{CSP_NONCE}'; img-src 'self' data: https:; connect-src 'self' https:; font-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'; worker-src 'self'; manifest-src 'self'; trusted-types default;">
+
+  <meta name="description" content="Telegram Mini App для мероприятий — расписание, спикеры, нетворкинг, карта площадки. Идеально для конференций и митапов.">
+  <meta name="keywords" content="мероприятие, конференция, митап, расписание, спикеры, нетворкинг, Telegram Mini App">
+  <meta name="robots" content="index, follow">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <meta property="og:title" content="Event App — Приложение для мероприятий в Telegram">
+  <meta property="og:description" content="Расписание, спикеры, нетворкинг, карта площадки. Идеально для конференций, митапов, хакатонов.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://nodeforge.dev/miniapps/event-app/">
+  <meta property="og:image" content="https://nodeforge.dev/miniapps/event-app/og-image.png">
+  <meta property="og:locale" content="ru_RU">
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@nodeforge_dev">
+  <meta name="twitter:title" content="Event App — Приложение для мероприятий в Telegram">
+  <meta name="twitter:description" content="Расписание, спикеры, нетворкинг, карта площадки. Идеально для конференций, митапов.">
+  <meta name="twitter:image" content="https://nodeforge.dev/miniapps/event-app/og-image.png">
+  
+  <link rel="canonical" href="https://nodeforge.dev/miniapps/event-app/">
+  <link rel="icon" type="image/svg+xml" href="./assets/images/logo.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/icons/icon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/icons/icon-16.png">
+  <link rel="apple-touch-icon" href="./assets/icons/icon-180.png">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./styles.css" nonce="{CSP_NONCE}">
+  <title>Event App — Приложение для мероприятий</title>
+
+  <script type="application/ld+json" nonce="{CSP_NONCE}">
+  {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Event App",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Telegram Mini App",
+      "description": "Приложение для мероприятий в Telegram: расписание, спикеры, нетворкинг, карта. Для конференций, митапов, хакатонов.",
+      "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "RUB",
+          "availability": "https://schema.org/InStock"
+      },
+      "author": {
+          "@type": "Person",
+          "name": "Nodeforge",
+          "url": "https://nodeforge.dev/"
+      },
+      "featureList": [
+          "Расписание с треками",
+          "Профили спикеров",
+          "Нетворкинг участников",
+          "Карта площадки",
+          "Push-уведомления",
+          "Чат участников"
+      ],
+      "url": "https://nodeforge.dev/miniapps/event-app/",
+      "sameAs": "https://t.me/nodeforge_dev"
+  }
+  </script>
+  
+  <script nonce="{CSP_NONCE}">
+    (function() {
+      const nonce = btoa(crypto.getRandomValues(new Uint8Array(16)).reduce((s, b) => s + String.fromCharCode(b), '')).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+      document.querySelectorAll('[nonce="{CSP_NONCE}"]').forEach(el => el.nonce = nonce);
+      const cspMeta = document.querySelector('meta[http-equiv="Content-Security-Policy"]');
+      if (cspMeta) {
+        cspMeta.content = cspMeta.content.replace('{CSP_NONCE}', nonce);
+      }
+    })();
+  </script>
+</head>
+<body>
+  <a href="#app" class="skip-link">Перейти к основному содержимому</a>
+  <noscript>
+    <strong>Включите JavaScript для работы приложения.</strong>
+  </noscript>
+  <div id="app" role="main"></div>
+  <script src="https://telegram.org/js/telegram-web-app.js" integrity="sha384-..." crossorigin="anonymous"></script>
+  <script src="./app.js" nonce="{CSP_NONCE}"></script>
+  <script nonce="{CSP_NONCE}">
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>

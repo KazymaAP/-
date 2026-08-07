@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Каталог вакансий для малого бизнеса. Фильтры по городу, зарплате, формату работы.">
+  <title>Вакансии — Работа Мало</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/main.css">
+  <link rel="stylesheet" href="./assets/css/responsive.css">
+</head>
+<body>
+  <a href="#main" class="skip-link">Перейти к контенту</a>
+
+  <header class="header" role="banner">
+    <div class="container header-inner">
+      <a href="./" class="logo" aria-label="Работа Мало — На главную">
+        <div class="logo-icon" aria-hidden="true">Р</div>
+        <span>Работа Мало</span>
+      </a>
+      <nav class="nav" id="mainNav" role="navigation" aria-label="Основная навигация">
+        <a href="./vacancies" class="nav-link active">Вакансии</a>
+        <a href="./pricing" class="nav-link">Тарифы</a>
+        <div class="nav-auth" id="navAuth">
+          <a href="./login" class="btn btn-secondary btn-sm">Войти</a>
+          <a href="./login?mode=register" class="btn btn-primary btn-sm">Регистрация</a>
+        </div>
+        <div class="nav-auth" id="navUser" style="display:none;">
+          <a href="./dashboard" class="nav-link">Кабинет</a>
+          <button class="btn btn-secondary btn-sm" id="logoutBtn">Выйти</button>
+        </div>
+      </nav>
+      <button class="mobile-menu-btn" aria-label="Открыть меню" id="mobileMenuBtn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="page-content">
+    <section class="search-section" aria-label="Поиск вакансий">
+      <div class="container">
+        <div class="search-box">
+          <div class="search-input-wrapper">
+            <span class="search-icon" aria-hidden="true">🔍</span>
+            <input type="search" class="search-input" id="searchInput" placeholder="Поиск вакансий..." aria-label="Поиск вакансий">
+          </div>
+          <button class="btn btn-primary" id="searchBtn" aria-label="Найти вакансии">Найти</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="filters" aria-label="Фильтры">
+      <div class="container">
+        <div class="filters-row">
+          <div class="filter-group">
+            <span class="filter-label">Город:</span>
+            <select class="filter-select" id="cityFilter" aria-label="Фильтр по городу">
+              <option value="">Все города</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-label">Формат:</span>
+            <select class="filter-select" id="formatFilter" aria-label="Фильтр по формату">
+              <option value="">Все форматы</option>
+              <option value="remote">Удалённо</option>
+              <option value="office">Офис</option>
+              <option value="hybrid">Гибрид</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-label">Опыт:</span>
+            <select class="filter-select" id="experienceFilter" aria-label="Фильтр по опыту">
+              <option value="">Любой</option>
+              <option value="junior">Junior</option>
+              <option value="middle">Middle</option>
+              <option value="senior">Senior</option>
+            </select>
+          </div>
+
+          <div class="filter-group salary-range">
+            <span class="filter-label">Зарплата:</span>
+            <input type="number" class="salary-input" id="salaryMin" placeholder="От" aria-label="Минимальная зарплата">
+            <span>—</span>
+            <input type="number" class="salary-input" id="salaryMax" placeholder="До" aria-label="Максимальная зарплата">
+          </div>
+
+          <div class="filter-group">
+            <select class="filter-select" id="categoryFilter" aria-label="Категория">
+              <option value="">Все категории</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" aria-label="Результаты поиска">
+      <div class="results-header">
+        <div class="results-count" id="resultsCount">Загрузка...</div>
+        <select class="sort-select" id="sortSelect" aria-label="Сортировка">
+          <option value="created_at">По дате</option>
+          <option value="salary_max">По зарплате</option>
+          <option value="views_count">По популярности</option>
+        </select>
+      </div>
+
+      <div class="jobs-grid" id="jobsList">
+        <div class="loading"><div class="spinner"></div></div>
+      </div>
+
+      <div class="pagination" id="pagination" role="navigation" aria-label="Постраничная навигация"></div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-bottom">
+        <span>&copy; 2026 Работа Мало. Все права защищены.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./assets/js/app.js"></script>
+  <script src="./assets/js/vacancies.js"></script>
+</body>
+</html>
