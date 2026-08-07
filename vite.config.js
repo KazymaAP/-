@@ -2,7 +2,7 @@ import { defineConfig, loadEnv } from 'vite';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
-import { visualizer } from 'rollup-plugin-visualizer';
+import visualizer from 'rollup-plugin-visualizer';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -68,10 +68,6 @@ export default defineConfig(({ mode, command }) => {
           main: path.resolve(__dirname, 'index.html'),
         },
         output: {
-          manualChunks: {
-            vendor: ['react', 'react-dom', 'react-router-dom'],
-            ui: ['framer-motion', 'lucide-react'],
-          },
           chunkFileNames: 'assets/js/[name]-[hash].js',
           entryFileNames: 'assets/js/[name]-[hash].js',
           assetFileNames: (assetInfo) => {
